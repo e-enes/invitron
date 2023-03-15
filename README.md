@@ -1,2 +1,67 @@
-# discord-invite-tracker
-A powerful discord bot that helps you keep track of your server's invite count
+# Discord Invite Tracker Bot
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+This is a Discord bot that tracks invitations for your server. You can view the leaderboard to see which members have invited the most people, reset a member's invitation count, and more. 
+
+*Currently only supports one guild per bot and requires a MySQL database*
+## Requirements
+* Node.js +16.x.x
+* MySQL Server
+* Discord bot token
+
+
+## Getting Started
+
+ 1. Clone the repository:
+
+```
+$ git clone https://github.com/enes-tahiri/discord-invite-tracker.git
+```
+ 2. Install the dependencies: 
+```
+$ cd discord-invite-tracker
+$ npm install
+```
+ 3. Create a `'.env'` file with these informations:
+```
+# Discord Bot Info
+TOKEN=
+
+# MySQL Server Info
+HOST=
+PORT= # default 3306
+USER=
+PASSWORD=
+DATABASE=
+
+# Discord Guild Channel Info
+CHANNEL_LEAVE=
+CHANNEL_JOIN=
+CHANNEL_LOG= # currently only for bot logs
+```
+ 4. Start the bot:
+```
+$ tsc
+$ cd dist
+$ node index
+```
+## Features
+* Track invites of each server member
+* View the invite leaderboard
+* Add or remove invites from members
+* Reset a member's invites to 0
+
+## Commands
+* `/invites [@member]` - View invitations
+* `/add-invites <@member> <amount>` - Add invitations
+* `/remove-invites <@member> <amount>` - Remove invitations
+* `/leaderboard` - View the invite leaderboard
+* `/reset-invites <@member>` - Reset a member's invites to 0
+
+## Contributing
+Contributions are always welcome! If you have any suggestions or find any bugs, feel free to open an issue or create a pull request.
+
+_Please make sure that your changes pass the ESLint and Prettier checks._
+
+## License
+This project is licensed under the MIT License - see the LICENSE.md file for details.
