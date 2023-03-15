@@ -1,0 +1,7 @@
+import {Client} from "discord.js";
+import Command from "../interface/Command";
+
+export default class MyClient extends Client {
+    invites: Map<string, Map<string, number>> = new Map();
+    register: Command[] = [];
+}
