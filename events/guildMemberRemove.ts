@@ -1,24 +1,25 @@
-import {EmbedBuilder, GuildMember, TextChannel, User} from "discord.js";
+import {Events, EmbedBuilder, GuildMember, TextChannel, User} from "discord.js";
 import MyClient from "../ts/class/MyClient";
 import invitesync from "../utils/invitesync";
 import inviteHimself from "../security/inviteHimself";
 import youngAccount from "../security/youngAccount";
 import InviteStats from "../ts/interface/InviteStats";
+import config from "../config";
 
 export default {
     once: false,
-    name: "guildMemberRemove",
+    name: Events.GuildMemberRemove,
     async execute(member: GuildMember, client: MyClient) {
-        const channel = await client.channels.fetch(process.env.CHANNEL_LEAVE!) as TextChannel;
+        const channel = await client.channels.fetch(config.channel.leave) as TextChannel;
 
         if (member.user.bot) {
             const embed = new EmbedBuilder()
                 .setTitle(`${member.user.tag} left!`)
                 .setDescription(
                     `
-                            **Bot User**\n
-                            **Account create**: <t:${Math.floor(member.user.createdTimestamp) / 1000}:R>\n
-                            `
+                    **Bot User**\n
+                    **Account create**: <t:${Math.floor(member.user.createdTimestamp) / 1000}:R>
+                    `
                 )
                 .setThumbnail(member.displayAvatarURL())
                 .setFooter({text: "Powored by Sene", iconURL: client.user!.displayAvatarURL()})
@@ -39,10 +40,10 @@ export default {
                 .setTitle(`${member.user.tag} left!`)
                 .setDescription(
                     `
-                            **Invited by**: ${inviter.tag}\n
-                            **Who now has: ${invites.invites} invitations\n
-                            **Account create**: <t:${Math.floor(member.user.createdTimestamp) / 1000}:R>\n
-                            `
+                    **Invited by**: ${inviter.tag}
+                    **Who now has: ${invites.invites} invitations
+                    **Account create**: <t:${Math.floor(member.user.createdTimestamp) / 1000}:R>
+                    `
                 )
                 .setThumbnail(member.displayAvatarURL())
                 .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
@@ -50,13 +51,12 @@ export default {
             return channel.send({embeds: [embed]});
         } catch (error) {
             const embed = new EmbedBuilder()
-                .setTitle(`${member.user.tag} left! (Error)`)
+                .setTitle(`${member.user.tag} left!`)
                 .setDescription(
                     `
-                            **Invited by**: Unknow inviter\n
-                            **Account create**: <t:${Math.floor(member.user.createdTimestamp) / 1000}:R>\n\n
-                            **Console:** ${error}
-                            `
+                    **Invited by**: Unknow inviter
+                    **Account create**: <t:${Math.floor(member.user.createdTimestamp / 1000)}:R>
+                    `
                 )
                 .setThumbnail(member.displayAvatarURL())
                 .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
@@ -64,4 +64,4 @@ export default {
             return channel.send({embeds: [embed]});
         }
     }
-}
+};
