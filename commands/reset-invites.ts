@@ -1,5 +1,5 @@
 import {
-    ApplicationCommandOptionType,
+    ApplicationCommandOptionType, ApplicationCommandType,
     CommandInteraction,
     EmbedBuilder,
     GuildMember,
@@ -21,9 +21,8 @@ export default {
             required: true
         }
     ],
+    type: ApplicationCommandType.ChatInput,
     async run(interaction: CommandInteraction, client: MyClient) {
-        await interaction.deferReply();
-
         const user: GuildMember = interaction.member as GuildMember;
         if (!user.permissions.has(PermissionsBitField.Flags.ManageGuild)) return noPermission(interaction, user, client);
 
@@ -54,8 +53,7 @@ export default {
                     ${interaction.member!.user.id === member.user.id ?
                         `**${user.user.tag}** unable to **reset** your invitations.` :
                         `**${user.user.tag}** was unable to **reset** **${member.user.tag}**'s invitations.`
-                    }\n\n
-                    **Console**: ${error}
+                    }
                     `
                 )
                 .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
