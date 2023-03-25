@@ -1,13 +1,13 @@
 {
   "name": "sene",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "enes.gg",
+  "author": "enes-th.dev",
   "license": "MIT",
   "dependencies": {
     "@types/mysql": "^2.15.21",
