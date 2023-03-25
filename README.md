@@ -3,7 +3,7 @@
 
 This is a Discord bot that tracks invitations for your server. You can view the leaderboard to see which members have invited the most people, reset a member's invitation count, and more. 
 
-*Currently only supports one guild per bot and requires a MySQL database*
+*Currently only supports one guild per bot and requires a MySQL database, Discord.js v14.8.0*
 ## Requirements
 * Node.js +16.x.x
 * MySQL Server
@@ -34,12 +34,23 @@ USER=
 PASSWORD=
 DATABASE=
 ```
- 4. Start the bot:
+ 4. Configure the `'config.ts'` file with these informations:
+```js
+export default {
+    channel: {
+        welcome: "id channel",
+        leave: "id channel",
+        log: "id channel"
+    }
+}
+```
+ 5. Start the bot:
 ```
 $ tsc
 $ cd dist
 $ node index
 ```
+_Make sure to manually import the .env file into the dist folder_
 ## Features
 * Track invites of each server member
 * View the invite leaderboard
