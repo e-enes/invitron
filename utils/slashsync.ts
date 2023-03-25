@@ -21,7 +21,7 @@ export async function register(client: MyClient, commands: Command[]) {
         const previousCommand = currentCommands.find((c) => c.name === updatedCommand.name)!;
         let modified = false;
         if (previousCommand.description !== newCommand.description) modified = true;
-        if (ApplicationCommand.optionsEqual(previousCommand.options ?? [], newCommand.options ?? [])) modified = true;
+        if (!ApplicationCommand.optionsEqual(previousCommand.options ?? [], newCommand.options ?? [])) modified = true;
         if (modified) await previousCommand.edit(newCommand);
     }
 }
