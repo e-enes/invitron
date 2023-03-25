@@ -1,4 +1,10 @@
-import {ApplicationCommandOptionType, CommandInteraction, EmbedBuilder, GuildMember} from "discord.js";
+import {
+    ApplicationCommandOptionType,
+    ApplicationCommandType,
+    CommandInteraction,
+    EmbedBuilder,
+    GuildMember
+} from "discord.js";
 import MyClient from "../ts/class/MyClient";
 import InviteStats from "../ts/interface/InviteStats";
 import invitesync from "../utils/invitesync";
@@ -15,9 +21,8 @@ export default {
             required: false
         }
     ],
+    type: ApplicationCommandType.ChatInput,
     async run(interaction: CommandInteraction, client: MyClient) {
-        await interaction.deferReply();
-
         const member: GuildMember = interaction.options.get("member")?.member as GuildMember || interaction.member as GuildMember;
         if (member === undefined) return undefMember(interaction, client);
 
@@ -39,10 +44,12 @@ export default {
             const embed = new EmbedBuilder()
                 .setTitle("Error!")
                 .setDescription(
-                    `${interaction.member!.user.id === member.user.id ?
+                    `
+                    ${interaction.member!.user.id === member.user.id ?
                         `Unable to retrieve your invitations, **${member.user.tag}**.` :
                         `Unable to retrieve invitations from **${member.user.tag}** for **${interaction.member!.user.username + "#" + interaction.member!.user.discriminator}**.`
-                    }\n\n**Console**: ${error}`
+                    }
+                    `
                 )
                 .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
                 .setColor("DarkRed")
