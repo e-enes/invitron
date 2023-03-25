@@ -1,13 +1,12 @@
-import {CommandInteraction, EmbedBuilder, Snowflake} from "discord.js";
+import {ApplicationCommandType, CommandInteraction, EmbedBuilder, Snowflake} from "discord.js";
 import MyClient from "../ts/class/MyClient";
 import invitesync from "../utils/invitesync";
 
 export default {
     name: "leaderboard",
     description: "View leaderboard",
+    type: ApplicationCommandType.ChatInput,
     async run(interaction: CommandInteraction, client: MyClient) {
-        await interaction.deferReply();
-
         try {
             const leaderboard: { [key: Snowflake]: number } = await invitesync.leaderboard(interaction.commandGuildId!);
 
@@ -45,12 +44,7 @@ export default {
         } catch (error) {
             const embed = new EmbedBuilder()
                 .setTitle("Error!")
-                .setDescription(
-                    `
-                    **${interaction.member!.user.username + "#" + interaction.member!.user.discriminator}** unable to **retrieve** the leaderboard.
-                    \n\n**Console**: ${error}
-                    `
-                )
+                .setDescription(`**${interaction.member!.user.username + "#" + interaction.member!.user.discriminator}** unable to **retrieve** the leaderboard.`)
                 .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
                 .setColor("DarkRed")
             return interaction.editReply({embeds: [embed]});
