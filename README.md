@@ -22,7 +22,7 @@ $ git clone https://github.com/enes-tahiri/discord-invite-tracker.git
 $ cd discord-invite-tracker
 $ npm install
 ```
- 3. Create a `'.env'` file with these informations:
+ 3. Configure the `'.env'` file with these informations:
 ```
 # Discord Bot Info
 TOKEN=
@@ -33,11 +33,6 @@ PORT= # default 3306
 USER=
 PASSWORD=
 DATABASE=
-
-# Discord Guild Channel Info
-CHANNEL_LEAVE=
-CHANNEL_JOIN=
-CHANNEL_LOG= # currently only for bot logs
 ```
  4. Start the bot:
 ```
