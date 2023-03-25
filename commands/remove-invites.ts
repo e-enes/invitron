@@ -1,5 +1,5 @@
 import {
-    ApplicationCommandOptionType,
+    ApplicationCommandOptionType, ApplicationCommandType,
     CommandInteraction,
     EmbedBuilder,
     GuildMember,
@@ -29,9 +29,8 @@ export default {
             required: true
         }
     ],
+    type: ApplicationCommandType.ChatInput,
     async run(interaction: CommandInteraction, client: MyClient) {
-        await interaction.deferReply();
-
         const user: GuildMember = interaction.member as GuildMember;
         if (!user.permissions.has(PermissionsBitField.Flags.ManageGuild)) return noPermission(interaction, user, client);
 
@@ -69,11 +68,7 @@ export default {
         } catch (error) {
             const embed = new EmbedBuilder()
                 .setTitle("Error!")
-                .setDescription(
-                    `**${user.user.tag}** was unable **to remove invitations**.\n\n
-                    **Console**: ${error}
-                    `
-                )
+                .setDescription(`**${user.user.tag}** was unable **to remove invitations**.`)
                 .setThumbnail(member.displayAvatarURL())
                 .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
                 .setColor("DarkRed")
