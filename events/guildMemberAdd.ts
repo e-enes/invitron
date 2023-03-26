@@ -18,6 +18,9 @@ export default {
             .then(async (guildInvites) => {
                 const invites = client.invites.get(member.guild.id);
                 const invite = guildInvites.find((inv) => invites?.get(inv.code)! < inv.uses!)!;
+            
+                await guildInvites.each((inv) => invites.set(inv.code, inv.uses!));
+                await client.invites.set(member.guild.id, invites);
 
                 try {
                     const inviter = await invite.inviter!;
