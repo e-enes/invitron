@@ -1,5 +1,8 @@
 # Discord Invite Tracker Bot
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+![GitHub stars](https://img.shields.io/github/stars/enes-th/discord-invite-tracker?label=Stars)
+![GitHub last commit](https://img.shields.io/github/last-commit/enes-th/discord-invite-tracker?label=Last%20Update)
+![GitHub open issues](https://img.shields.io/github/issues/enes-th/discord-invite-tracker?label=Issues)
 
 This is a Discord bot that tracks invitations for your server. You can view the leaderboard to see which members have invited the most people, reset a member's invitation count, and more. 
 
@@ -15,7 +18,7 @@ This is a Discord bot that tracks invitations for your server. You can view the 
  1. Clone the repository:
 
 ```
-$ git clone https://github.com/enes-tahiri/discord-invite-tracker.git
+$ git clone https://github.com/enes-th/discord-invite-tracker.git
 ```
  2. Install the dependencies: 
 ```
