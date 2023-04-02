@@ -10,9 +10,9 @@ import {
 } from "discord.js";
 import MyClient from "../ts/class/MyClient";
 import noPermission from "../security/noPermission";
+import config from "../config";
 
 export async function run(interaction: ButtonInteraction, client: MyClient) {
-    await interaction.deferReply();
     const member: GuildMember = interaction.member as GuildMember;
     if (!member.permissions.has(PermissionsBitField.Flags.BanMembers)) return noPermission(interaction, member, client);
 
@@ -22,7 +22,7 @@ export async function run(interaction: ButtonInteraction, client: MyClient) {
         const embed = new EmbedBuilder()
             .setTitle("Success!")
             .setDescription(`**${member.user.tag}** banned the bot **${client.users.fetch(user).then((u) => u.tag)}**.`)
-            .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
+            .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
             .setColor("DarkGreen")
         await interaction.reply({embeds: [embed]});
         return interaction.fetchReply().then((m) => {
@@ -40,8 +40,8 @@ export async function run(interaction: ButtonInteraction, client: MyClient) {
         const embed = new EmbedBuilder()
             .setTitle("Error!")
             .setDescription(`**${member.user.tag}** unable to ban the bot **${client.users.fetch(user).then((u) => u.tag)}**.`)
-            .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
-            .setColor("DarkRed")
+            .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+            .setColor("Red")
         await interaction.editReply({embeds: [embed]});
         return interaction.fetchReply().then((m) => {
             const row = new ActionRowBuilder<ButtonBuilder>()
