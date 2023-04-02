@@ -9,6 +9,7 @@ import MyClient from "../ts/class/MyClient";
 import undefMember from "../security/undefMember";
 import noPermission from "../security/noPermission";
 import invitesync from "../utils/invitesync";
+import config from "../config";
 
 export default {
     name: "reset-invites",
@@ -30,34 +31,31 @@ export default {
         if (member === undefined) return undefMember(interaction, client);
 
         try {
-            await invitesync.clearInvites(member.user.id, interaction.commandGuildId!);
+            await invitesync.clearInvites(member.user.id, interaction.guildId!);
 
             const embed = new EmbedBuilder()
                 .setTitle("Invitation Reset")
-                .setDescription(
-                    `
-                ${user.user.id === member.user.id ?
-                        `**${user.user.tag}** your invitations have been **reset**` :
-                        `**${user.user.tag}** has reset **${member.user.tag}**'s invitations.`
-                    }
-                `
-                )
-                .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
+                .setDescription(`
+                    ${user.user.id === member.user.id ?
+                    `**${user.user.tag}** your invitations have been **reset**` :
+                    `**${user.user.tag}** has reset **${member.user.tag}**'s invitations.`}
+                `)
+                .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
                 .setColor("DarkGreen")
             return interaction.editReply({embeds: [embed]});
         } catch (error) {
             const embed = new EmbedBuilder()
                 .setTitle("Error!")
-                .setDescription(
-                    `
+                .setDescription(`
                     ${interaction.member!.user.id === member.user.id ?
-                        `**${user.user.tag}** unable to **reset** your invitations.` :
-                        `**${user.user.tag}** was unable to **reset** **${member.user.tag}**'s invitations.`
-                    }
-                    `
-                )
-                .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
-                .setColor("DarkRed")
+                    `**${user.user.tag}** unable to **reset** your invitations.` :
+                    `**${user.user.tag}** was unable to **reset** **${member.user.tag}**'s invitations.`}
+                `)
+                .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+                .setColor("Red")
+            config.handleError ?
+                embed.addFields({name: "Console", value: error as string}) :
+                console.error(error);
             return interaction.editReply({embeds: [embed]});
         }
     }
