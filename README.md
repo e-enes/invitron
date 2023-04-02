@@ -37,11 +37,14 @@ DATABASE=
  4. Configure the `'config.ts'` file with these informations:
 ```js
 export default {
-    channel: {
-        welcome: "id channel",
-        leave: "id channel",
-        log: "id channel"
-    }
+    message: {
+        footer: "Powered by Enes"
+    },
+    activity: {
+        name: "Sene Bot",
+        type: 3 // 0 = Playing, 1 = Streaming, 2 = Listening, 3 = Watching, 4 = Custom, 5 = Competing
+    },
+    handleError: false // If there an error, display it in the message
 }
 ```
  5. Start the bot:
@@ -51,6 +54,8 @@ $ cd dist
 $ node index
 ```
 _Make sure to manually import the .env file into the dist folder_
+
+Run the `/setup` command on discord
 ## Features
 * Track invites of each server member
 * View the invite leaderboard
@@ -63,6 +68,7 @@ _Make sure to manually import the .env file into the dist folder_
 * `/remove-invites <@member> <amount>` - Remove invitations
 * `/leaderboard` - View the invite leaderboard
 * `/reset-invites <@member>` - Reset a member's invites to 0
+* `/setup <#welcome-channel> <#leave-channel> <#log-channel>` - Setup the invitation system
 
 ## Contributing
 Contributions are always welcome! If you have any suggestions or find any bugs, feel free to open an issue or create a pull request.
