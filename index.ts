@@ -1,15 +1,14 @@
-import {IntentsBitField, Partials} from "discord.js";
+import {GatewayIntentBits, Partials} from "discord.js";
 import {readdirSync} from "fs";
 import "dotenv/config.js";
 import MyClient from "./ts/class/MyClient";
 
 const client = new MyClient({
     intents: [
-        IntentsBitField.Flags.Guilds,
-        IntentsBitField.Flags.GuildInvites,
-        IntentsBitField.Flags.GuildMembers,
-        IntentsBitField.Flags.GuildMessages,
-        IntentsBitField.Flags.MessageContent
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildInvites,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildBans
     ],
     partials: [
         Partials.Channel,
@@ -38,4 +37,3 @@ readdirSync("./commands").forEach(async (file) => {
 });
 
 client.login(process.env.TOKEN).then(() => console.log(`login!`));
-
