@@ -1,11 +1,17 @@
-import {ButtonInteraction, CommandInteraction, EmbedBuilder, GuildMember} from "discord.js";
+import {
+    ButtonInteraction,
+    CommandInteraction,
+    EmbedBuilder,
+    GuildMember
+} from "discord.js";
 import MyClient from "../ts/class/MyClient";
+import config from "../config";
 
 export default async function invalidBonus(interaction: CommandInteraction | ButtonInteraction, member: GuildMember, client: MyClient) {
     const embed = new EmbedBuilder()
         .setTitle("Error!")
         .setDescription(`**${member.user.tag}** negative numbers, 0 and too large (**+10 digits**) number are not supported.`)
-        .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
-        .setColor("DarkRed")
+        .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+        .setColor("Red")
     return interaction.editReply({embeds: [embed]});
 }
