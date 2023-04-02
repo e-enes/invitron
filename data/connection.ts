@@ -18,24 +18,32 @@ export default {
         const queries = [
             `CREATE TABLE IF NOT EXISTS \`invites\` (
                 \`id\` int(11) PRIMARY KEY AUTO_INCREMENT,
-                \`user\` int(11) NOT NULL,
-                \`guild\` int(11) NOT NULL,
-                \`inviter\` int(11) NOT NULL,
-                \`inactive\` boolean NOT NULL
+                \`user\` varchar(25) NOT NULL,
+                \`guild\` varchar(25) NOT NULL,
+                \`inviter\` varchar(25) NOT NULL,
+                \`inactive\` tinyint(1) NOT NULL
             );`,
             `CREATE TABLE IF NOT EXISTS \`leaves\` (
                 \`id\` int(11) PRIMARY KEY AUTO_INCREMENT,
-                \`user\` int(11) NOT NULL,
-                \`guild\` int(11) NOT NULL,
-                \`inviter\` int(11) NOT NULL,
-                \`inactive\` boolean NOT NULL
+                \`user\` varchar(25) NOT NULL,
+                \`guild\` varchar(25) NOT NULL,
+                \`inviter\` varchar(25) NOT NULL,
+                \`inactive\` tinyint(1) NOT NULL
             );`,
             `CREATE TABLE IF NOT EXISTS \`bonus\` (
                 \`id\` int(11) PRIMARY KEY AUTO_INCREMENT,
-                \`user\` int(11) NOT NULL,
-                \`guild\` int(11) NOT NULL,
+                \`user\` varchar(25) NOT NULL,
+                \`guild\` varchar(25) NOT NULL,
                 \`bonus\` int(11) NOT NULL
             );`,
+            `CREATE TABLE IF NOT EXISTS \`channels\` (
+                \`id\` int(11) PRIMARY KEY AUTO_INCREMENT,
+                \`setup\` tinyint(1) NOT NULL,
+                \`guild\` varchar(25) NOT NULL,
+                \`welcome\` varchar(25) NOT NULL,
+                \`leave\` varchar(25) NOT NULL,
+                \`log\` varchar(25) NOT NULL
+            );`
         ];
 
         for (let query of queries) {
