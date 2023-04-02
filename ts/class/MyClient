@@ -1,7 +1,9 @@
 import {Client} from "discord.js";
 import Command from "../interface/Command";
+import ChannelStats from "../interface/ChannelStats";
 
 export default class MyClient extends Client {
-    invites: Map<string, Map<string, number>> = new Map();
+    invites: Map<string, Map<string, number>> = new Map;
     register: Command[] = [];
+    cache: Map<string, ChannelStats> = new Map;
 }
