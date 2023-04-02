@@ -11,6 +11,7 @@ import invitesync from "../utils/invitesync";
 import undefMember from "../security/undefMember";
 import noPermission from "../security/noPermission";
 import invalidBonus from "../security/invalidBonus";
+import config from "../config";
 
 export default {
     name: "remove-invites",
@@ -41,28 +42,25 @@ export default {
         if (bonus <= 0 || bonus >= 2147483647) return invalidBonus(interaction, user, client);
 
         try {
-            const invites: InviteStats = await invitesync.getInvites(member.user.id, interaction.commandGuildId!);
+            const invites: InviteStats = await invitesync.getInvites(member.user.id, interaction.guildId!);
             if (Math.abs(invites.bonus - bonus) >= 2147483647) {
                 const embed = new EmbedBuilder()
                     .setTitle("Error!")
-                    .setDescription(`**${user.user.tag}** was unable to add invitations. \n\nThe total number of invitations has exceeded the maximum limit.`)
-                    .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
-                    .setColor("DarkRed")
+                    .setDescription(`**${user.user.tag}** was unable to add invitations.\n\nThe total number of invitations has exceeded the maximum limit.`)
+                    .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+                    .setColor("Red")
                 return interaction.editReply({embeds: [embed]});
             }
 
-            await invitesync.bonusInvites(member.user.id, interaction.commandGuildId!, -1 * Math.abs(bonus));
+            await invitesync.bonusInvites(member.user.id, interaction.guildId!, -1 * Math.abs(bonus));
             const embed = new EmbedBuilder()
                 .setTitle("Remove Invitation")
-                .setDescription(
-                    `
+                .setDescription(`
                     ${user.user.id === member.user.id ?
-                        `**${member.user.tag}** you've lost **${bonus}** invitations.` :
-                        `**${user.user.tag}** has removed **${bonus}** invitations from **${member.user.tag}**`
-                    }
-                    `
-                )
-                .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
+                    `**${member.user.tag}** you've lost **${bonus}** invitations.` :
+                    `**${user.user.tag}** has removed **${bonus}** invitations from **${member.user.tag}**`}
+                `)
+                .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
                 .setColor("DarkGreen")
             return interaction.editReply({embeds: [embed]});
         } catch (error) {
@@ -70,8 +68,11 @@ export default {
                 .setTitle("Error!")
                 .setDescription(`**${user.user.tag}** was unable **to remove invitations**.`)
                 .setThumbnail(member.displayAvatarURL())
-                .setFooter({text: "Powered by Sene", iconURL: client.user!.displayAvatarURL()})
-                .setColor("DarkRed")
+                .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+                .setColor("Red")
+            config.handleError ?
+                embed.addFields({name: "Console", value: error as string}) :
+                console.error(error);
             return interaction.editReply({embeds: [embed]});
         }
     }
