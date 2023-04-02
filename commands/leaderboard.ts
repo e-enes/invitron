@@ -42,8 +42,6 @@ export default {
                 .setDescription(`Guild: **${interaction.guild!.name}**\n\n${top5.join("\n")}`)
                 .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
                 .setColor("DarkGreen")
-            const row = new ActionRowBuilder<ButtonBuilder>()
-                .addComponents()
             return interaction.editReply({embeds: [embed]});
         } catch (error) {
             const embed = new EmbedBuilder()
