@@ -8,8 +8,8 @@ import {
     PermissionsBitField,
     Snowflake
 } from "discord.js";
-import MyClient from "../ts/class/MyClient";
-import noPermission from "../security/noPermission";
+import MyClient from "../lib/types/class/MyClient";
+import noPermission from "../lib/utils/noPermission";
 import config from "../config";
 
 export async function run(interaction: ButtonInteraction, client: MyClient) {
