@@ -5,10 +5,10 @@ import {
     GuildMember,
     PermissionsBitField
 } from "discord.js";
-import MyClient from "../ts/class/MyClient";
-import undefMember from "../security/undefMember";
-import noPermission from "../security/noPermission";
-import invitesync from "../utils/invitesync";
+import MyClient from "../lib/types/class/MyClient";
+import undefMember from "../lib/utils/undefMember";
+import noPermission from "../lib/utils/noPermission";
+import inviteSync from "../lib/sync/invite";
 import config from "../config";
 
 export default {
@@ -31,7 +31,7 @@ export default {
         if (member === undefined) return undefMember(interaction, client);
 
         try {
-            await invitesync.clearInvites(member.user.id, interaction.guildId!);
+            await inviteSync.clearInvites(member.user.id, interaction.guildId!);
 
             const embed = new EmbedBuilder()
                 .setTitle("Invitation Reset")
@@ -53,9 +53,7 @@ export default {
                 `)
                 .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
                 .setColor("Red")
-            config.handleError ?
-                embed.addFields({name: "Console", value: error as string}) :
-                console.error(error);
+            if (config.handleError) embed.addFields({name: "Console", value: error as string})
             return interaction.editReply({embeds: [embed]});
         }
     }
