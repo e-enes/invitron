@@ -3,12 +3,13 @@ import {
     ApplicationCommandType,
     ChannelType,
     CommandInteraction,
-    EmbedBuilder
+    EmbedBuilder, GuildMember, PermissionsBitField
 } from "discord.js";
-import MyClient from "../ts/class/MyClient";
-import channelsync from "../utils/channelsync";
-import invalidChannel from "../security/invalidChannel";
+import MyClient from "../lib/types/class/MyClient";
+import channelSync from "../lib/sync/channel";
+import invalidChannel from "../lib/utils/invalidChannel";
 import config from "../config";
+import noPermission from "../lib/utils/noPermission";
 
 export default {
     name: "setup",
@@ -35,19 +36,24 @@ export default {
     ],
     type: ApplicationCommandType.ChatInput,
     async run(interaction: CommandInteraction, client: MyClient) {
+        const user: GuildMember = interaction.member as GuildMember;
+        if (!user.permissions.has(PermissionsBitField.Flags.ManageGuild)) return noPermission(interaction, user, client);
+
         const welcomeChannel = interaction.options.get("welcome-channel")?.channel!;
-        if (welcomeChannel.type !== ChannelType.GuildText) return invalidChannel(interaction, client);
-
         const leaveChannel = interaction.options.get("leave-channel")?.channel!;
-        if (leaveChannel.type !== ChannelType.GuildText) return invalidChannel(interaction, client);
-
         const logChannel = interaction.options.get("log-channel")?.channel!;
-        if (logChannel.type !== ChannelType.GuildText) return invalidChannel(interaction, client);
+
+        if (welcomeChannel.type !== ChannelType.GuildText ||
+            leaveChannel.type !== ChannelType.GuildText ||
+            logChannel.type !== ChannelType.GuildText) return invalidChannel(interaction, client);
 
         try {
-            await channelsync.setup(welcomeChannel.id, leaveChannel.id, logChannel.id, interaction.guildId!);
-            const channelCache = await channelsync.getChannels(interaction.guildId!);
-            client.cache.set(interaction.guildId!, channelCache);
+            await channelSync.setup(welcomeChannel.id, leaveChannel.id, logChannel.id, interaction.guildId!);
+            client.cache.channels.set(interaction.guildId!, {
+                welcome: welcomeChannel.id,
+                leave: leaveChannel.id,
+                log: logChannel.id
+            });
 
             const embed = new EmbedBuilder()
                 .setTitle("Setup!")
@@ -61,9 +67,7 @@ export default {
                 .setDescription(`**${interaction.member!.user.username + interaction.member!.user.discriminator}** unable to **done setup** on this server`)
                 .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
                 .setColor("Red")
-            config.handleError ?
-                embed.addFields({name: "Console", value: error as string}) :
-                console.error(error);
+            if (config.handleError) embed.addFields({name: "Console", value: error as string})
             return interaction.editReply({embeds: [embed]});
         }
     }
