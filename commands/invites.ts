@@ -5,10 +5,10 @@ import {
     EmbedBuilder,
     GuildMember
 } from "discord.js";
-import MyClient from "../ts/class/MyClient";
-import InviteStats from "../ts/interface/InviteStats";
-import invitesync from "../utils/invitesync";
-import undefMember from "../security/undefMember";
+import MyClient from "../lib/types/class/MyClient";
+import InviteStats from "../lib/types/interface/InviteStats";
+import inviteSync from "../lib/sync/invite";
+import undefMember from "../lib/utils/undefMember";
 import config from "../config";
 
 export default {
@@ -28,7 +28,7 @@ export default {
         if (member === undefined) return undefMember(interaction, client);
 
         try {
-            const invites: InviteStats = await invitesync.getInvites(member.user.id, interaction.guildId!);
+            const invites: InviteStats = await inviteSync.getInvites(member.user.id, interaction.guildId!);
 
             const embed = new EmbedBuilder()
                 .setTitle("Invitation Stats")
@@ -50,9 +50,7 @@ export default {
                 `)
                 .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
                 .setColor("Red")
-            config.handleError ?
-                embed.addFields({name: "Console", value: error as string}) :
-                console.error(error);
+            if (config.handleError) embed.addFields({name: "Console", value: error as string})
             return interaction.editReply({embeds: [embed]});
         }
     }
