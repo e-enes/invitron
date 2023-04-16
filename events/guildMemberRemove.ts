@@ -1,21 +1,34 @@
-import {Events, EmbedBuilder, GuildMember, User, GuildTextBasedChannel} from "discord.js";
-import MyClient from "../ts/class/MyClient";
-import invitesync from "../utils/invitesync";
-import inviteHimself from "../security/inviteHimself";
-import youngAccount from "../security/youngAccount";
-import InviteStats from "../ts/interface/InviteStats";
+import {
+    Events,
+    EmbedBuilder,
+    GuildMember,
+    User,
+    GuildTextBasedChannel
+} from "discord.js";
+import MyClient from "../lib/types/class/MyClient";
+import inviteSync from "../lib/sync/invite";
+import inviteHimself from "../lib/utils/inviteHimself";
+import youngAccount from "../lib/utils/youngAccount";
+import InviteStats from "../lib/types/interface/InviteStats";
 import config from "../config";
-import channelsync from "../utils/channelsync";
+import channelSync from "../lib/sync/channel";
 
 export default {
     once: false,
     name: Events.GuildMemberRemove,
     async execute(member: GuildMember, client: MyClient) {
-        let isSetup = true;
-        const channel = await member.guild.channels.fetch(client.cache.get(member.guild.id)!.leave!).catch(async () => {
-            await channelsync.deleteChannel(false, true, member.guild.id);
-            isSetup = false
-        }) as GuildTextBasedChannel;
+        const channelId = client.cache.channels.get(member.guild.id)?.leave;
+        let isSetup = channelId !== undefined;
+        let channel: GuildTextBasedChannel | undefined = undefined;
+
+        if (isSetup) {
+            try {
+                channel = await member.guild.channels.fetch(channelId!) as GuildTextBasedChannel;
+            } catch {
+                await channelSync.deleteChannel(false, true, member.guild.id);
+                isSetup = false;
+            }
+        }
 
         if (member.user.bot && isSetup) {
             const embed = new EmbedBuilder()
@@ -24,25 +37,25 @@ export default {
                 .setThumbnail(member.displayAvatarURL())
                 .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
                 .setColor("Yellow")
-            return channel.send({embeds: [embed]});
+            return channel!.send({embeds: [embed]});
         }
 
         try {
-            const inviter: User = await invitesync.getInviter(member.user.id, member.guild.id)
+            const inviter: User = await inviteSync.getInviter(member.user.id, member.guild.id)
                 .then((u) => client.users.fetch(u));
             if (inviter.id === member.user.id) return inviteHimself(member, client, false);
             if (Date.now() - member.user.createdTimestamp < 1000 * 60 * 60 * 24 * 10) return youngAccount(member, inviter, client, false);
 
-            await invitesync.removeInvite(member.user.id, inviter.id, member.guild.id);
+            await inviteSync.removeInvite(member.user.id, inviter.id, member.guild.id);
             if (isSetup) {
-                const invites: InviteStats = await invitesync.getInvites(inviter.id, member.guild.id);
+                const invites: InviteStats = await inviteSync.getInvites(inviter.id, member.guild.id);
                 const embed = new EmbedBuilder()
                     .setTitle(`${member.user.tag} left!`)
                     .setDescription(`**Invited by**: ${inviter.tag}\n**Who now has**: ${invites.invites} invitations\n\n**Account create**: <t:${Math.floor(member.user.createdTimestamp / 1000)}:R>`)
                     .setThumbnail(member.displayAvatarURL())
                     .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
                     .setColor("Red")
-                return channel.send({embeds: [embed]});
+                return channel!.send({embeds: [embed]});
             }
         } catch (error) {
             if (isSetup) {
@@ -52,12 +65,9 @@ export default {
                     .setThumbnail(member.displayAvatarURL())
                     .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
                     .setColor("Red")
-                config.handleError ?
-                    embed.addFields({name: "Console", value: error as string}) :
-                    console.error(error);
-                return channel.send({embeds: [embed]});
+                if (config.handleError) embed.addFields({name: "Console", value: error as string})
+                return channel!.send({embeds: [embed]});
             }
-            console.error(error);
         }
     }
 }
