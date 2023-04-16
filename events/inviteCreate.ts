@@ -1,10 +1,13 @@
-import {Invite} from "discord.js";
-import MyClient from "../ts/class/MyClient";
+import {
+    Events,
+    Invite
+} from "discord.js";
+import MyClient from "../lib/types/class/MyClient";
 
 export default {
     once: false,
-    name: "inviteCreate",
+    name: Events.InviteCreate,
     async execute(invite: Invite, client: MyClient) {
-        await client.invites.get(invite.guild?.id!)?.set(invite.code, invite.uses!);
+        await client.cache.invites.get(invite.guild?.id!)?.set(invite.code, invite.uses!);
     }
-};
+}
