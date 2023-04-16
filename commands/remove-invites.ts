@@ -5,12 +5,12 @@ import {
     GuildMember,
     PermissionsBitField,
 } from "discord.js";
-import MyClient from "../ts/class/MyClient";
-import InviteStats from "../ts/interface/InviteStats";
-import invitesync from "../utils/invitesync";
-import undefMember from "../security/undefMember";
-import noPermission from "../security/noPermission";
-import invalidBonus from "../security/invalidBonus";
+import MyClient from "../lib/types/class/MyClient";
+import InviteStats from "../lib/types/interface/InviteStats";
+import inviteSync from "../lib/sync/invite";
+import undefMember from "../lib/utils/undefMember";
+import noPermission from "../lib/utils/noPermission";
+import invalidBonus from "../lib/utils/invalidBonus";
 import config from "../config";
 
 export default {
@@ -42,7 +42,7 @@ export default {
         if (bonus <= 0 || bonus >= 2147483647) return invalidBonus(interaction, user, client);
 
         try {
-            const invites: InviteStats = await invitesync.getInvites(member.user.id, interaction.guildId!);
+            const invites: InviteStats = await inviteSync.getInvites(member.user.id, interaction.guildId!);
             if (Math.abs(invites.bonus - bonus) >= 2147483647) {
                 const embed = new EmbedBuilder()
                     .setTitle("Error!")
@@ -52,7 +52,7 @@ export default {
                 return interaction.editReply({embeds: [embed]});
             }
 
-            await invitesync.bonusInvites(member.user.id, interaction.guildId!, -1 * Math.abs(bonus));
+            await inviteSync.bonusInvites(member.user.id, interaction.guildId!, -1 * Math.abs(bonus));
             const embed = new EmbedBuilder()
                 .setTitle("Remove Invitation")
                 .setDescription(`
@@ -70,9 +70,7 @@ export default {
                 .setThumbnail(member.displayAvatarURL())
                 .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
                 .setColor("Red")
-            config.handleError ?
-                embed.addFields({name: "Console", value: error as string}) :
-                console.error(error);
+            if (config.handleError) embed.addFields({name: "Console", value: error as string})
             return interaction.editReply({embeds: [embed]});
         }
     }
