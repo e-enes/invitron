@@ -1,6 +1,9 @@
-import {Events, Guild} from "discord.js";
-import MyClient from "../ts/class/MyClient";
-import channelsync from "../utils/channelsync";
+import {
+    Events,
+    Guild
+} from "discord.js";
+import MyClient from "../lib/types/class/MyClient";
+import channel from "../lib/sync/channel";
 
 export default {
     once: false,
@@ -11,11 +14,11 @@ export default {
                 const code = new Map;
                 await guildInvites.each((inv) => code.set(inv.code, inv.uses));
 
-                await client.invites.set(guild.id, code);
+                await client.cache.invites.set(guild.id, code);
             });
 
-        await channelsync.setGuild(guild.id);
-        const channelCache = await channelsync.getChannels(guild.id);
-        client.cache.set(guild.id, channelCache);
+        await channel.setGuild(guild.id);
+        const channels = await channel.getChannels(guild.id);
+        client.cache.channels.set(guild.id, channels);
     }
 }
