@@ -1,8 +1,8 @@
 import {Events} from "discord.js";
-import MyClient from "../ts/class/MyClient";
-import {register} from "../utils/slashsync";
-import channelsync from "../utils/channelsync";
-import connection from "../data/connection";
+import MyClient from "../lib/types/class/MyClient";
+import {register} from "../lib/sync/slash";
+import channelSync from "../lib/sync/channel";
+import connection from "../database/connection";
 import config from "../config";
 
 export default {
@@ -10,7 +10,7 @@ export default {
     name: Events.ClientReady,
     async execute(client: MyClient) {
         await register(client,
-            client.register.map((command) => ({
+            client.cache.register.map((command) => ({
                 name: command.name,
                 description: command.description,
                 options: command.options,
@@ -24,13 +24,13 @@ export default {
         for (let i = 0; i < client.guilds.cache.size; i++) {
             const guild = client.guilds.cache.at(i)!;
 
-            const channels = await channelsync.getChannels(guild.id);
-            client.cache.set(guild.id, channels);
+            const channels = await channelSync.getChannels(guild.id);
+            client.cache.channels.set(guild.id, channels);
 
             const guildInvites = await guild.invites.fetch();
             const code = new Map();
             guildInvites.each((inv) => code.set(inv.code, inv.uses));
-            client.invites.set(guild.id, code);
+            client.cache.invites.set(guild.id, code);
         }
     }
 }
