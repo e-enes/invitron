@@ -1,4 +1,7 @@
-import {createConnection, Connection} from "mysql";
+import {
+    createConnection,
+    Connection
+} from "mysql";
 
 const options = {
     host: process.env.HOST,
