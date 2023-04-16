@@ -1,13 +1,11 @@
 import {
-    ActionRowBuilder,
     ApplicationCommandType,
-    ButtonBuilder,
     CommandInteraction,
     EmbedBuilder,
     Snowflake
 } from "discord.js";
-import MyClient from "../ts/class/MyClient";
-import invitesync from "../utils/invitesync";
+import MyClient from "../lib/types/class/MyClient";
+import inviteSync from "../lib/sync/invite";
 import config from "../config";
 
 export default {
@@ -16,7 +14,7 @@ export default {
     type: ApplicationCommandType.ChatInput,
     async run(interaction: CommandInteraction, client: MyClient) {
         try {
-            const leaderboard: { [key: Snowflake]: number } = await invitesync.leaderboard(interaction.guildId!);
+            const leaderboard: { [key: Snowflake]: number } = await inviteSync.leaderboard(interaction.guildId!);
 
             if (Object.keys(leaderboard).length === 0) {
                 const embed = new EmbedBuilder()
@@ -49,9 +47,7 @@ export default {
                 .setDescription(`**${interaction.member!.user.username + "#" + interaction.member!.user.discriminator}** unable to **retrieve** the leaderboard.`)
                 .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
                 .setColor("Red")
-            config.handleError ?
-                embed.addFields({name: "Console", value: error as string}) :
-                console.error(error);
+            if (config.handleError) embed.addFields({name: "Console", value: error as string})
             return interaction.editReply({embeds: [embed]});
         }
     }
