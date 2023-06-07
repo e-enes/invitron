@@ -40,9 +40,15 @@ export default {
                 if (error) reject(error.message);
                 if (results && results[0]) {
                     resolve({
-                        welcome: results[0].welcome,
-                        leave: results[0].leave,
-                        log: results[0].log
+                        welcome: results[0].welcome ?? undefined,
+                        leave: results[0].leave ?? undefined,
+                        log: results[0].log ?? undefined
+                    });
+                } else {
+                    resolve({
+                        welcome: undefined,
+                        leave: undefined,
+                        log: undefined
                     });
                 }
             });
