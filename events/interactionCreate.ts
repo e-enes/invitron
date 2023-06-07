@@ -1,7 +1,7 @@
 import {Events, Interaction, ChannelType, User, GuildMember} from 'discord.js';
-import MyClient from "../ts/class/MyClient";
-import {run} from "../buttons/ban-bot";
-import noDMCommand from "../security/noDMCommand";
+import MyClient from "../lib/types/class/MyClient";
+import {run} from "../buttons/ban-bots";
+import noDMCommand from "../lib/utils/noDMCommand";
 
 export default {
     once: false,
