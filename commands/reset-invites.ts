@@ -31,30 +31,30 @@ export default {
         if (member === undefined) return undefMember(interaction, client);
 
         try {
-            await inviteSync.clearInvites(member.user.id, interaction.guildId!);
+            await inviteSync.clear(member.user.id, interaction.guildId!);
 
             const embed = new EmbedBuilder()
                 .setTitle("Invitation Reset")
                 .setDescription(`
                     ${user.user.id === member.user.id ?
-                    `**${user.user.tag}** your invitations have been **reset**` :
-                    `**${user.user.tag}** has reset **${member.user.tag}**'s invitations.`}
+                        `**${user}** your invitations have been **reset**` :
+                        `**${user}** has reset **${member}**'s invitations.`}
                 `)
-                .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+                .setFooter({ text: config.message.footer, iconURL: client.user!.displayAvatarURL() })
                 .setColor("DarkGreen")
-            return interaction.editReply({embeds: [embed]});
-        } catch (error) {
+            return interaction.editReply({ embeds: [embed] });
+        } catch (error: any) {
             const embed = new EmbedBuilder()
                 .setTitle("Error!")
                 .setDescription(`
                     ${interaction.member!.user.id === member.user.id ?
-                    `**${user.user.tag}** unable to **reset** your invitations.` :
-                    `**${user.user.tag}** was unable to **reset** **${member.user.tag}**'s invitations.`}
+                        `**${user}** unable to **reset** your invitations.` :
+                        `**${user}** was unable to **reset** **${member}**'s invitations.`}
                 `)
-                .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+                .setFooter({ text: config.message.footer, iconURL: client.user!.displayAvatarURL() })
                 .setColor("Red")
-            if (config.handleError) embed.addFields({name: "Console", value: error as string})
-            return interaction.editReply({embeds: [embed]});
+            if (config.handleError) embed.addFields({ name: "Console", value: error.message })
+            return interaction.editReply({ embeds: [embed] });
         }
     }
 }
