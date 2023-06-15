@@ -18,13 +18,13 @@ export async function run(interaction: ButtonInteraction, client: MyClient) {
 
     const user: Snowflake = interaction.customId.split("-")[2];
     try {
-        await interaction.guild?.members.ban(user, {reason: "Unwanted Bot"});
+        await interaction.guild?.members.ban(user, { reason: "Unwanted Bot" });
         const embed = new EmbedBuilder()
             .setTitle("Success!")
-            .setDescription(`**${member.user.tag}** banned the bot **${client.users.fetch(user).then((u) => u.tag)}**.`)
-            .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+            .setDescription(`**${member}** banned the bot **${await client.users.fetch(user)}**.`)
+            .setFooter({ text: config.message.footer, iconURL: client.user!.displayAvatarURL() })
             .setColor("DarkGreen")
-        await interaction.reply({embeds: [embed]});
+        await interaction.reply({ embeds: [embed] });
         return interaction.fetchReply().then((m) => {
             const row = new ActionRowBuilder<ButtonBuilder>()
                 .addComponents(
@@ -34,15 +34,15 @@ export async function run(interaction: ButtonInteraction, client: MyClient) {
                         .setStyle(ButtonStyle.Success)
                         .setDisabled(true)
                 )
-            return m.edit({components: [row]});
+            return m.edit({ components: [row] });
         });
     } catch {
         const embed = new EmbedBuilder()
             .setTitle("Error!")
-            .setDescription(`**${member.user.tag}** unable to ban the bot **${client.users.fetch(user).then((u) => u.tag)}**.`)
-            .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+            .setDescription(`**${member}** unable to ban the bot **${await client.users.fetch(user)}**.`)
+            .setFooter({ text: config.message.footer, iconURL: client.user!.displayAvatarURL() })
             .setColor("Red")
-        await interaction.editReply({embeds: [embed]});
+        await interaction.editReply({ embeds: [embed] });
         return interaction.fetchReply().then((m) => {
             const row = new ActionRowBuilder<ButtonBuilder>()
                 .addComponents(
@@ -52,7 +52,7 @@ export async function run(interaction: ButtonInteraction, client: MyClient) {
                         .setStyle(ButtonStyle.Danger)
                         .setDisabled(true)
                 )
-            return m.edit({components: [row]});
+            return m.edit({ components: [row] });
         });
     }
 }
