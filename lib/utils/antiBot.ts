@@ -19,7 +19,7 @@ export default async function antiBot(member: GuildMember, client: MyClient) {
         try {
             channel = await member.guild.channels.fetch(channelId!) as GuildTextBasedChannel;
         } catch {
-            await channelSync.deleteChannel(false, false, member.guild.id);
+            await channelSync.del(false, false, member.guild.id);
             isSetup = false;
         }
     }
@@ -27,9 +27,9 @@ export default async function antiBot(member: GuildMember, client: MyClient) {
     if (isSetup) {
         const embed = new EmbedBuilder()
             .setTitle("A bot has joined the server!")
-            .setDescription(`**Username#Tag**: ${member.user.tag}\n**ID**: ${member.user.id}\n\n**Account create**: <t:${Math.floor(member.user.createdTimestamp / 1000)}:R>`)
+            .setDescription(`**Username**: ${member}\n**ID**: ${member.user.id}\n\n**Account create**: <t:${Math.floor(member.user.createdTimestamp / 1000)}:R>`)
             .setThumbnail(member.displayAvatarURL())
-            .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+            .setFooter({ text: config.message.footer, iconURL: client.user!.displayAvatarURL() })
             .setColor("Red")
         const row = new ActionRowBuilder<ButtonBuilder>()
             .addComponents(
@@ -39,6 +39,6 @@ export default async function antiBot(member: GuildMember, client: MyClient) {
                     .setStyle(ButtonStyle.Danger)
                     .setDisabled(!member.bannable)
             )
-        return channel!.send({embeds: [embed], components: [row]})
+        return channel!.send({ embeds: [embed], components: [row] })
     }
 }
