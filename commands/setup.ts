@@ -48,7 +48,7 @@ export default {
             logChannel.type !== ChannelType.GuildText) return invalidChannel(interaction, client);
 
         try {
-            await channelSync.setup(welcomeChannel.id, leaveChannel.id, logChannel.id, interaction.guildId!);
+            await channelSync.set(welcomeChannel.id, leaveChannel.id, logChannel.id, interaction.guildId!);
             client.cache.channels.set(interaction.guildId!, {
                 welcome: welcomeChannel.id,
                 leave: leaveChannel.id,
@@ -57,18 +57,18 @@ export default {
 
             const embed = new EmbedBuilder()
                 .setTitle("Setup!")
-                .setDescription(`**${interaction.member!.user.username + interaction.member!.user.discriminator}** the **setup was done** on this server!`)
-                .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+                .setDescription(`**${interaction.member}** the **setup was done** on this server!`)
+                .setFooter({ text: config.message.footer, iconURL: client.user!.displayAvatarURL() })
                 .setColor("DarkGreen")
-            return interaction.editReply({embeds: [embed]});
-        } catch (error) {
+            return interaction.editReply({ embeds: [embed] });
+        } catch (error: any) {
             const embed = new EmbedBuilder()
                 .setTitle("Error!")
-                .setDescription(`**${interaction.member!.user.username + interaction.member!.user.discriminator}** unable to **done setup** on this server`)
-                .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+                .setDescription(`**${interaction.member}** unable to **done setup** on this server`)
+                .setFooter({ text: config.message.footer, iconURL: client.user!.displayAvatarURL() })
                 .setColor("Red")
-            if (config.handleError) embed.addFields({name: "Console", value: error as string})
-            return interaction.editReply({embeds: [embed]});
+            if (config.handleError) embed.addFields({ name: "Console", value: error.message })
+            return interaction.editReply({ embeds: [embed] });
         }
     }
 }
