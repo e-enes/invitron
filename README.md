@@ -62,6 +62,7 @@ Run the `/setup` command on discord
 * View the invite leaderboard
 * Add or remove invites from members
 * Reset a member's invites to 0
+* Detection of fake invitations
 
 ## Commands
 * `/invites [@member]` - View invitations
@@ -70,6 +71,8 @@ Run the `/setup` command on discord
 * `/leaderboard` - View the invite leaderboard
 * `/reset-invites <@member>` - Reset a member's invites to 0
 * `/setup <#welcome-channel> <#leave-channel> <#log-channel>` - Setup the invitation system
+* `/create-link` - Create an invitation link that never expires
+* `/who-used-code <code>` - See which users have used this code
 
 ## Contributing
 Contributions are always welcome! If you have any suggestions or find any bugs, feel free to open an issue or create a pull request.
