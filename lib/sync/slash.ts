@@ -5,7 +5,14 @@ import {
 import MyClient from "../types/class/MyClient";
 import Command from "../types/interface/Command";
 
-export async function register(client: MyClient, commands: Command[]) {
+/**
+ *
+ * @function
+ * @param {MyClient} client
+ * @param {Command[]} commands
+ * @returns {void}
+ */
+export async function register(client: MyClient, commands: Command[]): Promise<void> {
     const currentCommands: Collection<string, ApplicationCommand> | undefined = await client.application?.commands.fetch()!;
 
     const newCommands = commands.filter((command) => !currentCommands.some((c) => c.name === command.name));
