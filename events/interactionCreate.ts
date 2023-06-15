@@ -1,6 +1,10 @@
-import {Events, Interaction, ChannelType, User, GuildMember} from 'discord.js';
+import {
+    Events,
+    Interaction,
+    ChannelType
+} from 'discord.js';
 import MyClient from "../lib/types/class/MyClient";
-import {run} from "../buttons/ban-bots";
+import { run } from "../buttons/ban-bot";
 import noDMCommand from "../lib/utils/noDMCommand";
 
 export default {
@@ -13,15 +17,15 @@ export default {
             await interaction.deferReply();
             if (interaction.customId.startsWith("ban-bot-")) return run(interaction, client);
 
-            const {default: btn} = await import(`../buttons/${interaction.customId}`)
+            const { default: btn } = await import(`../buttons/${interaction.customId}`)
             btn.run(interaction, client);
         }
 
         if (interaction.isCommand()) {
             await interaction.deferReply();
 
-            const {default: cmd} = await import(`../commands/${interaction.commandName}`);
+            const { default: cmd } = await import(`../commands/${interaction.commandName}`);
             cmd.run(interaction, client);
         }
     }
-};
+}
