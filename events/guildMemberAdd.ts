@@ -2,16 +2,18 @@ import {
     Events,
     EmbedBuilder,
     GuildMember,
-    GuildTextBasedChannel
+    GuildTextBasedChannel,
+    Invite,
+    User
 } from "discord.js";
 import MyClient from "../lib/types/class/MyClient";
 import antiBot from "../lib/utils/antiBot";
-import inviteHimself from "../lib/utils/inviteHimself";
-import youngAccount from "../lib/utils/youngAccount";
 import inviteSync from "../lib/sync/invite";
-import InviteStats from "../lib/types/interface/InviteStats";
+import { InviteStats } from "../lib/types/interface/invite";
 import config from "../config";
 import channelSync from "../lib/sync/channel";
+import inviteHimself from "../lib/utils/inviteHimself";
+import youngAccount from "../lib/utils/youngAccount";
 
 export default {
     once: false,
@@ -27,7 +29,7 @@ export default {
             try {
                 channel = await member.guild.channels.fetch(channelId!) as GuildTextBasedChannel;
             } catch {
-                await channelSync.deleteChannel(true, false, member.guild.id);
+                await channelSync.del(true, false, member.guild.id);
                 isSetup = false;
             }
         }
@@ -35,38 +37,44 @@ export default {
         member.guild.invites.fetch()
             .then(async (guildInvites) => {
                 const invites = client.cache.invites.get(member.guild.id)!;
-                const invite = guildInvites.find((inv) => invites?.get(inv.code)! < inv.uses!)!;
+                const invite: Invite = guildInvites.find((inv) => invites?.get(inv.code)!.uses < inv.uses!)!;
+                const inviter: User = await client.users.fetch(invites.get(invite.code)!.memberId);
 
-                await guildInvites.each((inv) => invites.set(inv.code, inv.uses!));
+                await invites.set(invite.code, { uses: invite.uses!, memberId: inviter.id })
                 await client.cache.invites.set(member.guild.id, invites);
 
                 try {
-                    const inviter = await invite.inviter!;
-                    if (inviter.id === member.user.id) return inviteHimself(member, client, true);
-                    if (Date.now() - member.user.createdTimestamp < 1000 * 60 * 60 * 24 * 10) return youngAccount(member, inviter, client, true);
+                    if (inviter.id === member.user.id) {
+                        await inviteSync.add(member.user.id, inviter.id, member.guild.id, invite!.code, 1);
+                        return inviteHimself(member, client, true);
+                    }
+                    if (Date.now() - member.user.createdTimestamp < 1000 * 60 * 60 * 24 * 10) {
+                        await inviteSync.add(member.user.id, inviter.id, member.guild.id, invite!.code, 1);
+                        return youngAccount(member, inviter, client, true);
+                    }
 
-                    await inviteSync.setInviter(member.user.id, inviter.id, member.guild.id);
+                    await inviteSync.add(member.user.id, inviter.id, member.guild.id, invite!.code, 0);
 
                     if (isSetup) {
                         const invites: InviteStats = await inviteSync.getInvites(inviter.id, member.guild.id);
                         const embed = new EmbedBuilder()
-                            .setTitle(`${member.user.tag} joined!`)
-                            .setDescription(`**Invited by**: ${inviter.tag}\n**Who now has**: ${invites.invites} invitations\n\n**Account create**: <t:${Math.floor(member.user.createdTimestamp / 1000)}:R>`)
+                            .setTitle(`${member.user.username} joined!`)
+                            .setDescription(`**Invited by**: ${inviter.username}\n**Who now has**: ${invites.invites} invitations\n\n**Account create**: <t:${Math.floor(member.user.createdTimestamp / 1000)}:R>`)
                             .setThumbnail(member.displayAvatarURL())
-                            .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+                            .setFooter({ text: config.message.footer, iconURL: client.user!.displayAvatarURL() })
                             .setColor("DarkGreen")
-                        return channel!.send({embeds: [embed]});
+                        return channel!.send({ embeds: [embed] });
                     }
-                } catch (error) {
+                } catch (error: any) {
                     if (isSetup) {
                         const embed = new EmbedBuilder()
-                            .setTitle(`${member.user.tag} joined!`)
+                            .setTitle(`${member.user.username} joined!`)
                             .setDescription(`**Invited by**: Unknow inviter\n**Account create**: <t:${Math.floor(member.user.createdTimestamp / 1000)}:R>\n\n_Maybe he used a temporary or vanity invitation_`)
                             .setThumbnail(member.displayAvatarURL())
-                            .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+                            .setFooter({ text: config.message.footer, iconURL: client.user!.displayAvatarURL() })
                             .setColor("Red")
-                        if (config.handleError) embed.addFields({name: "Console", value: error as string})
-                        return channel!.send({embeds: [embed]});
+                        if (config.handleError) embed.addFields({ name: "Console", value: error.message })
+                        return channel!.send({ embeds: [embed] });
                     }
                 }
             });
