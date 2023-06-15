@@ -1,5 +1,5 @@
-import {GatewayIntentBits} from "discord.js";
-import {readdirSync} from "fs";
+import { GatewayIntentBits, Partials } from "discord.js";
+import { readdirSync } from "fs";
 import "dotenv/config.js";
 import MyClient from "./lib/types/class/MyClient";
 
@@ -9,13 +9,16 @@ const client = new MyClient({
         GatewayIntentBits.GuildInvites,
         GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildBans
+    ],
+    partials: [
+        Partials.GuildMember
     ]
 });
 
 readdirSync("./events").forEach(async (file) => {
     if (!file.endsWith(".js")) return;
 
-    const {default: event} = await import(`./events/${file}`);
+    const { default: event } = await import(`./events/${file}`);
     event.once ?
         client.once(event.name, () => event.execute(client)) :
         client.on(event.name, (...args) => event.execute(...args, client));
@@ -24,8 +27,8 @@ readdirSync("./events").forEach(async (file) => {
 readdirSync("./commands").forEach(async (file) => {
     if (!file.endsWith(".js")) return;
 
-    const {default: props} = await import(`./commands/${file}`);
+    const { default: props } = await import(`./commands/${file}`);
     client.cache.register.push(props);
 });
 
-client.login(process.env.TOKEN).then(() => console.log(`login!`));
+client.login(process.env.TOKEN);
