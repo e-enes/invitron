@@ -17,18 +17,18 @@ export default async function antiBot(member: GuildMember, inviter: User, client
         try {
             channel = await member.guild.channels.fetch(channelId!) as GuildTextBasedChannel;
         } catch {
-            await channelSync.deleteChannel(joined, !joined, member.guild.id);
+            await channelSync.del(joined, !joined, member.guild.id);
             isSetup = false;
         }
     }
 
     if (isSetup) {
         const embed = new EmbedBuilder()
-            .setTitle(joined ? `${member.user.tag} joined!` : `${member.user.tag} left!`)
+            .setTitle(joined ? `${member} joined!` : `${member} left!`)
             .setDescription(`**Invited by**: ${inviter.tag}\n**Account create**: <t:${Math.floor(member.user.createdTimestamp / 1000)}:R>\n\n_His invitation is invalid (account too young)!_`)
             .setThumbnail(member.displayAvatarURL())
-            .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+            .setFooter({ text: config.message.footer, iconURL: client.user!.displayAvatarURL() })
             .setColor("Yellow")
-        return channel!.send({embeds: [embed]});
+        return channel!.send({ embeds: [embed] });
     }
 }
