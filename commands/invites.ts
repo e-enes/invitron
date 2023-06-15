@@ -6,7 +6,7 @@ import {
     GuildMember
 } from "discord.js";
 import MyClient from "../lib/types/class/MyClient";
-import InviteStats from "../lib/types/interface/InviteStats";
+import { InviteStats } from "../lib/types/interface/invite";
 import inviteSync from "../lib/sync/invite";
 import undefMember from "../lib/utils/undefMember";
 import config from "../config";
@@ -34,24 +34,24 @@ export default {
                 .setTitle("Invitation Stats")
                 .setDescription(`
                     ${interaction.member!.user.id === member.user.id ?
-                    `Congratulations, **${member.user.tag}**! You have **${invites.invites}** invitations. \n\n_Here's a breakdown of your invitations:_\n\n**${invites.total}** Regular Invitations\n**${invites.leaves}** Left Invitations\n**${invites.bonus}** Bonus Invitations` :
-                    `**${member.user.tag}** has **${invites.invites}** invitations. \n\n_Here's a breakdown of their invitations:_\n\n**${invites.total}** Regular Invitations\n**${invites.leaves}** Left Invitations\n**${invites.bonus}** Bonus Invitations`}
+                        `Congratulations, **${member}**! You have **${invites.invites}** invitations. \n\n_Here's a breakdown of your invitations:_\n\n**${invites.total}** Regular Invitations\n**${invites.leaves}** Left Invitations\n**${invites.bonus}** Bonus Invitations\n**${invites.fake}** Fake Invitations` :
+                        `**${member}** has **${invites.invites}** invitations. \n\n_Here's a breakdown of their invitations:_\n\n**${invites.total}** Regular Invitations\n**${invites.leaves}** Left Invitations\n**${invites.bonus}** Bonus Invitations\n**${invites.fake}** Fake Invitations`}
                 `)
-                .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+                .setFooter({ text: config.message.footer, iconURL: client.user!.displayAvatarURL() })
                 .setColor("DarkGreen")
-            return interaction.editReply({embeds: [embed]});
-        } catch (error) {
+            return interaction.editReply({ embeds: [embed] });
+        } catch (error: any) {
             const embed = new EmbedBuilder()
                 .setTitle("Error!")
                 .setDescription(`
                     ${interaction.member!.user.id === member.user.id ?
-                    `Unable to retrieve your invitations, **${member.user.tag}**.` :
-                    `Unable to retrieve invitations from **${member.user.tag}** for **${interaction.member!.user.username + "#" + interaction.member!.user.discriminator}**.`}
+                        `Unable to retrieve your invitations, **${member}**.` :
+                        `Unable to retrieve invitations from **${member}** for **${interaction.member}**.`}
                 `)
-                .setFooter({text: config.message.footer, iconURL: client.user!.displayAvatarURL()})
+                .setFooter({ text: config.message.footer, iconURL: client.user!.displayAvatarURL() })
                 .setColor("Red")
-            if (config.handleError) embed.addFields({name: "Console", value: error as string})
-            return interaction.editReply({embeds: [embed]});
+            if (config.handleError) embed.addFields({ name: "Console", value: error.message })
+            return interaction.editReply({ embeds: [embed] });
         }
     }
 }
