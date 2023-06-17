@@ -10,7 +10,7 @@ export default {
     name: Events.InviteDelete,
     async execute(invite: Invite, client: MyClient) {
         const guildId = invite.guild?.id!;
-        const links = client.cache.links.get(guildId)!
+        const links = client.cache.links.get(guildId)!;
 
         client.cache.invites.get(guildId)!.delete(invite.code);
 
