@@ -28,7 +28,7 @@ export default {
         interaction.guild?.invites.create(interaction.channel!.id, {
             maxAge: 0,
             temporary: false,
-            unique: false
+            unique: true
         }).then((inv) => {
             client.cache.invites.get(interaction.guild!.id)!.set(inv.code, {
                 uses: inv.uses!,
