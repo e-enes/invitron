@@ -31,7 +31,7 @@ TOKEN=
 # MySQL Server Info
 HOST=
 PORT= # default 3306
-USER=
+USERNAME=
 PASSWORD=
 DATABASE=
 ```
