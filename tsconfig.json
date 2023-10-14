@@ -1,13 +1,21 @@
 {
     "compilerOptions": {
-        "module": "CommonJS",
-        "target": "ES6",
-        "sourceMap": true,
+        "target": "ESNext",
         "strict": true,
-        "outDir": "dist",
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "module": "CommonJS",
+        "moduleResolution": "Node",
+        "esModuleInterop": true,
+        "incremental": false,
+        "removeComments": true,
+        "resolveJsonModule": true,
+        "sourceMap": false,
+        "outDir": "dist"
     },
-
+    "include": [
+        "src",
+        "config.ts"
+    ],
     "exclude": [
         "node_modules",
         "dist"

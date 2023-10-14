@@ -1,20 +1,38 @@
 {
-  "name": "sene",
-  "version": "1.1.2",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "npm install -g pm2 && tsc && cd dist && pm2 start index.js"
-  },
-  "keywords": [],
-  "author": "enesth",
-  "license": "MIT",
+  "name": "discord-invite-tracker",
+  "version": "1.2.5",
+  "description": "A powerful discord bot that helps you keep track of your server's invite count",
   "dependencies": {
-    "@types/mysql": "^2.15.21",
-    "discord.js": "^14.9.0",
-    "dotenv": "^16.0.3",
+    "discord-api-types": "^0.37.60",
+    "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1",
     "fs": "^0.0.1-security",
-    "mysql": "^2.18.1",
-    "typescript": "^4.9.5"
-  }
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.21",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.3",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "dev": "node dist/src/index",
+    "build": "tsc && echo Make sure to manually import the .env file into the dist folder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enes-th/discord-invite-tracker.git"
+  },
+  "author": "Enes Tahiri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/enes-th/discord-invite-tracker/issues"
+  },
+  "homepage": "https://github.com/enes-th/discord-invite-tracker#readme",
+  "private": true
 }
