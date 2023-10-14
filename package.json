@@ -21,7 +21,7 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "dev": "node dist/src/index",
+    "start": "node dist/src/index.js",
     "build": "tsc && echo Make sure to manually import the .env file into the dist folder"
   },
   "repository": {
