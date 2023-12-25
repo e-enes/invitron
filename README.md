@@ -51,8 +51,7 @@ export default {
  5. Start the bot:
 ```
 $ tsc
-$ cd dist
-$ node index
+$ npm run start
 ```
 _Make sure to manually import the .env file into the dist folder_
 
