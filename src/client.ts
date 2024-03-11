@@ -11,17 +11,17 @@ import Sqlite from "./database/Sqlite.js";
 import MySql from "./database/MySql.js";
 
 const client = new Client({
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMembers,
-		GatewayIntentBits.GuildInvites,
-		GatewayIntentBits.GuildModeration,
-	],
-	allowedMentions: {
-		repliedUser: false,
-		parse: [],
-	},
-	partials: [Partials.GuildMember],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildInvites,
+    GatewayIntentBits.GuildModeration,
+  ],
+  allowedMentions: {
+    repliedUser: false,
+    parse: [],
+  },
+  partials: [Partials.GuildMember],
 });
 
 client.commands = new Collection();
@@ -30,9 +30,9 @@ client.components = new Collection();
 client.config = config;
 
 if (config.useSqlite) {
-	client.database = new Sqlite();
+  client.database = new Sqlite();
 } else {
-	client.database = new MySql();
+  client.database = new MySql();
 }
 
 await loadEvents(client);
