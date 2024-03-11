@@ -1,38 +1,70 @@
 {
-  "name": "discord-invite-tracker",
-  "version": "1.2.5",
-  "description": "A powerful discord bot that helps you keep track of your server's invite count",
-  "dependencies": {
-    "discord-api-types": "^0.37.60",
-    "discord.js": "^14.13.0",
-    "dotenv": "^16.3.1",
-    "fs": "^0.0.1-security",
-    "mysql": "^2.18.1"
-  },
-  "devDependencies": {
-    "@types/mysql": "^2.15.21",
-    "@typescript-eslint/eslint-plugin": "^6.7.2",
-    "@typescript-eslint/parser": "^6.7.2",
-    "eslint": "^8.49.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "prettier": "^3.0.3",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.2.2"
-  },
-  "scripts": {
-    "start": "node dist/src/index.js",
-    "build": "tsc && echo Make sure to manually import the .env file into the dist folder"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/enes-th/discord-invite-tracker.git"
-  },
-  "author": "Enes Tahiri",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/enes-th/discord-invite-tracker/issues"
-  },
-  "homepage": "https://github.com/enes-th/discord-invite-tracker#readme",
-  "private": true
+	"name": "sene-bot",
+	"version": "2.0.0",
+	"description": "A powerful discord bot that helps you keep track of your server's invite count",
+	"main": "dist/index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node .",
+		"build": "node scripts/build.js",
+		"dev": "nodemon",
+		"format": "prettier . --check",
+		"lint": "eslint .",
+		"lint:staged": "lint-staged",
+		"prepare": "husky"
+	},
+	"author": "Enes Tahiri",
+	"license": "MIT",
+	"lint-staged": {
+		"*.{js,ts,tsx}": [
+			"eslint --fix",
+			"prettier --write"
+		],
+		"*.json": [
+			"prettier -w"
+		]
+	},
+	"nodemonConfig": {
+		"watch": [
+			"src",
+			".env",
+			"scripts"
+		],
+		"ext": "ts",
+		"exec": "pnpm build && pnpm start",
+		"delay": 2500,
+		"env": {
+			"NODE_ENV": "development"
+		}
+	},
+	"homepage": "https://github.com/e-enes/discord-invite-tracker#readme",
+	"bugs": {
+		"email": "contact@enes.gg",
+		"url": "https://github.com/e-enes/discord-invite-tracker/issues"
+	},
+	"packageManager": "pnpm@8.15.3",
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^6.17.0",
+		"@typescript-eslint/parser": "^6.17.0",
+		"dotenv": "^16.3.1",
+		"esbuild": "^0.19.11",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.1.3",
+		"husky": "^9.0.6",
+		"lint-staged": "^15.2.0",
+		"nodemon": "^3.1.0",
+		"prettier": "3.1.1",
+		"typescript": "^5.3.3"
+	},
+	"dependencies": {
+		"bufferutil": "^4.0.8",
+		"chalk": "^5.3.0",
+		"discord-api-types": "^0.37.67",
+		"discord.js": "^14.14.1",
+		"glob": "^10.3.10",
+		"mysql2": "^3.7.0",
+		"utf-8-validate": "^6.0.3",
+		"zlib-sync": "^0.1.9"
+	}
 }

@@ -1,0 +1,87 @@
+CREATE TABLE IF NOT EXISTS guilds
+(
+    guild_id TEXT NOT NULL,
+    PRIMARY KEY (guild_id)
+);
+
+CREATE TABLE IF NOT EXISTS channels
+(
+    guild_id     TEXT NOT NULL,
+    channel_id   TEXT NOT NULL,
+    channel_type TEXT NOT NULL CHECK (channel_type IN ('leave', 'log', 'welcome')),
+    PRIMARY KEY (guild_id, channel_id, channel_type),
+    FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS invites
+(
+    guild_id   TEXT     NOT NULL,
+    inviter_id TEXT     NOT NULL,
+    member_id  TEXT     NOT NULL,
+    code       TEXT     NOT NULL,
+    inactive   BOOL     NOT NULL DEFAULT false,
+    fake       BOOL     NOT NULL DEFAULT false,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS invites_exclude
+(
+    guild_id      TEXT NOT NULL,
+    excluded_type TEXT NOT NULL CHECK (excluded_type IN ('role', 'member')),
+    excluded_id   TEXT NOT NULL,
+    can_invite    BOOL NOT NULL DEFAULT true,
+    is_invitation BOOL NOT NULL DEFAULT false,
+    PRIMARY KEY (guild_id, excluded_id),
+    FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS leaderboards
+(
+    guild_id          TEXT    NOT NULL,
+    view_top          INTEGER NOT NULL DEFAULT 10,
+    view_left_inviter BOOL    NOT NULL DEFAULT false,
+    PRIMARY KEY (guild_id),
+    FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS leaderboards_exclude
+(
+    guild_id      INTEGER NOT NULL,
+    excluded_type TEXT    NOT NULL CHECK (excluded_type IN ('role', 'member')),
+    excluded_id   TEXT    NOT NULL,
+    PRIMARY KEY (guild_id, excluded_id),
+    FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS roles
+(
+    guild_id           TEXT    NOT NULL,
+    role_id            TEXT    NOT NULL,
+    amount_invitations INTEGER NOT NULL,
+    PRIMARY KEY (guild_id, role_id),
+    FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS links
+(
+    guild_id  TEXT NOT NULL,
+    member_id TEXT NOT NULL,
+    link      TEXT NOT NULL,
+    source    TEXT NOT NULL,
+    PRIMARY KEY (link),
+    FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS fakes
+(
+    guild_id              TEXT    NOT NULL,
+    role_id               TEXT    NOT NULL,
+    custom_profile_pic    BOOL    NOT NULL DEFAULT false,
+    older                 INT     NOT NULL DEFAULT 10,
+    own_invite            BOOL    NOT NULL DEFAULT true,
+    first_join            BOOL    NOT NULL DEFAULT false,
+    back_original_inviter BOOLEAN NOT NULL DEFAULT false,
+    PRIMARY KEY (guild_id),
+    FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
+);
