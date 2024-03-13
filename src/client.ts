@@ -3,12 +3,12 @@ import { GatewayIntentBits } from "discord-api-types/v10";
 
 import { loadCommands, loadComponents, loadEvents } from "./utils/loader.js";
 
-import "./utils/process.js";
-
 import config from "./config.js";
 
 import Sqlite from "./database/Sqlite.js";
 import MySql from "./database/MySql.js";
+
+import "./utils/translations/i18next.js";
 
 const client = new Client({
   intents: [
@@ -30,10 +30,14 @@ client.components = new Collection();
 client.config = config;
 
 if (config.useSqlite) {
-  client.database = new Sqlite();
+  const { glob } = await import("glob");
+  const [file] = await glob("shared/db.sqlite");
+  client.database = new Sqlite(file);
 } else {
-  client.database = new MySql();
+  client.database = new MySql(config.mysql);
 }
+
+await client.database.connect();
 
 await loadEvents(client);
 await loadCommands(client);
