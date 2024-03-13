@@ -1,15 +1,16 @@
 import { Collection } from "discord.js";
 
-import config from "../config";
+import config from "../config.js";
 
-import Database from "../database/Database.js";
+import MySql from "../database/MySql.js";
+import Sqlite from "../database/Sqlite.js";
 
 declare module "discord.js" {
   export interface Client {
     config: typeof config;
-    commands: Collection<string, import("../commands/Command").default>;
-    components: Collection<string, import("../components/Component").default>;
-    database: Database;
+    commands: Collection<string, import("../commands/Command.js").default>;
+    components: Collection<string, import("../components/Component.js").default>;
+    database: MySql | Sqlite;
   }
 }
 

@@ -5,6 +5,7 @@ import {
   ChannelSelectMenuInteraction,
   Client,
   MentionableSelectMenuInteraction,
+  ModalSubmitInteraction,
   StringSelectMenuInteraction,
   UserSelectMenuInteraction,
 } from "discord.js";
@@ -16,6 +17,7 @@ namespace Component {
   export type MentionableSelectMenu = MentionableSelectMenuInteraction<"cached">;
   export type StringSelectMenu = StringSelectMenuInteraction<"cached">;
   export type UserSelectMenu = UserSelectMenuInteraction<"cached">;
+  export type Modal = ModalSubmitInteraction<"cached">;
   export type Keys = Array<string>;
 }
 
@@ -50,6 +52,8 @@ class Component {
     interaction: Component.UserSelectMenu,
     keys: Component.Keys
   ): Awaitable<void>;
+
+  public executeModal?(interaction: Component.Modal, args: Component.Keys): Awaitable<void>;
 }
 
 export default Component;

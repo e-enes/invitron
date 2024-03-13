@@ -12,10 +12,10 @@ import MySql from "./database/MySql.js";
 
 const client = new Client({
   intents: [
-    GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildInvites,
     GatewayIntentBits.GuildModeration,
+    GatewayIntentBits.DirectMessages,
   ],
   allowedMentions: {
     repliedUser: false,
