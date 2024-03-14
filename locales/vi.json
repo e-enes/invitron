@@ -1,0 +1,80 @@
+{
+	"emoji": "🇻🇳",
+	"commands": {
+		"insufficient_permission": "You are not authorized to execute this command!",
+		"invites": {
+			"data": {
+				"name": "invites",
+				"description": "Manage invitations",
+				"options": {
+					"view": {
+						"name": "view",
+						"description": "View invitation",
+						"options": {
+							"member": {
+								"name": "member",
+								"description": "Mention a server member"
+							}
+						}
+					},
+					"add": {
+						"name": "add",
+						"description": "Add invitation to a member",
+						"options": {
+							"member": {
+								"name": "member",
+								"description": "Mention a server member"
+							},
+							"amount": {
+								"name": "amount",
+								"description": "Amount of invitations to add"
+							}
+						}
+					},
+					"remove": {
+						"name": "remove",
+						"description": "Remove invitation to a member",
+						"options": {
+							"member": {
+								"name": "member",
+								"description": "Mention a server member"
+							},
+							"amount": {
+								"name": "amount",
+								"description": "Amount of invitations to remove"
+							}
+						}
+					},
+					"reset": {
+						"name": "reset",
+						"description": "Reset a member's invitations",
+						"options": {
+							"member": {
+								"name": "member",
+								"description": "Mention a server member"
+							}
+						}
+					},
+					"create": {
+						"name": "create",
+						"description": "Create an invitation link that never expires"
+					},
+					"check": {
+						"name": "check",
+						"description": "Discover which members hava utilized this code or identify the member associated with it",
+						"options": {
+							"code": {
+								"name": "code",
+								"description": "Code (without discord.gg/)"
+							},
+							"member": {
+								"name": "member",
+								"description": "Mention a server member"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
