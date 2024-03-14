@@ -74,11 +74,7 @@ const initLocalization = () => {
 };
 
 const handleLang = (
-  command:
-    | CommandLocalization
-    | SubcommandGroupLocalization
-    | SubcommandLocalization
-    | OptionLocalization,
+  command: CommandLocalization | SubcommandGroupLocalization | SubcommandLocalization | OptionLocalization,
   lang: string,
   data: { name: string; description: string }
 ): void => {

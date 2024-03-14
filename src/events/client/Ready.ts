@@ -22,9 +22,7 @@ class Ready extends Listener {
       ],
     });
 
-    await client.application.commands.set(
-      client.commands.map((command) => command.applicationCommands).flat()
-    );
+    await client.application.commands.set(client.commands.map((command) => command.applicationCommands).flat());
   }
 }
 

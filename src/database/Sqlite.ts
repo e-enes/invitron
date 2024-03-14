@@ -45,9 +45,7 @@ class Sqlite {
         if (type === "SELECT") {
           this.connection.all(sql, params, (error: Error | null, rows: unknown[]): void => {
             if (error) {
-              Logger.error(
-                `Error executing query SQL\n\nSQL: ${sql}\nParams: ${params?.join(", ")}`
-              );
+              Logger.error(`Error executing query SQL\n\nSQL: ${sql}\nParams: ${params?.join(", ")}`);
               throw error;
             }
 
@@ -56,9 +54,7 @@ class Sqlite {
         } else {
           this.connection.run(sql, params, (error: Error | null): void => {
             if (error) {
-              Logger.error(
-                `Error executing query SQL\n\nSQL: ${sql}\nParams: ${params?.join(", ")}`
-              );
+              Logger.error(`Error executing query SQL\n\nSQL: ${sql}\nParams: ${params?.join(", ")}`);
               throw error;
             }
 
