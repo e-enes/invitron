@@ -13,5 +13,6 @@
     "traceResolution": true,
     "noImplicitOverride": true
   },
-  "include": ["src/**/*.ts", "*.js"]
+  "include": ["src/**/*.ts", "*.js"],
+  "exclude": ["dist", "node_modules"]
 }

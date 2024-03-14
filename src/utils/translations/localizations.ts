@@ -2,71 +2,157 @@ import i18next from "i18next";
 import { Collection } from "discord.js";
 
 export interface Localization {
-  name: string;
-  names: Record<string, string>;
-  description: string;
-  descriptions: Record<string, string>;
-  options: Record<string, Localization>;
+  "en-US": string;
+  "en-GB": string;
+  fr: string;
+  nl: string;
+  ru: string;
+  vi: string;
 }
 
-interface CommandData {
-  [key: string]: any;
+interface OptionLocalization {
+  name: Localization;
+  description: Localization;
 }
 
-const localizations = new Collection<string, Localization>();
+interface SubcommandLocalization {
+  name: Localization;
+  description: Localization;
+  options?: { [key: string]: OptionLocalization };
+}
+
+interface SubcommandGroupLocalization {
+  name: Localization;
+  description: Localization;
+  subcommands?: { [key: string]: SubcommandLocalization };
+}
+
+interface CommandLocalization {
+  name: Localization;
+  description: Localization;
+  subcommandsGroups?: { [key: string]: SubcommandGroupLocalization };
+  subcommands?: { [key: string]: SubcommandLocalization };
+  options?: { [key: string]: OptionLocalization };
+}
+
+const localizations = new Collection<string, CommandLocalization>();
 
 const initLocalization = () => {
-  for (const lang of Object.keys(i18next.store.data)) {
-    const commands: Record<string, { data?: CommandData }> =
-      (i18next.store.data[lang]["translation"] as any).commands || {};
+  for (const [lang, data] of Object.entries(i18next.store.data)) {
+    const commandsData = (data["translation"] as any).commands;
 
-    for (const [name, { data }] of Object.entries(commands)) {
-      console.log(lang);
-      if (!data) return;
+    for (const commandName in commandsData) {
+      const commandData = commandsData[commandName]?.["data"];
 
-      const command = localizations.get(name) ?? {
-        name: "",
-        names: {},
-        description: "",
-        descriptions: {},
-        options: {},
+      if (!commandData) continue;
+
+      const command: CommandLocalization = localizations.get(commandName) ?? {
+        name: {} as Localization,
+        description: {} as Localization,
+        subcommandsGroups: {} as { [key: string]: SubcommandGroupLocalization },
+        subcommands: {} as { [key: string]: SubcommandLocalization },
+        options: {} as { [key: string]: OptionLocalization },
       };
 
-      localizations.set(name, command);
+      handleLang(command, lang, commandData);
 
-      if (lang === "en") {
-        command.name = data.name ?? command.names[lang];
-        command.description = data.description ?? command.descriptions[lang];
-      } else {
-        command.names[lang] = data.name ?? command.names[lang];
-        command.descriptions[lang] = data.description ?? command.descriptions[lang];
+      if (commandData.subcommandsGroups) {
+        handleSubcommandsGroups(command.subcommandsGroups!, lang, commandData.subcommandsGroups);
       }
 
-      initOptions(command.options, data.options, lang);
+      if (commandData.subcommands) {
+        handleSubcommands(command.subcommands!, lang, commandData.subcommands);
+      }
+
+      if (commandData.options) {
+        handleOptions(command.options!, lang, commandData.options);
+      }
+
+      localizations.set(commandName, command);
     }
   }
-
-  console.log(localizations.get("invites"));
 };
 
-const initOptions = (entry: Record<string, Localization>, data: CommandData, lang: string) => {
-  if (!data) return;
+const handleLang = (
+  command:
+    | CommandLocalization
+    | SubcommandGroupLocalization
+    | SubcommandLocalization
+    | OptionLocalization,
+  lang: string,
+  data: { name: string; description: string }
+): void => {
+  if (lang === "en") {
+    command.name["en-GB"] = data.name;
+    command.name["en-US"] = data.name;
+    command.description["en-GB"] = data.description;
+    command.description["en-US"] = data.description;
+  } else {
+    command.name[lang] = data.name;
+    command.description[lang] = data.description;
+  }
+};
 
-  for (const [key, { name, description, options }] of Object.entries(data)) {
-    const option = entry[key] ?? { names: {}, descriptions: {}, options: {} };
-    entry[key] = option;
+const handleSubcommandsGroups = (
+  subcommandsGroups: { [key: string]: SubcommandGroupLocalization },
+  lang: string,
+  data: { [key: string]: any }
+): void => {
+  for (const groupName in data) {
+    const groupData = data[groupName];
+    const subcommandGroup: SubcommandGroupLocalization = {
+      name: {} as Localization,
+      description: {} as Localization,
+    };
+    handleLang(subcommandGroup, lang, groupData);
 
-    if (lang === "en") {
-      option.name = name ?? option.names[lang];
-      option.description = description ?? option.descriptions[lang];
-    } else {
-      option.names[lang] = name ?? option.names[lang];
-      option.descriptions[lang] = description ?? option.descriptions[lang];
+    if (groupData.subcommands) {
+      handleSubcommands(subcommandGroup.subcommands!, lang, groupData.subcommands);
     }
 
-    if (options) {
-      initOptions(option.options, options, lang);
+    subcommandsGroups[groupName] = subcommandGroup;
+  }
+};
+
+const handleSubcommands = (
+  subcommands: { [key: string]: SubcommandLocalization },
+  lang: string,
+  data: { [key: string]: any }
+): void => {
+  for (const subcommandName in data) {
+    const subcommandData = data[subcommandName];
+    const subcommand: SubcommandLocalization = {
+      name: {} as Localization,
+      description: {} as Localization,
+    };
+    handleLang(subcommand, lang, subcommandData);
+
+    if (subcommandData.options) {
+      handleOptions(subcommand.options!, lang, subcommandData.options);
     }
+
+    subcommands[subcommandName] = subcommand;
+  }
+};
+
+const handleOptions = (
+  options: { [key: string]: OptionLocalization },
+  lang: string,
+  data: { [key: string]: any }
+): void => {
+  if (!options) {
+    options = {};
+  }
+
+  for (const optionName in data) {
+    const optionData = data[optionName];
+    const option: OptionLocalization = {
+      name: {} as Localization,
+      description: {} as Localization,
+    };
+
+    handleLang(option, lang, optionData);
+    options[optionName] = option;
   }
 };
 

@@ -1,80 +1,176 @@
 {
-	"emoji": "🇻🇳",
-	"commands": {
-		"insufficient_permission": "You are not authorized to execute this command!",
-		"invites": {
-			"data": {
-				"name": "invites",
-				"description": "Manage invitations",
-				"options": {
-					"view": {
-						"name": "view",
-						"description": "View invitation",
-						"options": {
-							"member": {
-								"name": "member",
-								"description": "Mention a server member"
-							}
-						}
-					},
-					"add": {
-						"name": "add",
-						"description": "Add invitation to a member",
-						"options": {
-							"member": {
-								"name": "member",
-								"description": "Mention a server member"
-							},
-							"amount": {
-								"name": "amount",
-								"description": "Amount of invitations to add"
-							}
-						}
-					},
-					"remove": {
-						"name": "remove",
-						"description": "Remove invitation to a member",
-						"options": {
-							"member": {
-								"name": "member",
-								"description": "Mention a server member"
-							},
-							"amount": {
-								"name": "amount",
-								"description": "Amount of invitations to remove"
-							}
-						}
-					},
-					"reset": {
-						"name": "reset",
-						"description": "Reset a member's invitations",
-						"options": {
-							"member": {
-								"name": "member",
-								"description": "Mention a server member"
-							}
-						}
-					},
-					"create": {
-						"name": "create",
-						"description": "Create an invitation link that never expires"
-					},
-					"check": {
-						"name": "check",
-						"description": "Discover which members hava utilized this code or identify the member associated with it",
-						"options": {
-							"code": {
-								"name": "code",
-								"description": "Code (without discord.gg/)"
-							},
-							"member": {
-								"name": "member",
-								"description": "Mention a server member"
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+  "emoji": "🇻🇳",
+  "insufficient_permission": "You are not authorized to execute this command!",
+  "commands": {
+    "invites": {
+      "data": {
+        "name": "invites",
+        "description": "Manage invitations",
+        "subcommands": {
+          "view": {
+            "name": "view",
+            "description": "View invitation",
+            "options": {
+              "member": {
+                "name": "member",
+                "description": "Mention a server member"
+              }
+            }
+          },
+          "add": {
+            "name": "add",
+            "description": "Add invitation to a member",
+            "options": {
+              "member": {
+                "name": "member",
+                "description": "Mention a server member"
+              },
+              "amount": {
+                "name": "number",
+                "description": "Number of invitations to add"
+              }
+            }
+          },
+          "remove": {
+            "name": "remove",
+            "description": "Remove invitation to a member",
+            "options": {
+              "member": {
+                "name": "member",
+                "description": "Mention a server member"
+              },
+              "amount": {
+                "name": "number",
+                "description": "Number of invitations to remove"
+              }
+            }
+          },
+          "reset": {
+            "name": "reset",
+            "description": "Reset a member's invitations",
+            "options": {
+              "member": {
+                "name": "member",
+                "description": "Mention a server member"
+              }
+            }
+          },
+          "create": {
+            "name": "create",
+            "description": "Create an invitation link that never expires"
+          },
+          "check": {
+            "name": "check",
+            "description": "Discover which members hava utilized this code or identify the member associated with it",
+            "options": {
+              "code": {
+                "name": "code",
+                "description": "Code (without discord.gg/)"
+              },
+              "member": {
+                "name": "member",
+                "description": "Mention a server member"
+              }
+            }
+          }
+        }
+      }
+    },
+    "leaderboard": {
+      "data": {
+        "name": "leaderboard",
+        "description": "Manage leaderboard",
+        "subcommands": {
+          "basic": {
+            "name": "basic",
+            "description": "View basic leaderboard"
+          },
+          "smart": {
+            "name": "smart",
+            "description": "View smart leaderboard"
+          },
+          "exclude": {
+            "name": "exclude",
+            "description": "Exclude a member or role from the leaderboard view",
+            "options": {
+              "member": {
+                "name": "member",
+                "description": "Mention a server member"
+              },
+              "role": {
+                "name": "role",
+                "description": "Mention a server role"
+              }
+            }
+          },
+          "include": {
+            "name": "include",
+            "description": "Include a member or role from the leaderboard",
+            "options": {
+              "member": {
+                "name": "member",
+                "description": "Mention a server member"
+              },
+              "role": {
+                "name": "role",
+                "description": "Mention a server role"
+              }
+            }
+          },
+          "top": {
+            "name": "top",
+            "description": "Define how many members the leaderboard should display",
+            "options": {
+              "number": {
+                "name": "number",
+                "description": "Number of members"
+              }
+            }
+          }
+        }
+      }
+    },
+    "role": {
+      "data": {
+        "name": "role",
+        "description": "Manage invitation roles",
+        "subcommands": {
+          "add": {
+            "name": "add",
+            "description": "Add invitation role",
+            "options": {
+              "role": {
+                "name": "role",
+                "description": "Mention a server role"
+              },
+              "number": {
+                "name": "number",
+                "description": "Number of invitations to have the role"
+              }
+            }
+          },
+          "remove": {
+            "name": "remove",
+            "description": "Remove invitation role",
+            "options": {
+              "role": {
+                "name": "role",
+                "description": "Mention a server role"
+              }
+            }
+          },
+          "list": {
+            "name": "list",
+            "description": "View invitation roles list"
+          }
+        }
+      }
+    },
+    "ping": {
+      "data": {
+        "name": "ping",
+        "description": "View bot latency"
+      }
+    }
+  }
 }

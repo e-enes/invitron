@@ -1,12 +1,13 @@
 import i18next, { InitOptions } from "i18next";
-import Backend, { FsBackendOptions } from "i18next-fs-backend";
+import FsBackend, { FsBackendOptions } from "i18next-fs-backend";
 
 import Logger from "../Logger.js";
 import { init } from "./localizations.js";
 
-const options: InitOptions & { backend: FsBackendOptions } = {
-  lng: "en",
+const options: InitOptions<FsBackendOptions> = {
+  fallbackLng: ["en", "fr", "nl", "ru", "vi"],
   initImmediate: true,
+  returnNull: true,
   backend: {
     loadPath: "locales/{{lng}}.json",
     addPath: "locales/{{lng}}.json",
@@ -14,8 +15,8 @@ const options: InitOptions & { backend: FsBackendOptions } = {
 };
 
 await i18next
-  .use(Backend)
-  .init(options)
+  .use(FsBackend)
+  .init<FsBackendOptions>(options)
   .then(() => {
     Logger.info("Loaded i18next");
   });
