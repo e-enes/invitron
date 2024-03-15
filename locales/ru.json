@@ -1,7 +1,10 @@
 {
   "emoji": "🇷🇺",
-  "insufficient_permission": "You are not authorized to execute this command!",
   "commands": {
+    "insufficient_permission": {
+      "title": "Unauthorized Command!",
+      "description": "You are not authorized to execute this command!"
+    },
     "invites": {
       "data": {
         "name": "invites",
@@ -171,6 +174,12 @@
         "name": "ping",
         "description": "View bot latency"
       }
+    }
+  },
+  "components": {
+    "insufficient_permission": {
+      "title": "Unauthorized Interaction!",
+      "description": "You are not authorized to execute this interaction!"
     }
   }
 }
