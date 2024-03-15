@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS guilds
 (
     guild_id VARCHAR(36) NOT NULL,
+    language ENUM ('en', 'fr', 'nl', 'ru', 'vi') NOT NULL,
     PRIMARY KEY (guild_id)
 );
 

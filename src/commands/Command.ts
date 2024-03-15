@@ -9,12 +9,15 @@ import {
 } from "discord.js";
 import { RESTPostAPIApplicationCommandsJSONBody } from "discord-api-types/v10";
 
+import CommandKeys from "./Keys.js";
+
 namespace Command {
   export type ChatInput = ChatInputCommandInteraction;
   export type ContextMenu = ContextMenuCommandInteraction;
   export type UserContextMenu = UserContextMenuCommandInteraction;
   export type MessageContextMenu = MessageContextMenuCommandInteraction;
   export type Autocomplete = AutocompleteInteraction;
+  export type Keys = CommandKeys;
 }
 
 class Command {
@@ -25,10 +28,10 @@ class Command {
 
   public initialize?(): Awaitable<void>;
   public executeAutocomplete?(interaction: Command.Autocomplete): Awaitable<void>;
-  public executeChatInput?(interaction: Command.ChatInput): Awaitable<void>;
-  public executeContextMenu?(interaction: Command.ContextMenu): Awaitable<void>;
-  public executeMessageContextMenu?(interaction: Command.MessageContextMenu): Awaitable<void>;
-  public executeUserContextMenu?(interaction: Command.UserContextMenu): Awaitable<void>;
+  public executeChatInput?(interaction: Command.ChatInput, keys: Command.Keys): Awaitable<void>;
+  public executeContextMenu?(interaction: Command.ContextMenu, keys: Command.Keys): Awaitable<void>;
+  public executeMessageContextMenu?(interaction: Command.MessageContextMenu, keys: Command.Keys): Awaitable<void>;
+  public executeUserContextMenu?(interaction: Command.UserContextMenu, keys: Command.Keys): Awaitable<void>;
 }
 
 export default Command;

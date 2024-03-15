@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS guilds
 (
     guild_id TEXT NOT NULL,
+    language TEXT NOT NULL CHECK (language IN ('en', 'fr', 'nl', 'ru', 'vi')),
     PRIMARY KEY (guild_id)
 );
 

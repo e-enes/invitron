@@ -1,7 +1,7 @@
 const { env } = process;
 
 const config = {
-  messages: {
+  message: {
     footer: {
       text: "Powered by Enes", // Required
       icon: "https://cdn.discordapp.com/avatars/254730482770640896/61ee68abc9c0309841542329a5cd9837.png", // Optional
@@ -10,6 +10,11 @@ const config = {
       error: 0xff6961, // Required
       warn: 0xffcc00, // Required
       success: 0x7abd7e, // Required
+    },
+    emojis: {
+      error: "❌", // Required
+      warn: "⚠️", // Required
+      success: "✅", // Required
     },
   },
   presence: {

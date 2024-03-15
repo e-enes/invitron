@@ -29,6 +29,10 @@ client.components = new Collection();
 
 client.config = config;
 
+if (!client.config.message.footer.icon) {
+  client.config.message.footer.icon = client.user!.displayAvatarURL({ forceStatic: true });
+}
+
 if (config.useSqlite) {
   const { glob } = await import("glob");
   const [file] = await glob("shared/db.sqlite");

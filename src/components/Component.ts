@@ -10,6 +10,8 @@ import {
   UserSelectMenuInteraction,
 } from "discord.js";
 
+import ComponentKeys from "./Keys.js";
+
 namespace Component {
   export type Button = ButtonInteraction<"cached">;
   export type SelectMenu = AnySelectMenuInteraction<"cached">;
@@ -18,7 +20,7 @@ namespace Component {
   export type StringSelectMenu = StringSelectMenuInteraction<"cached">;
   export type UserSelectMenu = UserSelectMenuInteraction<"cached">;
   export type Modal = ModalSubmitInteraction<"cached">;
-  export type Keys = Array<string>;
+  export type Keys = ComponentKeys;
 }
 
 class Component {
