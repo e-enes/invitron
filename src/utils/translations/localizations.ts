@@ -96,9 +96,10 @@ const handleSubcommandsGroups = (
 ): void => {
   for (const groupName in data) {
     const groupData = data[groupName];
-    const subcommandGroup: SubcommandGroupLocalization = {
+    const subcommandGroup: SubcommandGroupLocalization = subcommandsGroups[groupName] ?? {
       name: {} as Localization,
       description: {} as Localization,
+      subcommands: {} as { [key: string]: SubcommandLocalization },
     };
     handleLang(subcommandGroup, lang, groupData);
 
@@ -117,9 +118,10 @@ const handleSubcommands = (
 ): void => {
   for (const subcommandName in data) {
     const subcommandData = data[subcommandName];
-    const subcommand: SubcommandLocalization = {
+    const subcommand: SubcommandLocalization = subcommands[subcommandName] ?? {
       name: {} as Localization,
       description: {} as Localization,
+      options: {} as { [key: string]: OptionLocalization },
     };
     handleLang(subcommand, lang, subcommandData);
 
@@ -136,18 +138,14 @@ const handleOptions = (
   lang: string,
   data: { [key: string]: any }
 ): void => {
-  if (!options) {
-    options = {};
-  }
-
   for (const optionName in data) {
     const optionData = data[optionName];
-    const option: OptionLocalization = {
+    const option: OptionLocalization = options[optionName] ?? {
       name: {} as Localization,
       description: {} as Localization,
     };
-
     handleLang(option, lang, optionData);
+
     options[optionName] = option;
   }
 };

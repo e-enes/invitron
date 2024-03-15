@@ -2,77 +2,77 @@
   "emoji": "🇳🇱",
   "commands": {
     "insufficient_permission": {
-      "title": "Unauthorized Command!",
-      "description": "You are not authorized to execute this command!"
+      "title": "Onbevoegd Commando!",
+      "description": "U bent niet gemachtigd om dit commando uit te voeren!"
     },
     "invites": {
       "data": {
-        "name": "invites",
-        "description": "Manage invitations",
+        "name": "uitnodigingen",
+        "description": "Beheer uitnodigingen",
         "subcommands": {
           "view": {
-            "name": "view",
-            "description": "View invitation",
+            "name": "bekijken",
+            "description": "Bekijk uitnodigingen",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "lid",
+                "description": "Vermeld een lid van de server"
               }
             }
           },
           "add": {
-            "name": "add",
-            "description": "Add invitation to a member",
+            "name": "toevoegen",
+            "description": "Voeg een uitnodiging toe aan een lid",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "lid",
+                "description": "Vermeld een lid van de server"
               },
-              "amount": {
-                "name": "number",
-                "description": "Number of invitations to add"
+              "number": {
+                "name": "aantal",
+                "description": "Aantal uitnodigingen om toe te voegen"
               }
             }
           },
           "remove": {
-            "name": "remove",
-            "description": "Remove invitation to a member",
+            "name": "verwijderen",
+            "description": "Verwijder een uitnodiging van een lid",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "lid",
+                "description": "Vermeld een lid van de server"
               },
-              "amount": {
-                "name": "number",
-                "description": "Number of invitations to remove"
+              "number": {
+                "name": "aantal",
+                "description": "Aantal uitnodigingen om te verwijderen"
               }
             }
           },
           "reset": {
-            "name": "reset",
-            "description": "Reset a member's invitations",
+            "name": "resetten",
+            "description": "Reset de uitnodigingen van een lid",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "lid",
+                "description": "Vermeld een lid van de server"
               }
             }
           },
           "create": {
-            "name": "create",
-            "description": "Create an invitation link that never expires"
+            "name": "aanmaken",
+            "description": "Maak een uitnodigingslink aan die nooit verloopt"
           },
           "check": {
-            "name": "check",
-            "description": "Discover which members hava utilized this code or identify the member associated with it",
+            "name": "controleren",
+            "description": "Ontdek welke leden deze code hebben gebruikt of identificeer het bijbehorende lid",
             "options": {
               "code": {
                 "name": "code",
-                "description": "Code (without discord.gg/)"
+                "description": "Code (zonder discord.gg/)"
               },
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "lid",
+                "description": "Vermeld een lid van de server"
               }
             }
           }
@@ -81,90 +81,90 @@
     },
     "leaderboard": {
       "data": {
-        "name": "leaderboard",
-        "description": "Manage leaderboard",
+        "name": "ranglijst",
+        "description": "Beheer de ranglijst",
         "subcommands": {
           "basic": {
-            "name": "basic",
-            "description": "View basic leaderboard"
+            "name": "basis",
+            "description": "Bekijk de basisranglijst"
           },
           "smart": {
-            "name": "smart",
-            "description": "View smart leaderboard"
+            "name": "slim",
+            "description": "Bekijk de slimme ranglijst"
           },
           "exclude": {
-            "name": "exclude",
-            "description": "Exclude a member or role from the leaderboard view",
+            "name": "uitsluiten",
+            "description": "Sluit een lid of een rol uit van de ranglijstweergave",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "lid",
+                "description": "Vermeld een lid van de server"
               },
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "rol",
+                "description": "Vermeld een rol van de server"
               }
             }
           },
           "include": {
-            "name": "include",
-            "description": "Include a member or role from the leaderboard",
+            "name": "toevoegen",
+            "description": "Voeg een lid of een rol toe aan de ranglijst",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "lid",
+                "description": "Vermeld een lid van de server"
               },
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "rol",
+                "description": "Vermeld een rol van de server"
               }
             }
           },
           "top": {
             "name": "top",
-            "description": "Define how many members the leaderboard should display",
+            "description": "Definieer hoeveel leden de ranglijst moet weergeven",
             "options": {
               "number": {
-                "name": "number",
-                "description": "Number of members"
+                "name": "aantal",
+                "description": "Aantal leden"
               }
             }
           }
         }
       }
     },
-    "role": {
+    "roles": {
       "data": {
-        "name": "role",
-        "description": "Manage invitation roles",
+        "name": "rollen",
+        "description": "Beheer uitnodigingsrollen",
         "subcommands": {
           "add": {
-            "name": "add",
-            "description": "Add invitation role",
+            "name": "toevoegen",
+            "description": "Voeg een uitnodigingsrol toe",
             "options": {
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "rol",
+                "description": "Vermeld een rol van de server"
               },
               "number": {
-                "name": "number",
-                "description": "Number of invitations to have the role"
+                "name": "aantal",
+                "description": "Aantal uitnodigingen om de rol te verkrijgen"
               }
             }
           },
           "remove": {
-            "name": "remove",
-            "description": "Remove invitation role",
+            "name": "verwijderen",
+            "description": "Verwijder een uitnodigingsrol",
             "options": {
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "rol",
+                "description": "Vermeld een rol van de server"
               }
             }
           },
           "list": {
-            "name": "list",
-            "description": "View invitation roles list"
+            "name": "lijst",
+            "description": "Bekijk de lijst met uitnodigingsrollen"
           }
         }
       }
@@ -172,14 +172,50 @@
     "ping": {
       "data": {
         "name": "ping",
-        "description": "View bot latency"
+        "description": "Bekijk de latentie van de bot"
+      }
+    },
+    "help": {
+      "data": {
+        "name": "help",
+        "description": "Bekijk details van commando's"
+      }
+    },
+    "author": {
+      "data": {
+        "name": "auteur",
+        "description": "Bekijk botinformatie"
+      }
+    },
+    "language": {
+      "data": {
+        "name": "taal",
+        "description": "Stel een taal in voor de bot",
+        "options": {
+          "language": {
+            "name": "taal",
+            "description": "Taal om in te stellen"
+          }
+        }
+      }
+    },
+    "purge": {
+      "data": {
+        "name": "opschonen",
+        "description": "Wis gecachte informatie",
+        "subcommands": {
+          "cache": {
+            "name": "cache",
+            "description": "Wis de cache op deze server"
+          }
+        }
       }
     }
   },
   "components": {
     "insufficient_permission": {
-      "title": "Unauthorized Interaction!",
-      "description": "You are not authorized to execute this interaction!"
+      "title": "Onbevoegde Interactie!",
+      "description": "U bent niet gemachtigd om deze interactie uit te voeren!"
     }
   }
 }

@@ -2,77 +2,77 @@
   "emoji": "🇫🇷",
   "commands": {
     "insufficient_permission": {
-      "title": "Unauthorized Command!",
-      "description": "You are not authorized to execute this command!"
+      "title": "Commande non autorisée !",
+      "description": "Vous n'êtes pas autorisé à exécuter cette commande !"
     },
     "invites": {
       "data": {
-        "name": "invites",
-        "description": "Manage invitations",
+        "name": "invitations",
+        "description": "Gérer les invitations",
         "subcommands": {
           "view": {
-            "name": "view",
-            "description": "View invitation",
+            "name": "voir",
+            "description": "Voir les invitations",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "membre",
+                "description": "Mentionnez un membre du serveur"
               }
             }
           },
           "add": {
-            "name": "add",
-            "description": "Add invitation to a member",
+            "name": "ajouter",
+            "description": "Ajouter une invitation à un membre",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "membre",
+                "description": "Mentionnez un membre du serveur"
               },
-              "amount": {
-                "name": "number",
-                "description": "Number of invitations to add"
+              "number": {
+                "name": "nombre",
+                "description": "Nombre d'invitations à ajouter"
               }
             }
           },
           "remove": {
-            "name": "remove",
-            "description": "Remove invitation to a member",
+            "name": "retirer",
+            "description": "Retirer une invitation à un membre",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "membre",
+                "description": "Mentionnez un membre du serveur"
               },
-              "amount": {
-                "name": "number",
-                "description": "Number of invitations to remove"
+              "number": {
+                "name": "nombre",
+                "description": "Nombre d'invitations à retirer"
               }
             }
           },
           "reset": {
-            "name": "reset",
-            "description": "Reset a member's invitations",
+            "name": "réinitialiser",
+            "description": "Réinitialiser les invitations d'un membre",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "membre",
+                "description": "Mentionnez un membre du serveur"
               }
             }
           },
           "create": {
-            "name": "create",
-            "description": "Create an invitation link that never expires"
+            "name": "créer",
+            "description": "Créer un lien d'invitation qui n'expire jamais"
           },
           "check": {
-            "name": "check",
-            "description": "Discover which members hava utilized this code or identify the member associated with it",
+            "name": "vérifier",
+            "description": "Découvrir quels membres ont utilisé ce code ou identifier le membre associé",
             "options": {
               "code": {
                 "name": "code",
-                "description": "Code (without discord.gg/)"
+                "description": "Code (sans discord.gg/)"
               },
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "membre",
+                "description": "Mentionnez un membre du serveur"
               }
             }
           }
@@ -81,90 +81,90 @@
     },
     "leaderboard": {
       "data": {
-        "name": "leaderboard",
-        "description": "Manage leaderboard",
+        "name": "classement",
+        "description": "Gérer le classement",
         "subcommands": {
           "basic": {
-            "name": "basic",
-            "description": "View basic leaderboard"
+            "name": "basique",
+            "description": "Voir le classement basique"
           },
           "smart": {
-            "name": "smart",
-            "description": "View smart leaderboard"
+            "name": "intelligent",
+            "description": "Voir le classement intelligent"
           },
           "exclude": {
-            "name": "exclude",
-            "description": "Exclude a member or role from the leaderboard view",
+            "name": "exclure",
+            "description": "Exclure un membre ou un rôle de la vue du classement",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "membre",
+                "description": "Mentionnez un membre du serveur"
               },
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "rôle",
+                "description": "Mentionnez un rôle du serveur"
               }
             }
           },
           "include": {
-            "name": "include",
-            "description": "Include a member or role from the leaderboard",
+            "name": "inclure",
+            "description": "Inclure un membre ou un rôle dans le classement",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "membre",
+                "description": "Mentionnez un membre du serveur"
               },
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "rôle",
+                "description": "Mentionnez un rôle du serveur"
               }
             }
           },
           "top": {
             "name": "top",
-            "description": "Define how many members the leaderboard should display",
+            "description": "Définir combien de membres le classement doit afficher",
             "options": {
               "number": {
-                "name": "number",
-                "description": "Number of members"
+                "name": "nombre",
+                "description": "Nombre de membres"
               }
             }
           }
         }
       }
     },
-    "role": {
+    "roles": {
       "data": {
-        "name": "role",
-        "description": "Manage invitation roles",
+        "name": "rôle",
+        "description": "Gérer les rôles d'invitation",
         "subcommands": {
           "add": {
-            "name": "add",
-            "description": "Add invitation role",
+            "name": "ajouter",
+            "description": "Ajouter un rôle d'invitation",
             "options": {
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "rôle",
+                "description": "Mentionnez un rôle du serveur"
               },
               "number": {
-                "name": "number",
-                "description": "Number of invitations to have the role"
+                "name": "nombre",
+                "description": "Nombre d'invitations pour obtenir le rôle"
               }
             }
           },
           "remove": {
-            "name": "remove",
-            "description": "Remove invitation role",
+            "name": "retirer",
+            "description": "Retirer un rôle d'invitation",
             "options": {
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "rôle",
+                "description": "Mentionnez un rôle du serveur"
               }
             }
           },
           "list": {
-            "name": "list",
-            "description": "View invitation roles list"
+            "name": "liste",
+            "description": "Voir la liste des rôles d'invitation"
           }
         }
       }
@@ -172,14 +172,50 @@
     "ping": {
       "data": {
         "name": "ping",
-        "description": "View bot latency"
+        "description": "Voir la latence du bot"
+      }
+    },
+    "help": {
+      "data": {
+        "name": "aide",
+        "description": "Voir les détails des commandes"
+      }
+    },
+    "author": {
+      "data": {
+        "name": "auteur",
+        "description": "Voir les informations du bot"
+      }
+    },
+    "language": {
+      "data": {
+        "name": "langue",
+        "description": "Définir une langue pour le bot",
+        "options": {
+          "language": {
+            "name": "langue",
+            "description": "Langue à définir"
+          }
+        }
+      }
+    },
+    "purge": {
+      "data": {
+        "name": "purge",
+        "description": "Purger les informations mises en cache",
+        "subcommands": {
+          "cache": {
+            "name": "cache",
+            "description": "Effacer le cache sur ce serveur"
+          }
+        }
       }
     }
   },
   "components": {
     "insufficient_permission": {
-      "title": "Unauthorized Interaction!",
-      "description": "You are not authorized to execute this interaction!"
+      "title": "Interaction non autorisée !",
+      "description": "Vous n'êtes pas autorisé à exécuter cette interaction !"
     }
   }
 }

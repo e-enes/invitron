@@ -28,7 +28,7 @@
                 "name": "member",
                 "description": "Mention a server member"
               },
-              "amount": {
+              "number": {
                 "name": "number",
                 "description": "Number of invitations to add"
               }
@@ -42,7 +42,7 @@
                 "name": "member",
                 "description": "Mention a server member"
               },
-              "amount": {
+              "number": {
                 "name": "number",
                 "description": "Number of invitations to remove"
               }
@@ -133,7 +133,7 @@
         }
       }
     },
-    "role": {
+    "roles": {
       "data": {
         "name": "role",
         "description": "Manage invitation roles",
@@ -173,6 +173,42 @@
       "data": {
         "name": "ping",
         "description": "View bot latency"
+      }
+    },
+    "help": {
+      "data": {
+        "name": "help",
+        "description": "View commands details"
+      }
+    },
+    "author": {
+      "data": {
+        "name": "author",
+        "description": "View bot information"
+      }
+    },
+    "language": {
+      "data": {
+        "name": "language",
+        "description": "Set a language for the bot",
+        "options": {
+          "language": {
+            "name": "language",
+            "description": "Language to set"
+          }
+        }
+      }
+    },
+    "purge": {
+      "data": {
+        "name": "purge",
+        "description": "Purge cached information",
+        "subcommands": {
+          "cache": {
+            "name": "cache",
+            "description": "Clear the cache on this server"
+          }
+        }
       }
     }
   },

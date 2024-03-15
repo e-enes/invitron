@@ -2,77 +2,77 @@
   "emoji": "🇷🇺",
   "commands": {
     "insufficient_permission": {
-      "title": "Unauthorized Command!",
-      "description": "You are not authorized to execute this command!"
+      "title": "Недостаточно прав!",
+      "description": "У вас нет прав на выполнение этой команды!"
     },
     "invites": {
       "data": {
-        "name": "invites",
-        "description": "Manage invitations",
+        "name": "приглашения",
+        "description": "Управление приглашениями",
         "subcommands": {
           "view": {
-            "name": "view",
-            "description": "View invitation",
+            "name": "просмотр",
+            "description": "Просмотр приглашений",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "участник",
+                "description": "Упомяните участника сервера"
               }
             }
           },
           "add": {
-            "name": "add",
-            "description": "Add invitation to a member",
+            "name": "добавить",
+            "description": "Добавить приглашение участнику",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "участник",
+                "description": "Упомяните участника сервера"
               },
-              "amount": {
-                "name": "number",
-                "description": "Number of invitations to add"
+              "number": {
+                "name": "количество",
+                "description": "Количество приглашений для добавления"
               }
             }
           },
           "remove": {
-            "name": "remove",
-            "description": "Remove invitation to a member",
+            "name": "удалить",
+            "description": "Удалить приглашение участника",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "участник",
+                "description": "Упомяните участника сервера"
               },
-              "amount": {
-                "name": "number",
-                "description": "Number of invitations to remove"
+              "number": {
+                "name": "количество",
+                "description": "Количество приглашений для удаления"
               }
             }
           },
           "reset": {
-            "name": "reset",
-            "description": "Reset a member's invitations",
+            "name": "сбросить",
+            "description": "Сбросить приглашения участника",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "участник",
+                "description": "Упомяните участника сервера"
               }
             }
           },
           "create": {
-            "name": "create",
-            "description": "Create an invitation link that never expires"
+            "name": "создать",
+            "description": "Создать приглашение, которое никогда не истечет"
           },
           "check": {
-            "name": "check",
-            "description": "Discover which members hava utilized this code or identify the member associated with it",
+            "name": "проверить",
+            "description": "Определить, какие участники использовали этот код или определить связанный с ним участник",
             "options": {
               "code": {
-                "name": "code",
-                "description": "Code (without discord.gg/)"
+                "name": "код",
+                "description": "Код (без discord.gg/)"
               },
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "участник",
+                "description": "Упомяните участника сервера"
               }
             }
           }
@@ -81,105 +81,141 @@
     },
     "leaderboard": {
       "data": {
-        "name": "leaderboard",
-        "description": "Manage leaderboard",
+        "name": "таблица-лидеров",
+        "description": "Управление таблицей лидеров",
         "subcommands": {
           "basic": {
-            "name": "basic",
-            "description": "View basic leaderboard"
+            "name": "основной",
+            "description": "Просмотр основной таблицы лидеров"
           },
           "smart": {
-            "name": "smart",
-            "description": "View smart leaderboard"
+            "name": "умный",
+            "description": "Просмотр умной таблицы лидеров"
           },
           "exclude": {
-            "name": "exclude",
-            "description": "Exclude a member or role from the leaderboard view",
+            "name": "исключить",
+            "description": "Исключить участника или роль из просмотра таблицы лидеров",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "участник",
+                "description": "Упомяните участника сервера"
               },
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "роль",
+                "description": "Упомяните роль на сервере"
               }
             }
           },
           "include": {
-            "name": "include",
-            "description": "Include a member or role from the leaderboard",
+            "name": "включить",
+            "description": "Включить участника или роль в таблицу лидеров",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "участник",
+                "description": "Упомяните участника сервера"
               },
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "роль",
+                "description": "Упомяните роль на сервере"
               }
             }
           },
           "top": {
-            "name": "top",
-            "description": "Define how many members the leaderboard should display",
+            "name": "топ",
+            "description": "Установить количество участников, отображаемых в таблице лидеров",
             "options": {
               "number": {
-                "name": "number",
-                "description": "Number of members"
+                "name": "количество",
+                "description": "Количество участников"
               }
             }
           }
         }
       }
     },
-    "role": {
+    "roles": {
       "data": {
-        "name": "role",
-        "description": "Manage invitation roles",
+        "name": "роли",
+        "description": "Управление ролями приглашений",
         "subcommands": {
           "add": {
-            "name": "add",
-            "description": "Add invitation role",
+            "name": "добавить",
+            "description": "Добавить роль приглашения",
             "options": {
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "роль",
+                "description": "Упомяните роль на сервере"
               },
               "number": {
-                "name": "number",
-                "description": "Number of invitations to have the role"
+                "name": "количество",
+                "description": "Количество приглашений для получения роли"
               }
             }
           },
           "remove": {
-            "name": "remove",
-            "description": "Remove invitation role",
+            "name": "удалить",
+            "description": "Удалить роль приглашения",
             "options": {
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "роль",
+                "description": "Упомяните роль на сервере"
               }
             }
           },
           "list": {
-            "name": "list",
-            "description": "View invitation roles list"
+            "name": "список",
+            "description": "Просмотр списка ролей приглашений"
           }
         }
       }
     },
     "ping": {
       "data": {
-        "name": "ping",
-        "description": "View bot latency"
+        "name": "пинг",
+        "description": "Просмотр задержки бота"
+      }
+    },
+    "help": {
+      "data": {
+        "name": "помощь",
+        "description": "Просмотр подробностей команд"
+      }
+    },
+    "author": {
+      "data": {
+        "name": "автор",
+        "description": "Просмотр информации о боте"
+      }
+    },
+    "language": {
+      "data": {
+        "name": "язык",
+        "description": "Установка языка для бота",
+        "options": {
+          "language": {
+            "name": "язык",
+            "description": "Язык для установки"
+          }
+        }
+      }
+    },
+    "purge": {
+      "data": {
+        "name": "очистка",
+        "description": "Очистка кэшированной информации",
+        "subcommands": {
+          "cache": {
+            "name": "кэш",
+            "description": "Очистить кеш на этом сервере"
+          }
+        }
       }
     }
   },
   "components": {
     "insufficient_permission": {
-      "title": "Unauthorized Interaction!",
-      "description": "You are not authorized to execute this interaction!"
+      "title": "Недостаточно прав для взаимодействия!",
+      "description": "У вас нет прав на выполнение этого взаимодействия!"
     }
   }
 }

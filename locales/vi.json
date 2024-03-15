@@ -2,77 +2,77 @@
   "emoji": "🇻🇳",
   "commands": {
     "insufficient_permission": {
-      "title": "Unauthorized Command!",
-      "description": "You are not authorized to execute this command!"
+      "title": "Lệnh Không Được Phép!",
+      "description": "Bạn không được phép thực hiện lệnh này!"
     },
     "invites": {
       "data": {
-        "name": "invites",
-        "description": "Manage invitations",
+        "name": "mời",
+        "description": "Quản lý lời mời",
         "subcommands": {
           "view": {
-            "name": "view",
-            "description": "View invitation",
+            "name": "xem",
+            "description": "Xem lời mời",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "thành-viên",
+                "description": "Đề cập đến một thành viên trong máy chủ"
               }
             }
           },
           "add": {
-            "name": "add",
-            "description": "Add invitation to a member",
+            "name": "thêm",
+            "description": "Thêm lời mời cho một thành viên",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "thành-viên",
+                "description": "Đề cập đến một thành viên trong máy chủ"
               },
-              "amount": {
-                "name": "number",
-                "description": "Number of invitations to add"
+              "number": {
+                "name": "số-lượng",
+                "description": "Số lượng lời mời để thêm"
               }
             }
           },
           "remove": {
-            "name": "remove",
-            "description": "Remove invitation to a member",
+            "name": "xóa",
+            "description": "Xóa lời mời của một thành viên",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "thành-viên",
+                "description": "Đề cập đến một thành viên trong máy chủ"
               },
-              "amount": {
-                "name": "number",
-                "description": "Number of invitations to remove"
+              "number": {
+                "name": "số-lượng",
+                "description": "Số lượng lời mời để xóa"
               }
             }
           },
           "reset": {
-            "name": "reset",
-            "description": "Reset a member's invitations",
+            "name": "đặt-lại",
+            "description": "Đặt lại lời mời của một thành viên",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "thành-viên",
+                "description": "Đề cập đến một thành viên trong máy chủ"
               }
             }
           },
           "create": {
-            "name": "create",
-            "description": "Create an invitation link that never expires"
+            "name": "tạo",
+            "description": "Tạo một liên kết mời không bao giờ hết hạn"
           },
           "check": {
-            "name": "check",
-            "description": "Discover which members hava utilized this code or identify the member associated with it",
+            "name": "kiểm-tra",
+            "description": "Khám phá xem thành viên nào đã sử dụng mã này hoặc xác định thành viên liên quan",
             "options": {
               "code": {
-                "name": "code",
-                "description": "Code (without discord.gg/)"
+                "name": "mã",
+                "description": "Mã (không bao gồm discord.gg/)"
               },
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "thành-viên",
+                "description": "Đề cập đến một thành viên trong máy chủ"
               }
             }
           }
@@ -81,90 +81,90 @@
     },
     "leaderboard": {
       "data": {
-        "name": "leaderboard",
-        "description": "Manage leaderboard",
+        "name": "bảng-xếp-hạng",
+        "description": "Quản lý bảng xếp hạng",
         "subcommands": {
           "basic": {
-            "name": "basic",
-            "description": "View basic leaderboard"
+            "name": "cơ-bản",
+            "description": "Xem bảng xếp hạng cơ bản"
           },
           "smart": {
-            "name": "smart",
-            "description": "View smart leaderboard"
+            "name": "thông-minh",
+            "description": "Xem bảng xếp hạng thông minh"
           },
           "exclude": {
-            "name": "exclude",
-            "description": "Exclude a member or role from the leaderboard view",
+            "name": "loại-trừ",
+            "description": "Loại trừ một thành viên hoặc vai trò khỏi xem bảng xếp hạng",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "thành-viên",
+                "description": "Đề cập đến một thành viên trong máy chủ"
               },
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "vai-trò",
+                "description": "Đề cập đến một vai trò trong máy chủ"
               }
             }
           },
           "include": {
-            "name": "include",
-            "description": "Include a member or role from the leaderboard",
+            "name": "bao-gồm",
+            "description": "Bao gồm một thành viên hoặc vai trò vào bảng xếp hạng",
             "options": {
               "member": {
-                "name": "member",
-                "description": "Mention a server member"
+                "name": "thành-viên",
+                "description": "Đề cập đến một thành viên trong máy chủ"
               },
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "vai-trò",
+                "description": "Đề cập đến một vai trò trong máy chủ"
               }
             }
           },
           "top": {
-            "name": "top",
-            "description": "Define how many members the leaderboard should display",
+            "name": "đầu",
+            "description": "Xác định số lượng thành viên bảng xếp hạng nên hiển thị",
             "options": {
               "number": {
-                "name": "number",
-                "description": "Number of members"
+                "name": "số-lượng",
+                "description": "Số lượng thành viên"
               }
             }
           }
         }
       }
     },
-    "role": {
+    "roles": {
       "data": {
-        "name": "role",
-        "description": "Manage invitation roles",
+        "name": "vai-trò",
+        "description": "Quản lý các vai trò mời",
         "subcommands": {
           "add": {
-            "name": "add",
-            "description": "Add invitation role",
+            "name": "thêm",
+            "description": "Thêm vai trò mời",
             "options": {
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "vai-trò",
+                "description": "Đề cập đến một vai trò trong máy chủ"
               },
               "number": {
-                "name": "number",
-                "description": "Number of invitations to have the role"
+                "name": "số-lượng",
+                "description": "Số lượng lời mời để có vai trò"
               }
             }
           },
           "remove": {
-            "name": "remove",
-            "description": "Remove invitation role",
+            "name": "xóa",
+            "description": "Xóa vai trò mời",
             "options": {
               "role": {
-                "name": "role",
-                "description": "Mention a server role"
+                "name": "vai-trò",
+                "description": "Đề cập đến một vai trò trong máy chủ"
               }
             }
           },
           "list": {
-            "name": "list",
-            "description": "View invitation roles list"
+            "name": "danh-sách",
+            "description": "Xem danh sách các vai trò mời"
           }
         }
       }
@@ -172,14 +172,50 @@
     "ping": {
       "data": {
         "name": "ping",
-        "description": "View bot latency"
+        "description": "Xem độ trễ của bot"
+      }
+    },
+    "help": {
+      "data": {
+        "name": "trợ-giúp",
+        "description": "Xem chi tiết các lệnh"
+      }
+    },
+    "author": {
+      "data": {
+        "name": "tác-giả",
+        "description": "Xem thông tin của bot"
+      }
+    },
+    "language": {
+      "data": {
+        "name": "ngôn-ngữ",
+        "description": "Đặt ngôn ngữ cho bot",
+        "options": {
+          "language": {
+            "name": "ngôn-ngữ",
+            "description": "Ngôn ngữ để đặt"
+          }
+        }
+      }
+    },
+    "purge": {
+      "data": {
+        "name": "xóa",
+        "description": "Xóa thông tin được lưu trữ trong bộ nhớ cache",
+        "subcommands": {
+          "cache": {
+            "name": "bộ-nhớ-cache",
+            "description": "Xóa bộ nhớ cache trên máy chủ này"
+          }
+        }
       }
     }
   },
   "components": {
     "insufficient_permission": {
-      "title": "Unauthorized Interaction!",
-      "description": "You are not authorized to execute this interaction!"
+      "title": "Tương tác Không Được Phép!",
+      "description": "Bạn không được phép thực hiện tương tác này!"
     }
   }
 }
