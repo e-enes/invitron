@@ -3,9 +3,9 @@ import { Collection, Events, Guild } from "discord.js";
 import Listener from "../Listener.js";
 import { CachedInvite } from "../../types/global.js";
 
-class GuildCreate extends Listener {
+class GuildAvailable extends Listener {
   public constructor() {
-    super(Events.GuildCreate);
+    super(Events.GuildAvailable);
   }
 
   public override async execute(guild: Guild) {
@@ -27,4 +27,4 @@ class GuildCreate extends Listener {
   }
 }
 
-export default GuildCreate;
+export default GuildAvailable;

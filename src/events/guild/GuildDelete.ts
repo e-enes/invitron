@@ -14,6 +14,8 @@ class GuildDelete extends Listener {
     if (data.length !== 0) {
       await database.query("DELETE FROM guilds WHERE guild_id = ?", [guild.id]);
     }
+
+    this.client.invites.delete(guild.id);
   }
 }
 

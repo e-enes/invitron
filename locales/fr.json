@@ -197,6 +197,20 @@
             "description": "Langue à définir"
           }
         }
+      },
+      "messages": {
+        "current_language": {
+          "title": "Langue actuelle",
+          "description": "La langue actuelle du serveur est `{{ lng }}`."
+        },
+        "error": {
+          "title": "Erreur !",
+          "description": "Une erreur s'est produite lors du changement de langue en `{{ lng }}`."
+        },
+        "success": {
+          "title": "Succès !",
+          "description": "La langue du serveur a été définie sur `{{ lng }}`."
+        }
       }
     },
     "purge": {

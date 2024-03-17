@@ -197,6 +197,20 @@
             "description": "Taal om in te stellen"
           }
         }
+      },
+      "messages": {
+        "current_language": {
+          "title": "Huidige taal",
+          "description": "De huidige taal van de server is `{{ lng }}`."
+        },
+        "error": {
+          "title": "Fout!",
+          "description": "Er is een fout opgetreden bij het wijzigen van de taal naar `{{ lng }}`."
+        },
+        "success": {
+          "title": "Succes!",
+          "description": "De taal van de server is ingesteld op `{{ lng }}`."
+        }
       }
     },
     "purge": {

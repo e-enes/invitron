@@ -11,6 +11,11 @@ declare module "discord.js" {
     commands: Collection<string, import("../commands/Command.js").default>;
     components: Collection<string, import("../components/Component.js").default>;
     database: MySql | Sqlite;
+    invites: Collection<string, Collection<string, CachedInvite>>;
+  }
+
+  export interface EmbedBuilder {
+    withDefaultFooter(): this;
   }
 }
 
@@ -28,3 +33,9 @@ declare global {
     }
   }
 }
+
+export type CachedInvite = {
+  member: string;
+  uses: number;
+  source?: string;
+};

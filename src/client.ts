@@ -1,4 +1,4 @@
-import { Client, Collection, Partials } from "discord.js";
+import { Client, Collection, Partials, EmbedBuilder } from "discord.js";
 import { GatewayIntentBits } from "discord-api-types/v10";
 
 import { loadCommands, loadComponents, loadEvents } from "./utils/loader.js";
@@ -12,6 +12,7 @@ import "./utils/translations/i18next.js";
 
 const client = new Client({
   intents: [
+    GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildInvites,
     GatewayIntentBits.GuildModeration,
@@ -24,14 +25,23 @@ const client = new Client({
   partials: [Partials.GuildMember],
 });
 
+client.invites = new Collection();
 client.commands = new Collection();
 client.components = new Collection();
 
 client.config = config;
 
-if (!client.config.message.footer.icon) {
-  client.config.message.footer.icon = client.user!.displayAvatarURL({ forceStatic: true });
-}
+EmbedBuilder.prototype.withDefaultFooter = function (this: EmbedBuilder): EmbedBuilder {
+  if (config.message.footer.text) {
+    this.setFooter({ text: config.message.footer.text, iconURL: config.message.footer.icon });
+  }
+
+  if (config.message.timestamp) {
+    this.setTimestamp();
+  }
+
+  return this;
+};
 
 if (config.useSqlite) {
   const { glob } = await import("glob");

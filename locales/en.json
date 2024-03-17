@@ -197,6 +197,20 @@
             "description": "Language to set"
           }
         }
+      },
+      "messages": {
+        "current_language": {
+          "title": "Current language",
+          "description": "The current server language is `{{ lng }}`."
+        },
+        "error": {
+          "title": "Error!",
+          "description": "An error occurred while changing the language to `{{ lng }}`."
+        },
+        "success": {
+          "title": "Success!",
+          "description": "The server language was set to {{ lng }}`."
+        }
       }
     },
     "purge": {

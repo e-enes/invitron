@@ -197,6 +197,20 @@
             "description": "Ngôn ngữ để đặt"
           }
         }
+      },
+      "messages": {
+        "current_language": {
+          "title": "Ngôn ngữ hiện tại",
+          "description": "Ngôn ngữ hiện tại của máy chủ là `{{ lng }}`."
+        },
+        "error": {
+          "title": "Lỗi!",
+          "description": "Đã xảy ra lỗi khi thay đổi ngôn ngữ thành `{{ lng }}`."
+        },
+        "success": {
+          "title": "Thành công!",
+          "description": "Ngôn ngữ của máy chủ đã được đặt thành `{{ lng }}`."
+        }
       }
     },
     "purge": {

@@ -1,4 +1,5 @@
 import { SlashCommandBuilder } from "discord.js";
+import { PermissionFlagsBits } from "discord-api-types/v10";
 
 import Command from "../Command.js";
 import { localizations } from "../../utils/translations/localizations.js";
@@ -15,6 +16,7 @@ class Roles extends Command {
       new SlashCommandBuilder()
         .setName(this.name)
         .setDescription("Manage invitation roles")
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .setNameLocalizations(name)
         .setDescriptionLocalizations(description)
         .addSubcommand((subcommand) =>

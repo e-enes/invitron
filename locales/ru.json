@@ -197,6 +197,20 @@
             "description": "Язык для установки"
           }
         }
+      },
+      "messages": {
+        "current_language": {
+          "title": "Текущий язык",
+          "description": "Текущий язык сервера: `{{ lng }}`."
+        },
+        "error": {
+          "title": "Ошибка!",
+          "description": "Произошла ошибка при изменении языка на `{{ lng }}`."
+        },
+        "success": {
+          "title": "Успешно!",
+          "description": "Язык сервера был установлен на `{{ lng }}`."
+        }
       }
     },
     "purge": {
