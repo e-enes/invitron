@@ -1,4 +1,5 @@
-import { Client, Collection, Events, PresenceStatusData } from "discord.js";
+import { Client, Collection, Events, PresenceStatusData, DataResolver } from "discord.js";
+import { Routes } from "discord-api-types/v10";
 
 import Listener from "../Listener.js";
 import Logger from "../../utils/Logger.js";
@@ -51,6 +52,19 @@ class Ready extends Listener {
 
       this.client.invites.set(key, cachedInvites);
     });
+
+    if (!client.user.avatar) {
+      const { glob } = await import("glob");
+      const [avatar] = await glob("assets/logo.png");
+      const [banner] = await glob("assets/banner.png");
+
+      await client.rest.patch(Routes.user(), {
+        body: {
+          avatar: await DataResolver.resolveImage(avatar),
+          banner: await DataResolver.resolveImage(banner),
+        },
+      });
+    }
 
     Logger.info(`Successfully logged as '${client.user.tag}'.`);
   }

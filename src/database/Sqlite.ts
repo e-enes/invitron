@@ -68,9 +68,9 @@ class Sqlite {
     });
   }
 
-  public async ping(): Promise<string> {
+  public async ping(): Promise<number> {
     return new Promise((resolve): void => {
-      resolve("You are using a local database, the ping is null.");
+      resolve(0);
     });
   }
 
