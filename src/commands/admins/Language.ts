@@ -11,20 +11,18 @@ class Language extends Command {
   }
 
   public override initialize() {
-    const { name, description, options } = localizations.get(this.name)!;
+    const { description, options } = localizations.get(this.name)!;
 
     this.applicationCommands.push(
       new SlashCommandBuilder()
         .setName(this.name)
         .setDescription("Set a language for the bot")
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
-        .setNameLocalizations(name)
         .setDescriptionLocalizations(description)
         .addStringOption((option) =>
           option
             .setName("language")
             .setDescription("Language to set")
-            .setNameLocalizations(options!.language.name)
             .setDescriptionLocalizations(options!.language.description)
             .setChoices(
               { name: "English", value: "en" },

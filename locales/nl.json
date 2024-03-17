@@ -7,71 +7,56 @@
     },
     "invites": {
       "data": {
-        "name": "uitnodigingen",
         "description": "Beheer uitnodigingen",
         "subcommands": {
           "view": {
-            "name": "bekijken",
             "description": "Bekijk uitnodigingen",
             "options": {
               "member": {
-                "name": "lid",
                 "description": "Vermeld een lid van de server"
               }
             }
           },
           "add": {
-            "name": "toevoegen",
             "description": "Voeg een uitnodiging toe aan een lid",
             "options": {
               "member": {
-                "name": "lid",
                 "description": "Vermeld een lid van de server"
               },
               "number": {
-                "name": "aantal",
                 "description": "Aantal uitnodigingen om toe te voegen"
               }
             }
           },
           "remove": {
-            "name": "verwijderen",
             "description": "Verwijder een uitnodiging van een lid",
             "options": {
               "member": {
-                "name": "lid",
                 "description": "Vermeld een lid van de server"
               },
               "number": {
-                "name": "aantal",
                 "description": "Aantal uitnodigingen om te verwijderen"
               }
             }
           },
           "reset": {
-            "name": "resetten",
             "description": "Reset de uitnodigingen van een lid",
             "options": {
               "member": {
-                "name": "lid",
                 "description": "Vermeld een lid van de server"
               }
             }
           },
           "create": {
-            "name": "aanmaken",
             "description": "Maak een uitnodigingslink aan die nooit verloopt"
           },
           "check": {
-            "name": "controleren",
             "description": "Ontdek welke leden deze code hebben gebruikt of identificeer het bijbehorende lid",
             "options": {
               "code": {
-                "name": "code",
                 "description": "Code (zonder discord.gg/)"
               },
               "member": {
-                "name": "lid",
                 "description": "Vermeld een lid van de server"
               }
             }
@@ -81,51 +66,40 @@
     },
     "leaderboard": {
       "data": {
-        "name": "ranglijst",
         "description": "Beheer de ranglijst",
         "subcommands": {
           "basic": {
-            "name": "basis",
             "description": "Bekijk de basisranglijst"
           },
           "smart": {
-            "name": "slim",
             "description": "Bekijk de slimme ranglijst"
           },
           "exclude": {
-            "name": "uitsluiten",
             "description": "Sluit een lid of een rol uit van de ranglijstweergave",
             "options": {
               "member": {
-                "name": "lid",
                 "description": "Vermeld een lid van de server"
               },
               "role": {
-                "name": "rol",
                 "description": "Vermeld een rol van de server"
               }
             }
           },
           "include": {
-            "name": "toevoegen",
             "description": "Voeg een lid of een rol toe aan de ranglijst",
             "options": {
               "member": {
-                "name": "lid",
                 "description": "Vermeld een lid van de server"
               },
               "role": {
-                "name": "rol",
                 "description": "Vermeld een rol van de server"
               }
             }
           },
           "top": {
-            "name": "top",
             "description": "Definieer hoeveel leden de ranglijst moet weergeven",
             "options": {
               "number": {
-                "name": "aantal",
                 "description": "Aantal leden"
               }
             }
@@ -135,35 +109,28 @@
     },
     "roles": {
       "data": {
-        "name": "rollen",
         "description": "Beheer uitnodigingsrollen",
         "subcommands": {
           "add": {
-            "name": "toevoegen",
             "description": "Voeg een uitnodigingsrol toe",
             "options": {
               "role": {
-                "name": "rol",
                 "description": "Vermeld een rol van de server"
               },
               "number": {
-                "name": "aantal",
                 "description": "Aantal uitnodigingen om de rol te verkrijgen"
               }
             }
           },
           "remove": {
-            "name": "verwijderen",
             "description": "Verwijder een uitnodigingsrol",
             "options": {
               "role": {
-                "name": "rol",
                 "description": "Vermeld een rol van de server"
               }
             }
           },
           "list": {
-            "name": "lijst",
             "description": "Bekijk de lijst met uitnodigingsrollen"
           }
         }
@@ -171,29 +138,24 @@
     },
     "ping": {
       "data": {
-        "name": "ping",
         "description": "Bekijk de latentie van de bot"
       }
     },
     "help": {
       "data": {
-        "name": "help",
         "description": "Bekijk details van commando's"
       }
     },
     "author": {
       "data": {
-        "name": "auteur",
         "description": "Bekijk botinformatie"
       }
     },
     "language": {
       "data": {
-        "name": "taal",
         "description": "Stel een taal in voor de bot",
         "options": {
           "language": {
-            "name": "taal",
             "description": "Taal om in te stellen"
           }
         }
@@ -215,11 +177,9 @@
     },
     "purge": {
       "data": {
-        "name": "opschonen",
         "description": "Wis gecachte informatie",
         "subcommands": {
           "cache": {
-            "name": "cache",
             "description": "Wis de cache op deze server"
           }
         }

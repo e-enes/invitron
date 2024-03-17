@@ -7,71 +7,56 @@
     },
     "invites": {
       "data": {
-        "name": "invitations",
         "description": "Gérer les invitations",
         "subcommands": {
           "view": {
-            "name": "voir",
             "description": "Voir les invitations",
             "options": {
               "member": {
-                "name": "membre",
                 "description": "Mentionnez un membre du serveur"
               }
             }
           },
           "add": {
-            "name": "ajouter",
             "description": "Ajouter une invitation à un membre",
             "options": {
               "member": {
-                "name": "membre",
                 "description": "Mentionnez un membre du serveur"
               },
               "number": {
-                "name": "nombre",
                 "description": "Nombre d'invitations à ajouter"
               }
             }
           },
           "remove": {
-            "name": "retirer",
             "description": "Retirer une invitation à un membre",
             "options": {
               "member": {
-                "name": "membre",
                 "description": "Mentionnez un membre du serveur"
               },
               "number": {
-                "name": "nombre",
                 "description": "Nombre d'invitations à retirer"
               }
             }
           },
           "reset": {
-            "name": "réinitialiser",
             "description": "Réinitialiser les invitations d'un membre",
             "options": {
               "member": {
-                "name": "membre",
                 "description": "Mentionnez un membre du serveur"
               }
             }
           },
           "create": {
-            "name": "créer",
             "description": "Créer un lien d'invitation qui n'expire jamais"
           },
           "check": {
-            "name": "vérifier",
             "description": "Découvrir quels membres ont utilisé ce code ou identifier le membre associé",
             "options": {
               "code": {
-                "name": "code",
                 "description": "Code (sans discord.gg/)"
               },
               "member": {
-                "name": "membre",
                 "description": "Mentionnez un membre du serveur"
               }
             }
@@ -81,51 +66,40 @@
     },
     "leaderboard": {
       "data": {
-        "name": "classement",
         "description": "Gérer le classement",
         "subcommands": {
           "basic": {
-            "name": "basique",
             "description": "Voir le classement basique"
           },
           "smart": {
-            "name": "intelligent",
             "description": "Voir le classement intelligent"
           },
           "exclude": {
-            "name": "exclure",
             "description": "Exclure un membre ou un rôle de la vue du classement",
             "options": {
               "member": {
-                "name": "membre",
                 "description": "Mentionnez un membre du serveur"
               },
               "role": {
-                "name": "rôle",
                 "description": "Mentionnez un rôle du serveur"
               }
             }
           },
           "include": {
-            "name": "inclure",
             "description": "Inclure un membre ou un rôle dans le classement",
             "options": {
               "member": {
-                "name": "membre",
                 "description": "Mentionnez un membre du serveur"
               },
               "role": {
-                "name": "rôle",
                 "description": "Mentionnez un rôle du serveur"
               }
             }
           },
           "top": {
-            "name": "top",
             "description": "Définir combien de membres le classement doit afficher",
             "options": {
               "number": {
-                "name": "nombre",
                 "description": "Nombre de membres"
               }
             }
@@ -135,35 +109,28 @@
     },
     "roles": {
       "data": {
-        "name": "rôle",
         "description": "Gérer les rôles d'invitation",
         "subcommands": {
           "add": {
-            "name": "ajouter",
             "description": "Ajouter un rôle d'invitation",
             "options": {
               "role": {
-                "name": "rôle",
                 "description": "Mentionnez un rôle du serveur"
               },
               "number": {
-                "name": "nombre",
                 "description": "Nombre d'invitations pour obtenir le rôle"
               }
             }
           },
           "remove": {
-            "name": "retirer",
             "description": "Retirer un rôle d'invitation",
             "options": {
               "role": {
-                "name": "rôle",
                 "description": "Mentionnez un rôle du serveur"
               }
             }
           },
           "list": {
-            "name": "liste",
             "description": "Voir la liste des rôles d'invitation"
           }
         }
@@ -171,29 +138,24 @@
     },
     "ping": {
       "data": {
-        "name": "ping",
         "description": "Voir la latence du bot"
       }
     },
     "help": {
       "data": {
-        "name": "aide",
         "description": "Voir les détails des commandes"
       }
     },
     "author": {
       "data": {
-        "name": "auteur",
         "description": "Voir les informations du bot"
       }
     },
     "language": {
       "data": {
-        "name": "langue",
         "description": "Définir une langue pour le bot",
         "options": {
           "language": {
-            "name": "langue",
             "description": "Langue à définir"
           }
         }
@@ -215,11 +177,9 @@
     },
     "purge": {
       "data": {
-        "name": "purge",
         "description": "Purger les informations mises en cache",
         "subcommands": {
           "cache": {
-            "name": "cache",
             "description": "Effacer le cache sur ce serveur"
           }
         }

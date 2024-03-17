@@ -11,24 +11,20 @@ export interface Localization {
 }
 
 interface OptionLocalization {
-  name: Localization;
   description: Localization;
 }
 
 interface SubcommandLocalization {
-  name: Localization;
   description: Localization;
   options?: { [key: string]: OptionLocalization };
 }
 
 interface SubcommandGroupLocalization {
-  name: Localization;
   description: Localization;
   subcommands?: { [key: string]: SubcommandLocalization };
 }
 
 interface CommandLocalization {
-  name: Localization;
   description: Localization;
   subcommandsGroups?: { [key: string]: SubcommandGroupLocalization };
   subcommands?: { [key: string]: SubcommandLocalization };
@@ -47,7 +43,6 @@ const initLocalization = () => {
       if (!commandData) continue;
 
       const command: CommandLocalization = localizations.get(commandName) ?? {
-        name: {} as Localization,
         description: {} as Localization,
         subcommandsGroups: {} as { [key: string]: SubcommandGroupLocalization },
         subcommands: {} as { [key: string]: SubcommandLocalization },
@@ -79,12 +74,9 @@ const handleLang = (
   data: { name: string; description: string }
 ): void => {
   if (lang === "en") {
-    command.name["en-GB"] = data.name;
-    command.name["en-US"] = data.name;
     command.description["en-GB"] = data.description;
     command.description["en-US"] = data.description;
   } else {
-    command.name[lang] = data.name;
     command.description[lang] = data.description;
   }
 };

@@ -9,13 +9,12 @@ class Help extends Command {
   }
 
   public override initialize() {
-    const { name, description } = localizations.get(this.name)!;
+    const { description } = localizations.get(this.name)!;
 
     this.applicationCommands.push(
       new SlashCommandBuilder()
         .setName(this.name)
         .setDescription("View commands details")
-        .setNameLocalizations(name)
         .setDescriptionLocalizations(description)
         .toJSON()
     );

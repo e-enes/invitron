@@ -10,20 +10,18 @@ class Purge extends Command {
   }
 
   public override initialize() {
-    const { name, description, subcommands } = localizations.get(this.name)!;
+    const { description, subcommands } = localizations.get(this.name)!;
 
     this.applicationCommands.push(
       new SlashCommandBuilder()
         .setName(this.name)
         .setDescription("Purge cached information")
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
-        .setNameLocalizations(name)
         .setDescriptionLocalizations(description)
         .addSubcommand((subcommand) =>
           subcommand
             .setName("cache")
             .setDescription("Clear the cache on this server")
-            .setNameLocalizations(subcommands!.cache.name)
             .setDescriptionLocalizations(subcommands!.cache.description)
         )
         .toJSON()
