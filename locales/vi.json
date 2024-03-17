@@ -2,76 +2,76 @@
   "emoji": "🇻🇳",
   "commands": {
     "insufficient_permission": {
-      "title": "Lệnh Không Được Phép!",
+      "title": "Không thể sử dụng lệnh!",
       "description": "Bạn không được phép thực hiện lệnh này!"
     },
     "invites": {
       "data": {
-        "name": "mời",
+        "name": "invite",
         "description": "Quản lý lời mời",
         "subcommands": {
           "view": {
-            "name": "xem",
+            "name": "view",
             "description": "Xem lời mời",
             "options": {
               "member": {
-                "name": "thành-viên",
+                "name": "member",
                 "description": "Đề cập đến một thành viên trong máy chủ"
               }
             }
           },
           "add": {
-            "name": "thêm",
-            "description": "Thêm lời mời cho một thành viên",
+            "name": "add",
+            "description": "Thêm lời mời đến một thành viên",
             "options": {
               "member": {
-                "name": "thành-viên",
+                "name": "member",
                 "description": "Đề cập đến một thành viên trong máy chủ"
               },
               "number": {
-                "name": "số-lượng",
+                "name": "number",
                 "description": "Số lượng lời mời để thêm"
               }
             }
           },
           "remove": {
-            "name": "xóa",
-            "description": "Xóa lời mời của một thành viên",
+            "name": "remove",
+            "description": "Xóa lời mời từ một thành viên",
             "options": {
               "member": {
-                "name": "thành-viên",
+                "name": "member",
                 "description": "Đề cập đến một thành viên trong máy chủ"
               },
               "number": {
-                "name": "số-lượng",
+                "name": "number",
                 "description": "Số lượng lời mời để xóa"
               }
             }
           },
           "reset": {
-            "name": "đặt-lại",
+            "name": "reset",
             "description": "Đặt lại lời mời của một thành viên",
             "options": {
               "member": {
-                "name": "thành-viên",
+                "name": "member",
                 "description": "Đề cập đến một thành viên trong máy chủ"
               }
             }
           },
           "create": {
-            "name": "tạo",
+            "name": "create",
             "description": "Tạo một liên kết mời không bao giờ hết hạn"
           },
           "check": {
-            "name": "kiểm-tra",
+            "name": "check",
             "description": "Khám phá xem thành viên nào đã sử dụng mã này hoặc xác định thành viên liên quan",
             "options": {
               "code": {
-                "name": "mã",
+                "name": "code",
                 "description": "Mã (không bao gồm discord.gg/)"
               },
               "member": {
-                "name": "thành-viên",
+                "name": "member",
                 "description": "Đề cập đến một thành viên trong máy chủ"
               }
             }
@@ -81,51 +81,51 @@
     },
     "leaderboard": {
       "data": {
-        "name": "bảng-xếp-hạng",
+        "name": "leaderboard",
         "description": "Quản lý bảng xếp hạng",
         "subcommands": {
           "basic": {
-            "name": "cơ-bản",
+            "name": "basic",
             "description": "Xem bảng xếp hạng cơ bản"
           },
           "smart": {
-            "name": "thông-minh",
+            "name": "smart",
             "description": "Xem bảng xếp hạng thông minh"
           },
           "exclude": {
-            "name": "loại-trừ",
+            "name": "exclude",
             "description": "Loại trừ một thành viên hoặc vai trò khỏi xem bảng xếp hạng",
             "options": {
               "member": {
-                "name": "thành-viên",
+                "name": "member",
                 "description": "Đề cập đến một thành viên trong máy chủ"
               },
               "role": {
-                "name": "vai-trò",
+                "name": "role",
                 "description": "Đề cập đến một vai trò trong máy chủ"
               }
             }
           },
           "include": {
-            "name": "bao-gồm",
+            "name": "include",
             "description": "Bao gồm một thành viên hoặc vai trò vào bảng xếp hạng",
             "options": {
               "member": {
-                "name": "thành-viên",
+                "name": "member",
                 "description": "Đề cập đến một thành viên trong máy chủ"
               },
               "role": {
-                "name": "vai-trò",
+                "name": "role",
                 "description": "Đề cập đến một vai trò trong máy chủ"
               }
             }
           },
           "top": {
-            "name": "đầu",
-            "description": "Xác định số lượng thành viên bảng xếp hạng nên hiển thị",
+            "name": "top",
+            "description": "Chọn số lượng thành viên được hiển thị trên bảng xếp hạng",
             "options": {
               "number": {
-                "name": "số-lượng",
+                "name": "number",
                 "description": "Số lượng thành viên"
               }
             }
@@ -135,35 +135,35 @@
     },
     "roles": {
       "data": {
-        "name": "vai-trò",
+        "name": "role",
         "description": "Quản lý các vai trò mời",
         "subcommands": {
           "add": {
-            "name": "thêm",
+            "name": "add",
             "description": "Thêm vai trò mời",
             "options": {
               "role": {
-                "name": "vai-trò",
+                "name": "role",
                 "description": "Đề cập đến một vai trò trong máy chủ"
               },
               "number": {
-                "name": "số-lượng",
+                "name": "number",
                 "description": "Số lượng lời mời để có vai trò"
               }
             }
           },
           "remove": {
-            "name": "xóa",
+            "name": "remove",
             "description": "Xóa vai trò mời",
             "options": {
               "role": {
-                "name": "vai-trò",
+                "name": "role",
                 "description": "Đề cập đến một vai trò trong máy chủ"
               }
             }
           },
           "list": {
-            "name": "danh-sách",
+            "name": "list",
             "description": "Xem danh sách các vai trò mời"
           }
         }
@@ -177,23 +177,23 @@
     },
     "help": {
       "data": {
-        "name": "trợ-giúp",
+        "name": "help",
         "description": "Xem chi tiết các lệnh"
       }
     },
     "author": {
       "data": {
-        "name": "tác-giả",
+        "name": "author",
         "description": "Xem thông tin của bot"
       }
     },
     "language": {
       "data": {
-        "name": "ngôn-ngữ",
+        "name": "language",
         "description": "Đặt ngôn ngữ cho bot",
         "options": {
           "language": {
-            "name": "ngôn-ngữ",
+            "name": "language",
             "description": "Ngôn ngữ để đặt"
           }
         }
@@ -216,11 +216,11 @@
     "purge": {
       "data": {
         "name": "xóa",
-        "description": "Xóa thông tin được lưu trữ trong bộ nhớ cache",
+        "description": "Xóa thông tin được lưu trữ trong bộ nhớ",
         "subcommands": {
           "cache": {
-            "name": "bộ-nhớ-cache",
-            "description": "Xóa bộ nhớ cache trên máy chủ này"
+            "name": "cache",
+            "description": "Xóa hết bộ nhớ trên máy chủ này"
           }
         }
       }
@@ -228,7 +228,7 @@
   },
   "components": {
     "insufficient_permission": {
-      "title": "Tương tác Không Được Phép!",
+      "title": "Không thể thực hiện tương tác!",
       "description": "Bạn không được phép thực hiện tương tác này!"
     }
   }
