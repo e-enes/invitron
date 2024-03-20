@@ -19,6 +19,7 @@ class Purge extends Command {
         .setDescription("Purge cached information")
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .setDescriptionLocalizations(description)
+        .setDMPermission(false)
         .addSubcommand((subcommand) =>
           subcommand
             .setName("cache")

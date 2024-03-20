@@ -16,6 +16,7 @@ class Invites extends Command {
         .setName(this.name)
         .setDescription("Manage invitations")
         .setDescriptionLocalizations(description)
+        .setDMPermission(false)
         .addSubcommand((subcommand) =>
           subcommand
             .setName("view")

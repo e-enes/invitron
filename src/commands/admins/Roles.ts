@@ -17,8 +17,9 @@ class Roles extends Command {
       new SlashCommandBuilder()
         .setName(this.name)
         .setDescription("Manage invitation roles")
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .setDescriptionLocalizations(description)
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+        .setDMPermission(false)
         .addSubcommand((subcommand) =>
           subcommand
             .setName("add")

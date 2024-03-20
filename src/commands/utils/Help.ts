@@ -16,6 +16,7 @@ class Help extends Command {
         .setName(this.name)
         .setDescription("View commands details")
         .setDescriptionLocalizations(description)
+        .setDMPermission(false)
         .toJSON()
     );
   }

@@ -16,6 +16,7 @@ class Leaderboard extends Command {
         .setName(this.name)
         .setDescription("Manage leaderboard")
         .setDescriptionLocalizations(description)
+        .setDMPermission(false)
         .addSubcommand((subcommand) =>
           subcommand
             .setName("basic")

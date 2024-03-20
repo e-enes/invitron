@@ -17,8 +17,9 @@ class Language extends Command {
       new SlashCommandBuilder()
         .setName(this.name)
         .setDescription("Set a language for the bot")
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .setDescriptionLocalizations(description)
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+        .setDMPermission(false)
         .addStringOption((option) =>
           option
             .setName("language")

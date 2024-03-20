@@ -16,6 +16,7 @@ class Ping extends Command {
         .setName(this.name)
         .setDescription("View bot latency")
         .setDescriptionLocalizations(description)
+        .setDMPermission(false)
         .toJSON()
     );
   }
