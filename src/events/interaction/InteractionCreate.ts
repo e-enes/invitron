@@ -39,9 +39,9 @@ class InteractionCreate extends Listener {
         await interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${config.message.emojis.error} Error!`)
+              .setTitle("Error!")
               .setDescription("You can only use my commands in the server.")
-              .setFooter({ text: config.message.footer.text, iconURL: config.message.footer.icon })
+              .withDefaultFooter()
               .setColor(config.message.colors.error),
           ],
           ephemeral: true,
@@ -103,10 +103,9 @@ class InteractionCreate extends Listener {
         await interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(
-                `${config.message.emojis.error} ${i18next.t("components.insufficient_permission.title", { lng: keys.language })}`
-              )
+              .setTitle(`${i18next.t("components.insufficient_permission.title", { lng: keys.language })}`)
               .setDescription(i18next.t("components.insufficient_permission.description", { lng: keys.language }))
+              .withDefaultFooter()
               .setColor(config.message.colors.error),
           ],
           ephemeral: true,

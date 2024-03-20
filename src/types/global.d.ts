@@ -4,6 +4,7 @@ import config from "../config.js";
 
 import MySql from "../database/MySql.js";
 import Sqlite from "../database/Sqlite.js";
+import ClientUtils from "../utils/ClientUtils.js";
 
 declare module "discord.js" {
   export interface Client {
@@ -12,6 +13,7 @@ declare module "discord.js" {
     components: Collection<string, import("../components/Component.js").default>;
     database: MySql | Sqlite;
     invites: Collection<string, Collection<string, CachedInvite>>;
+    utils: ClientUtils;
   }
 
   export interface EmbedBuilder {

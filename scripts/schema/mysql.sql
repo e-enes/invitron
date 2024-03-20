@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS roles
     guild_id           VARCHAR(36) NOT NULL,
     role_id            VARCHAR(36) NOT NULL,
     amount_invitations INT         NOT NULL,
+    active             BOOLEAN     NOT NULL DEFAULT false,
     PRIMARY KEY (guild_id, role_id),
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
 );

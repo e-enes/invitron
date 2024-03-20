@@ -2,6 +2,7 @@ import { Client, Collection, Partials, EmbedBuilder } from "discord.js";
 import { GatewayIntentBits } from "discord-api-types/v10";
 
 import { loadCommands, loadComponents, loadEvents } from "./utils/loader.js";
+import ClientUtils from "./utils/ClientUtils.js";
 
 import config from "./config.js";
 
@@ -20,7 +21,7 @@ const client = new Client({
   ],
   allowedMentions: {
     repliedUser: false,
-    parse: [],
+    parse: ["roles"],
   },
   partials: [Partials.GuildMember],
 });
@@ -28,6 +29,7 @@ const client = new Client({
 client.invites = new Collection();
 client.commands = new Collection();
 client.components = new Collection();
+client.utils = new ClientUtils(client);
 
 client.config = config;
 

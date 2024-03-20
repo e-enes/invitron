@@ -38,15 +38,15 @@ class Sqlite {
   }
 
   public async query(sql: string, params?: unknown[]): Promise<any> {
-    return new Promise((resolve): any => {
+    return new Promise((resolve, reject): any => {
       const type: string = sql.split(" ")[0];
 
       try {
         if (type === "SELECT") {
           this.connection.all(sql, params, (error: Error | null, rows: unknown[]): void => {
             if (error) {
-              Logger.error(`Error executing query SQL\n\nSQL: ${sql}\nParams: ${params?.join(", ")}`);
-              throw error;
+              Logger.error(`Error executing query SQL\n\nSQL: ${sql}\nParams: ${params?.join(", ")}\n\n`, error);
+              reject(error);
             }
 
             resolve(rows);
@@ -54,16 +54,16 @@ class Sqlite {
         } else {
           this.connection.run(sql, params, (error: Error | null): void => {
             if (error) {
-              Logger.error(`Error executing query SQL\n\nSQL: ${sql}\nParams: ${params?.join(", ")}`);
-              throw error;
+              Logger.error(`Error executing query SQL\n\nSQL: ${sql}\nParams: ${params?.join(", ")}\n\n`, error);
+              reject(error);
             }
 
             resolve(void 0);
           });
         }
       } catch (error) {
-        Logger.error(`Error executing query SQL\n\nSQL: ${sql}\nParams: ${params?.join(", ")}`);
-        throw error;
+        Logger.error(`Error executing query SQL\n\nSQL: ${sql}\nParams: ${params?.join(", ")}\n\n`, error);
+        reject(error);
       }
     });
   }

@@ -44,8 +44,8 @@ class MySql {
     try {
       return await this.pool.query(sql, params);
     } catch (error) {
-      Logger.error(`Error executing query SQL\n\nSQL: ${sql}\nParams: ${params?.join(", ")}`);
-      throw error;
+      Logger.error(`Error executing query SQL\n\nSQL: ${sql}\nParams: ${params?.join(", ")}\n\n`, error);
+      return Promise.reject(error);
     }
   }
 
@@ -55,7 +55,7 @@ class MySql {
     return Date.now() - start;
   }
 
-  public async close(): Promise<void> {
+  public async disconnect(): Promise<void> {
     try {
       await this.pool.end();
       Logger.info("Disconnected from MySQL database");

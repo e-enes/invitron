@@ -5,6 +5,10 @@
       "title": "Unauthorized Command!",
       "description": "You are not authorized to execute this command!"
     },
+    "unknown_command": {
+      "title": "Error!",
+      "description": "This command is unknown or does not exist."
+    },
     "invites": {
       "data": {
         "description": "Manage invitations",
@@ -127,12 +131,59 @@
             "options": {
               "role": {
                 "description": "Mention a server role"
+              },
+              "delete": {
+                "description": "Remove this role from members who have it"
               }
             }
           },
           "list": {
             "description": "View invitation roles list"
           }
+        }
+      },
+      "messages": {
+        "invalid_options": {
+          "title": "Error!",
+          "description": "The options (role and/or number) are invalid."
+        },
+        "error_add": {
+          "title": "Error!",
+          "description": "An error occurred while trying to add the role (`{{ role }}`) with **{{ number }}** invitation(s)."
+        },
+        "success_add": {
+          "title": "Success!",
+          "description": "The role (`{{ role }}`) has been successfully added."
+        },
+        "existed_role": {
+          "title": "Error!",
+          "description": "The role (`{{ role }}`) already exists.\n\nDo you want to update it with the new number (**{{ number }}**) of invitations?"
+        },
+        "not_existed_role": {
+          "title": "Error!",
+          "description": "The role (`{{ role }}`) does not exist."
+        },
+        "not_editable_role": {
+          "title": "Error!",
+          "description": "The role (`{{ role }}`) cannot be assigned by the bot."
+        },
+        "error_remove": {
+          "title": "Error!",
+          "description": "An error occurred while trying to remove this role (`{{ role }}`)."
+        },
+        "success_remove": {
+          "title": "Success!",
+          "description": "The role (`{{ role }}`) has been successfully removed."
+        },
+        "empty_list": {
+          "title": "Invitation roles",
+          "description": "You do not have an invitation role. Add some with `/roles add`"
+        },
+        "role_list": {
+          "title": "Invitation roles",
+          "pre_invalid_description": "{{ index }}) `{{ role }}` is **inactive** due to permission change",
+          "pre_valid_description": "{{ index }}) `{{ role }}` required **{{ number }}** invitations",
+          "description": "You have a total of **{{ number }}** invitation roles!\n\n{{ roles }}"
         }
       }
     },
@@ -171,7 +222,7 @@
         },
         "success": {
           "title": "Success!",
-          "description": "The server language was set to {{ lng }}`."
+          "description": "The server language was set to `{{ lng }}`."
         }
       }
     },
@@ -183,6 +234,16 @@
             "description": "Clear the cache on this server"
           }
         }
+      },
+      "messages": {
+        "success": {
+          "title": "Success!",
+          "description": "The server cache has been successfully reset."
+        },
+        "error": {
+          "title": "Error!",
+          "description": "An error occurred while trying to clear the server cache."
+        }
       }
     }
   },
@@ -190,6 +251,27 @@
     "insufficient_permission": {
       "title": "Unauthorized Interaction!",
       "description": "You are not authorized to execute this interaction!"
+    },
+    "roles": {
+      "button": {
+        "update": {
+          "label": "Confirm update"
+        }
+      },
+      "messages": {
+        "not_existed_role": {
+          "title": "Error!",
+          "description": "The role (`{{ role }}`) no longer exists."
+        },
+        "success": {
+          "title": "Success!",
+          "description": "The role (`{{ role }}`) has been successfully updated!"
+        },
+        "error": {
+          "title": "Error!",
+          "description": "An error occurred while trying to update the role (`{{ role }}`)"
+        }
+      }
     }
   }
 }
