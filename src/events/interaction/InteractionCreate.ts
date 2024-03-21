@@ -104,7 +104,11 @@ class InteractionCreate extends Listener {
           embeds: [
             new EmbedBuilder()
               .setTitle(`${i18next.t("components.insufficient_permission.title", { lng: keys.language })}`)
-              .setDescription(i18next.t("components.insufficient_permission.description", { lng: keys.language }))
+              .setDescription(
+                i18next.t("components.insufficient_permission.description", {
+                  lng: keys.language,
+                })
+              )
               .withDefaultFooter()
               .setColor(config.message.colors.error),
           ],

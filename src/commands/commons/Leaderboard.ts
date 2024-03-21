@@ -18,16 +18,10 @@ class Leaderboard extends Command {
         .setDescriptionLocalizations(description)
         .setDMPermission(false)
         .addSubcommand((subcommand) =>
-          subcommand
-            .setName("basic")
-            .setDescription("View basic leaderboard")
-            .setDescriptionLocalizations(subcommands!.basic.description)
+          subcommand.setName("basic").setDescription("View basic leaderboard").setDescriptionLocalizations(subcommands!.basic.description)
         )
         .addSubcommand((subcommand) =>
-          subcommand
-            .setName("smart")
-            .setDescription("View smart leaderboard")
-            .setDescriptionLocalizations(subcommands!.smart.description)
+          subcommand.setName("smart").setDescription("View smart leaderboard").setDescriptionLocalizations(subcommands!.smart.description)
         )
         .addSubcommand((subcommand) =>
           subcommand

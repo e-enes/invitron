@@ -70,20 +70,20 @@ CREATE TABLE IF NOT EXISTS links
     guild_id  TEXT NOT NULL,
     member_id TEXT NOT NULL,
     link      TEXT NOT NULL,
-    source    TEXT NOT NULL,
+    source    TEXT NULL,
     PRIMARY KEY (link),
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS fakes
 (
-    guild_id              TEXT    NOT NULL,
-    role_id               TEXT    NOT NULL,
-    custom_profile_pic    BOOL    NOT NULL DEFAULT false,
-    older                 INT     NOT NULL DEFAULT 10,
-    own_invite            BOOL    NOT NULL DEFAULT true,
-    first_join            BOOL    NOT NULL DEFAULT false,
-    back_original_inviter BOOLEAN NOT NULL DEFAULT false,
+    guild_id              TEXT NOT NULL,
+    role_id               TEXT NOT NULL,
+    custom_profile_pic    BOOL NOT NULL DEFAULT false,
+    older                 INT  NOT NULL DEFAULT 10,
+    own_invite            BOOL NOT NULL DEFAULT true,
+    first_join            BOOL NOT NULL DEFAULT false,
+    back_original_inviter BOOL NOT NULL DEFAULT false,
     PRIMARY KEY (guild_id),
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
 );

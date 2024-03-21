@@ -16,10 +16,7 @@ class InviteDelete extends Listener {
     ]);
 
     if (customInvite.length !== 0) {
-      await this.client.database.query("DELETE FROM links WHERE guild_id = ? and link = ?", [
-        invite.guild!.id,
-        invite.code,
-      ]);
+      await this.client.database.query("DELETE FROM links WHERE guild_id = ? and link = ?", [invite.guild!.id, invite.code]);
     }
   }
 }

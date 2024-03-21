@@ -29,7 +29,10 @@ class Roles extends Component {
           new EmbedBuilder()
             .setTitle(`${i18next.t(`components.${this.key}.messages.not_existed_role.title`, { lng: keys.language })}`)
             .setDescription(
-              i18next.t(`components.${this.key}.messages.not_existed_role.description`, { lng: keys.language, role })
+              i18next.t(`components.${this.key}.messages.not_existed_role.description`, {
+                lng: keys.language,
+                role,
+              })
             )
             .setColor(config.message.colors.warn)
             .withDefaultFooter(),
@@ -64,7 +67,10 @@ class Roles extends Component {
             new EmbedBuilder()
               .setTitle(`${i18next.t(`components.${this.key}.messages.error.title`, { lng: keys.language })}`)
               .setDescription(
-                i18next.t(`components.${this.key}.messages.error.description`, { lng: keys.language, role: role.name })
+                i18next.t(`components.${this.key}.messages.error.description`, {
+                  lng: keys.language,
+                  role: role.name,
+                })
               )
               .setColor(config.message.colors.error)
               .withDefaultFooter(),

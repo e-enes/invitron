@@ -31,10 +31,7 @@ class Component {
   public executeButton?(interaction: Component.Button, keys: Component.Keys): Awaitable<void>;
   public executeSelectMenu?(interaction: Component.SelectMenu, keys: Component.Keys): Awaitable<void>;
   public executeChannelSelectMenu?(interaction: Component.ChannelSelectMenu, keys: Component.Keys): Awaitable<void>;
-  public executeMentionableSelectMenu?(
-    interaction: Component.MentionableSelectMenu,
-    keys: Component.Keys
-  ): Awaitable<void>;
+  public executeMentionableSelectMenu?(interaction: Component.MentionableSelectMenu, keys: Component.Keys): Awaitable<void>;
   public executeStringSelectMenu?(interaction: Component.StringSelectMenu, keys: Component.Keys): Awaitable<void>;
   public executeUserSelectMenu?(interaction: Component.UserSelectMenu, keys: Component.Keys): Awaitable<void>;
   public executeModal?(interaction: Component.Modal, keys: Component.Keys): Awaitable<void>;

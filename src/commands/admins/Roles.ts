@@ -61,10 +61,7 @@ class Roles extends Command {
             )
         )
         .addSubcommand((subcommand) =>
-          subcommand
-            .setName("list")
-            .setDescription("View invitation roles list")
-            .setDescriptionLocalizations(subcommands!.list.description)
+          subcommand.setName("list").setDescription("View invitation roles list").setDescriptionLocalizations(subcommands!.list.description)
         )
         .toJSON()
     );
@@ -118,9 +115,7 @@ class Roles extends Command {
         embeds: [
           new EmbedBuilder()
             .setTitle(`${i18next.t(`commands.${this.name}.messages.invalid_options.title`, { lng: keys.language })}`)
-            .setDescription(
-              i18next.t(`commands.${this.name}.messages.invalid_options.description`, { lng: keys.language })
-            )
+            .setDescription(i18next.t(`commands.${this.name}.messages.invalid_options.description`, { lng: keys.language }))
             .setColor(config.message.colors.error)
             .withDefaultFooter(),
         ],
@@ -136,10 +131,7 @@ class Roles extends Command {
           new EmbedBuilder()
             .setTitle(`${i18next.t(`commands.${this.name}.messages.not_editable_role.title`, { lng: keys.language })}`)
             .setDescription(
-              i18next.t(`commands.${this.name}.messages.not_editable_role.description`, {
-                lng: keys.language,
-                role: role.name,
-              })
+              i18next.t(`commands.${this.name}.messages.not_editable_role.description`, { lng: keys.language, role: role.name })
             )
             .setColor(config.message.colors.error)
             .withDefaultFooter(),
@@ -158,11 +150,7 @@ class Roles extends Command {
           new EmbedBuilder()
             .setTitle(`${i18next.t(`commands.${this.name}.messages.existed_role.title`, { lng: keys.language })}`)
             .setDescription(
-              i18next.t(`commands.${this.name}.messages.existed_role.description`, {
-                lng: keys.language,
-                role: role.name,
-                number,
-              })
+              i18next.t(`commands.${this.name}.messages.existed_role.description`, { lng: keys.language, role: role.name, number })
             )
             .setColor(config.message.colors.error)
             .withDefaultFooter(),
@@ -181,22 +169,13 @@ class Roles extends Command {
     }
 
     await database
-      .query("INSERT INTO roles (guild_id, role_id, amount_invitations) VALUES (?, ?, ?)", [
-        interaction.guild!.id,
-        role.id,
-        number,
-      ])
+      .query("INSERT INTO roles (guild_id, role_id, amount_invitations) VALUES (?, ?, ?)", [interaction.guild!.id, role.id, number])
       .then(() => {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
               .setTitle(`${i18next.t(`commands.${this.name}.messages.success_add.title`, { lng: keys.language })}`)
-              .setDescription(
-                i18next.t(`commands.${this.name}.messages.success_add.description`, {
-                  lng: keys.language,
-                  role: role.name,
-                })
-              )
+              .setDescription(i18next.t(`commands.${this.name}.messages.success_add.description`, { lng: keys.language, role: role.name }))
               .setColor(config.message.colors.success)
               .withDefaultFooter(),
           ],
@@ -208,11 +187,7 @@ class Roles extends Command {
             new EmbedBuilder()
               .setTitle(`${i18next.t(`commands.${this.name}.messages.error_add.title`, { lng: keys.language })}`)
               .setDescription(
-                i18next.t(`commands.${this.name}.messages.error_add.description`, {
-                  lng: keys.language,
-                  role: role.name,
-                  number,
-                })
+                i18next.t(`commands.${this.name}.messages.error_add.description`, { lng: keys.language, role: role.name, number })
               )
               .setColor(config.message.colors.error)
               .withDefaultFooter(),
@@ -233,9 +208,7 @@ class Roles extends Command {
         embeds: [
           new EmbedBuilder()
             .setTitle(`${i18next.t(`commands.${this.name}.messages.invalid_options.title`, { lng: keys.language })}`)
-            .setDescription(
-              i18next.t(`commands.${this.name}.messages.invalid_options.description`, { lng: keys.language })
-            )
+            .setDescription(i18next.t(`commands.${this.name}.messages.invalid_options.description`, { lng: keys.language }))
             .setColor(config.message.colors.error)
             .withDefaultFooter(),
         ],
@@ -253,10 +226,7 @@ class Roles extends Command {
           new EmbedBuilder()
             .setTitle(`${i18next.t(`commands.${this.name}.messages.not_existed_role.title`, { lng: keys.language })}`)
             .setDescription(
-              i18next.t(`commands.${this.name}.messages.not_existed_role.description`, {
-                lng: keys.language,
-                role: role.name,
-              })
+              i18next.t(`commands.${this.name}.messages.not_existed_role.description`, { lng: keys.language, role: role.name })
             )
             .setColor(config.message.colors.error)
             .withDefaultFooter(),
@@ -275,10 +245,7 @@ class Roles extends Command {
             new EmbedBuilder()
               .setTitle(`${i18next.t(`commands.${this.name}.messages.success_remove.title`, { lng: keys.language })}`)
               .setDescription(
-                i18next.t(`commands.${this.name}.messages.success_remove.description`, {
-                  lng: keys.language,
-                  role: role.name,
-                })
+                i18next.t(`commands.${this.name}.messages.success_remove.description`, { lng: keys.language, role: role.name })
               )
               .setColor(config.message.colors.success)
               .withDefaultFooter(),
@@ -294,12 +261,7 @@ class Roles extends Command {
           embeds: [
             new EmbedBuilder()
               .setTitle(`${i18next.t(`commands.${this.name}.messages.error_remove.title`, { lng: keys.language })}`)
-              .setDescription(
-                i18next.t(`commands.${this.name}.messages.error_remove.description`, {
-                  lng: keys.language,
-                  role: role.name,
-                })
-              )
+              .setDescription(i18next.t(`commands.${this.name}.messages.error_remove.description`, { lng: keys.language, role: role.name }))
               .setColor(config.message.colors.error)
               .withDefaultFooter(),
           ],
@@ -323,11 +285,7 @@ class Roles extends Command {
         embeds: [
           new EmbedBuilder()
             .setTitle(`${i18next.t(`commands.${this.name}.messages.empty_list.title`, { lng: keys.language })}`)
-            .setDescription(
-              i18next.t(`commands.${this.name}.messages.empty_list.description`, {
-                lng: keys.language,
-              })
-            )
+            .setDescription(i18next.t(`commands.${this.name}.messages.empty_list.description`, { lng: keys.language }))
             .setColor(config.message.colors.success)
             .withDefaultFooter(),
         ],
@@ -344,7 +302,7 @@ class Roles extends Command {
           const role = await interaction.guild!.roles.fetch(row.role, { cache: true }).catch(() => null);
 
           if (!role) {
-            await database.query("DELETE FROM roles WHERE role_id = ?", [row.role]).catch(() => {});
+            await database.query("DELETE FROM roles WHERE role_id = ?", [row.role]).catch(() => void 0);
             return;
           }
 
@@ -374,7 +332,7 @@ class Roles extends Command {
         new EmbedBuilder()
           .setTitle(`${i18next.t(`commands.${this.name}.messages.role_list.title`, { lng: keys.language })}`)
           .setDescription(
-            await i18next.t(`commands.${this.name}.messages.role_list.description`, {
+            i18next.t(`commands.${this.name}.messages.role_list.description`, {
               lng: keys.language,
               roles: roles.filter(Boolean).join("\n"),
               number,

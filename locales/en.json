@@ -51,8 +51,35 @@
               }
             }
           },
+          "exclude": {
+            "description": "Exclude a member or role from the invitation system",
+            "options": {
+              "member": {
+                "description": "Mention a server member"
+              },
+              "role": {
+                "description": "Mention a server role"
+              }
+            }
+          },
+          "include": {
+            "description": "Include a member or role from the invitation system",
+            "options": {
+              "member": {
+                "description": "Mention a server member"
+              },
+              "role": {
+                "description": "Mention a server role"
+              }
+            }
+          },
           "create": {
-            "description": "Create an invitation link that never expires"
+            "description": "Create an invitation link that never expires",
+            "options": {
+              "source": {
+                "description": "Set a source"
+              }
+            }
           },
           "check": {
             "description": "Discover which members hava utilized this code or identify the member associated with it",
@@ -65,6 +92,28 @@
               }
             }
           }
+        }
+      },
+      "messages": {
+        "existed_link": {
+          "title": "Error!",
+          "description": "You already have an invitation link (**{{ link }}**)."
+        },
+        "unable_create_link": {
+          "title": "Error!",
+          "description": "Unable to create the invitation link, maybe the bot does not have permissions or the server has more than 1000 links."
+        },
+        "updated_link": {
+          "title": "Error!",
+          "description": "You already have an invitation link (**{{ link }}**).\n\nDo you want to update it with the new source (**{{ source }}**)?"
+        },
+        "success_link": {
+          "title": "Success!",
+          "description": "Your invitation link has been created (**{{ link }}**)!"
+        },
+        "error_link": {
+          "title": "Error!",
+          "description": "An error occurred while saving your invitation link."
         }
       }
     },
@@ -251,6 +300,13 @@
     "insufficient_permission": {
       "title": "Unauthorized Interaction!",
       "description": "You are not authorized to execute this interaction!"
+    },
+    "invites": {
+      "button": {
+        "update": {
+          "label": "Confirm update"
+        }
+      }
     },
     "roles": {
       "button": {

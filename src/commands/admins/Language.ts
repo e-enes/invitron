@@ -26,11 +26,26 @@ class Language extends Command {
             .setDescription("Language to set")
             .setDescriptionLocalizations(options!.language.description)
             .setChoices(
-              { name: "English", value: "en" },
-              { name: "Français", value: "fr" },
-              { name: "Nederlands", value: "nl" },
-              { name: "Русский", value: "ru" },
-              { name: "Tiếng Việt", value: "vi" }
+              {
+                name: "English",
+                value: "en",
+              },
+              {
+                name: "Français",
+                value: "fr",
+              },
+              {
+                name: "Nederlands",
+                value: "nl",
+              },
+              {
+                name: "Русский",
+                value: "ru",
+              },
+              {
+                name: "Tiếng Việt",
+                value: "vi",
+              }
             )
             .setRequired(false)
         )
@@ -50,7 +65,9 @@ class Language extends Command {
           new EmbedBuilder()
             .setTitle(`${i18next.t(`commands.${this.name}.messages.current_language.title`, { lng: keys.language })}`)
             .setDescription(
-              i18next.t(`commands.${this.name}.messages.current_language.description`, { lng: keys.language })
+              i18next.t(`commands.${this.name}.messages.current_language.description`, {
+                lng: keys.language,
+              })
             )
             .setColor(config.message.colors.success)
             .withDefaultFooter(),
@@ -65,7 +82,11 @@ class Language extends Command {
         embeds: [
           new EmbedBuilder()
             .setTitle(`${i18next.t("commands.insufficient_permission.title", { lng: keys.language })}`)
-            .setDescription(i18next.t("commands.insufficient_permission.description", { lng: keys.language }))
+            .setDescription(
+              i18next.t("commands.insufficient_permission.description", {
+                lng: keys.language,
+              })
+            )
             .setColor(config.message.colors.error)
             .withDefaultFooter(),
         ],
@@ -82,7 +103,11 @@ class Language extends Command {
           embeds: [
             new EmbedBuilder()
               .setTitle(`${i18next.t(`commands.${this.name}.messages.success.title`, { lng: language })}`)
-              .setDescription(i18next.t(`commands.${this.name}.messages.success.description`, { lng: language }))
+              .setDescription(
+                i18next.t(`commands.${this.name}.messages.success.description`, {
+                  lng: language,
+                })
+              )
               .setColor(config.message.colors.success)
               .withDefaultFooter(),
           ],
@@ -93,7 +118,11 @@ class Language extends Command {
           embeds: [
             new EmbedBuilder()
               .setTitle(`${i18next.t(`commands.${this.name}.messages.error.title`, { lng: keys.language })}`)
-              .setDescription(i18next.t(`commands.${this.name}.messages.error.description`, { lng: keys.language }))
+              .setDescription(
+                i18next.t(`commands.${this.name}.messages.error.description`, {
+                  lng: keys.language,
+                })
+              )
               .setColor(config.message.colors.success)
               .withDefaultFooter(),
           ],

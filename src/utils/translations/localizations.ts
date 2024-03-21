@@ -16,19 +16,29 @@ interface OptionLocalization {
 
 interface SubcommandLocalization {
   description: Localization;
-  options?: { [key: string]: OptionLocalization };
+  options?: {
+    [key: string]: OptionLocalization;
+  };
 }
 
 interface SubcommandGroupLocalization {
   description: Localization;
-  subcommands?: { [key: string]: SubcommandLocalization };
+  subcommands?: {
+    [key: string]: SubcommandLocalization;
+  };
 }
 
 interface CommandLocalization {
   description: Localization;
-  subcommandsGroups?: { [key: string]: SubcommandGroupLocalization };
-  subcommands?: { [key: string]: SubcommandLocalization };
-  options?: { [key: string]: OptionLocalization };
+  subcommandsGroups?: {
+    [key: string]: SubcommandGroupLocalization;
+  };
+  subcommands?: {
+    [key: string]: SubcommandLocalization;
+  };
+  options?: {
+    [key: string]: OptionLocalization;
+  };
 }
 
 const localizations = new Collection<string, CommandLocalization>();
@@ -44,9 +54,15 @@ const initLocalization = () => {
 
       const command: CommandLocalization = localizations.get(commandName) ?? {
         description: {} as Localization,
-        subcommandsGroups: {} as { [key: string]: SubcommandGroupLocalization },
-        subcommands: {} as { [key: string]: SubcommandLocalization },
-        options: {} as { [key: string]: OptionLocalization },
+        subcommandsGroups: {} as {
+          [key: string]: SubcommandGroupLocalization;
+        },
+        subcommands: {} as {
+          [key: string]: SubcommandLocalization;
+        },
+        options: {} as {
+          [key: string]: OptionLocalization;
+        },
       };
 
       handleLang(command, lang, commandData);
@@ -71,7 +87,10 @@ const initLocalization = () => {
 const handleLang = (
   command: CommandLocalization | SubcommandGroupLocalization | SubcommandLocalization | OptionLocalization,
   lang: string,
-  data: { name: string; description: string }
+  data: {
+    name: string;
+    description: string;
+  }
 ): void => {
   if (lang === "en") {
     command.description["en-GB"] = data.description;
@@ -82,16 +101,22 @@ const handleLang = (
 };
 
 const handleSubcommandsGroups = (
-  subcommandsGroups: { [key: string]: SubcommandGroupLocalization },
+  subcommandsGroups: {
+    [key: string]: SubcommandGroupLocalization;
+  },
   lang: string,
-  data: { [key: string]: any }
+  data: {
+    [key: string]: any;
+  }
 ): void => {
   for (const groupName in data) {
     const groupData = data[groupName];
     const subcommandGroup: SubcommandGroupLocalization = subcommandsGroups[groupName] ?? {
       name: {} as Localization,
       description: {} as Localization,
-      subcommands: {} as { [key: string]: SubcommandLocalization },
+      subcommands: {} as {
+        [key: string]: SubcommandLocalization;
+      },
     };
     handleLang(subcommandGroup, lang, groupData);
 
@@ -104,16 +129,22 @@ const handleSubcommandsGroups = (
 };
 
 const handleSubcommands = (
-  subcommands: { [key: string]: SubcommandLocalization },
+  subcommands: {
+    [key: string]: SubcommandLocalization;
+  },
   lang: string,
-  data: { [key: string]: any }
+  data: {
+    [key: string]: any;
+  }
 ): void => {
   for (const subcommandName in data) {
     const subcommandData = data[subcommandName];
     const subcommand: SubcommandLocalization = subcommands[subcommandName] ?? {
       name: {} as Localization,
       description: {} as Localization,
-      options: {} as { [key: string]: OptionLocalization },
+      options: {} as {
+        [key: string]: OptionLocalization;
+      },
     };
     handleLang(subcommand, lang, subcommandData);
 
@@ -126,9 +157,13 @@ const handleSubcommands = (
 };
 
 const handleOptions = (
-  options: { [key: string]: OptionLocalization },
+  options: {
+    [key: string]: OptionLocalization;
+  },
   lang: string,
-  data: { [key: string]: any }
+  data: {
+    [key: string]: any;
+  }
 ): void => {
   for (const optionName in data) {
     const optionData = data[optionName];

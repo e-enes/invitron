@@ -34,10 +34,7 @@ class Ready extends Listener {
       }
 
       const cachedInvites = new Collection<string, CachedInvite>();
-      const customInvites = await database.query(
-        "SELECT member_id AS inviter, link AS code, source FROM links WHERE guild_id = ?",
-        [key]
-      );
+      const customInvites = await database.query("SELECT member_id AS inviter, link AS code, source FROM links WHERE guild_id = ?", [key]);
 
       await guild.invites.fetch({ cache: true }).then((invites) => {
         invites.each((invite) => {

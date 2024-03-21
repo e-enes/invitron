@@ -28,7 +28,7 @@ declare global {
       USE_SQLITE?: string;
       MYSQL_HOST?: string;
       MYSQL_PORT?: string;
-      MYSQL_USER?: string;
+      MYSQL_USERNAME?: string;
       MYSQL_DATABASE?: string;
       MYSQL_PASSWORD?: string;
       NODE_ENV?: string;

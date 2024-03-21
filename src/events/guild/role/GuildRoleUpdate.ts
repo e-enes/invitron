@@ -19,9 +19,7 @@ class GuildRoleUpdate extends Listener {
     const active = data[0].active;
 
     if (active !== newRole.editable) {
-      await database
-        .query("UPDATE roles SET active = ? WHERE role_id = ?", [newRole.editable, oldRole.id])
-        .catch(() => void 0);
+      await database.query("UPDATE roles SET active = ? WHERE role_id = ?", [newRole.editable, oldRole.id]).catch(() => void 0);
     }
   }
 }
