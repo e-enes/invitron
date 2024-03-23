@@ -244,6 +244,11 @@
     "help": {
       "data": {
         "description": "View commands details"
+      },
+      "messages": {
+        "success": {
+          "title": "Help command"
+        }
       }
     },
     "author": {
