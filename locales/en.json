@@ -222,19 +222,19 @@
         },
         "error_add": {
           "title": "Addition Error",
-          "description": "An error occurred while trying to add the role (`{{ role }}`) with **{{ number }}** invitation(s)."
+          "description": "An error occurred while trying to add the role (<@&{{ role }}>) with **{{ number }}** invitation(s)."
         },
         "success_add": {
           "title": "Role Added",
-          "description": "The role (`{{ role }}`) has been successfully added."
+          "description": "The role (<@&{{ role }}>) has been successfully added."
         },
         "existed_role": {
           "title": "Role Exists",
-          "description": "The role (`{{ role }}`) already exists with the same number of invitations (`{{ number }}`)."
+          "description": "The role (<@&{{ role }}>) already exists with the same number of invitations (`{{ number }}`)."
         },
         "existed_role_update": {
           "title": "Update Role?",
-          "description": "The role (`{{ role }}`) already exists.\n\nDo you want to update it with the new number (**{{ number }}**) of invitations?"
+          "description": "The role (<@&{{ role }}>) already exists.\n\nDo you want to update it with the new number (**{{ number }}**) of invitations?"
         },
         "not_existed_role": {
           "title": "Role Missing",
@@ -242,15 +242,15 @@
         },
         "not_editable_role": {
           "title": "Role Restricted",
-          "description": "The role (`{{ role }}`) cannot be assigned by the bot."
+          "description": "The role (<@&{{ role }}>) cannot be assigned by the bot."
         },
         "error_remove": {
           "title": "Removal Error",
-          "description": "An error occurred while trying to remove this role (`{{ role }}`)."
+          "description": "An error occurred while trying to remove this role (<@&{{ role }}>)."
         },
         "success_remove": {
           "title": "Role Removed",
-          "description": "The role (`{{ role }}`) has been successfully removed."
+          "description": "The role (<@&{{ role }}>) has been successfully removed."
         },
         "empty_list": {
           "title": "No Roles",
@@ -258,8 +258,8 @@
         },
         "role_list": {
           "title": "Roles Listed",
-          "pre_invalid_description": "{{ index }}) `{{ role }}` is **inactive** due to permission change",
-          "pre_valid_description": "{{ index }}) `{{ role }}` required **{{ number }}** invitations",
+          "pre_invalid_description": "{{ index }}) <@&{{ role }}> is **inactive** due to permission change",
+          "pre_valid_description": "{{ index }}) <@&{{ role }}> required **{{ number }}** invitations",
           "description": "You have a total of **{{ number }}** invitation roles!\n\n{{ roles }}"
         }
       }
@@ -364,15 +364,15 @@
       "messages": {
         "not_existed_role": {
           "title": "Role Missing",
-          "description": "The role (`{{ role }}`) no longer exists."
+          "description": "The role (<@&{{ role }}>) no longer exists."
         },
         "success": {
           "title": "Role Updated",
-          "description": "The role (`{{ role }}`) has been successfully updated!"
+          "description": "The role (<@&{{ role }}>) has been successfully updated!"
         },
         "error": {
           "title": "Update Failed",
-          "description": "An error occurred while trying to update the role (`{{ role }}`)!"
+          "description": "An error occurred while trying to update the role (<@&{{ role }}>)!"
         }
       }
     }

@@ -132,7 +132,7 @@ class Roles extends Command {
           new EmbedBuilder()
             .setTitle(i18next.t(`commands.${this.name}.messages.not_editable_role.title`, { lng: keys.language }))
             .setDescription(
-              i18next.t(`commands.${this.name}.messages.not_editable_role.description`, { lng: keys.language, role: role.name })
+              i18next.t(`commands.${this.name}.messages.not_editable_role.description`, { lng: keys.language, role: role.id })
             )
             .setColor(config.message.colors.error)
             .withDefaultFooter(),
@@ -152,7 +152,7 @@ class Roles extends Command {
             new EmbedBuilder()
               .setTitle(i18next.t(`commands.${this.name}.messages.existed_role_update.title`, { lng: keys.language }))
               .setDescription(
-                i18next.t(`commands.${this.name}.messages.existed_role_update.description`, { lng: keys.language, role: role.name, number })
+                i18next.t(`commands.${this.name}.messages.existed_role_update.description`, { lng: keys.language, role: role.id, number })
               )
               .setColor(config.message.colors.error)
               .withDefaultFooter(),
@@ -172,7 +172,7 @@ class Roles extends Command {
             new EmbedBuilder()
               .setTitle(i18next.t(`commands.${this.name}.messages.existed_role.title`, { lng: keys.language }))
               .setDescription(
-                i18next.t(`commands.${this.name}.messages.existed_role.description`, { lng: keys.language, role: role.name, number })
+                i18next.t(`commands.${this.name}.messages.existed_role.description`, { lng: keys.language, role: role.id, number })
               )
               .setColor(config.message.colors.error)
               .withDefaultFooter(),
@@ -190,7 +190,7 @@ class Roles extends Command {
           embeds: [
             new EmbedBuilder()
               .setTitle(i18next.t(`commands.${this.name}.messages.success_add.title`, { lng: keys.language }))
-              .setDescription(i18next.t(`commands.${this.name}.messages.success_add.description`, { lng: keys.language, role: role.name }))
+              .setDescription(i18next.t(`commands.${this.name}.messages.success_add.description`, { lng: keys.language, role: role.id }))
               .setColor(config.message.colors.success)
               .withDefaultFooter(),
           ],
@@ -202,7 +202,7 @@ class Roles extends Command {
             new EmbedBuilder()
               .setTitle(i18next.t(`commands.${this.name}.messages.error_add.title`, { lng: keys.language }))
               .setDescription(
-                i18next.t(`commands.${this.name}.messages.error_add.description`, { lng: keys.language, role: role.name, number })
+                i18next.t(`commands.${this.name}.messages.error_add.description`, { lng: keys.language, role: role.id, number })
               )
               .setColor(config.message.colors.error)
               .withDefaultFooter(),
@@ -240,9 +240,7 @@ class Roles extends Command {
         embeds: [
           new EmbedBuilder()
             .setTitle(i18next.t(`commands.${this.name}.messages.not_existed_role.title`, { lng: keys.language }))
-            .setDescription(
-              i18next.t(`commands.${this.name}.messages.not_existed_role.description`, { lng: keys.language, role: role.name })
-            )
+            .setDescription(i18next.t(`commands.${this.name}.messages.not_existed_role.description`, { lng: keys.language, role: role.id }))
             .setColor(config.message.colors.error)
             .withDefaultFooter(),
         ],
@@ -259,9 +257,7 @@ class Roles extends Command {
           embeds: [
             new EmbedBuilder()
               .setTitle(i18next.t(`commands.${this.name}.messages.success_remove.title`, { lng: keys.language }))
-              .setDescription(
-                i18next.t(`commands.${this.name}.messages.success_remove.description`, { lng: keys.language, role: role.name })
-              )
+              .setDescription(i18next.t(`commands.${this.name}.messages.success_remove.description`, { lng: keys.language, role: role.id }))
               .setColor(config.message.colors.success)
               .withDefaultFooter(),
           ],
@@ -276,7 +272,7 @@ class Roles extends Command {
           embeds: [
             new EmbedBuilder()
               .setTitle(i18next.t(`commands.${this.name}.messages.error_remove.title`, { lng: keys.language }))
-              .setDescription(i18next.t(`commands.${this.name}.messages.error_remove.description`, { lng: keys.language, role: role.name }))
+              .setDescription(i18next.t(`commands.${this.name}.messages.error_remove.description`, { lng: keys.language, role: role.id }))
               .setColor(config.message.colors.error)
               .withDefaultFooter(),
           ],
@@ -326,14 +322,14 @@ class Roles extends Command {
             return i18next.t(`commands.${this.name}.messages.role_list.pre_valid_description`, {
               lng: keys.language,
               index: index + 1,
-              role: role.name,
+              role: role.id,
               number: row.number,
             });
           } else {
             return i18next.t(`commands.${this.name}.messages.role_list.pre_invalid_description`, {
               lng: keys.language,
               index: index + 1,
-              role: role.name,
+              role: role.id,
             });
           }
         })()

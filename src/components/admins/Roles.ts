@@ -54,7 +54,7 @@ class Roles extends Component {
               .setDescription(
                 i18next.t(`components.${this.key}.messages.success.description`, {
                   lng: keys.language,
-                  role: role.name,
+                  role: role.id,
                 })
               )
               .setColor(config.message.colors.success)
@@ -70,7 +70,7 @@ class Roles extends Component {
               .setDescription(
                 i18next.t(`components.${this.key}.messages.error.description`, {
                   lng: keys.language,
-                  role: role.name,
+                  role: role.id,
                 })
               )
               .setColor(config.message.colors.error)
