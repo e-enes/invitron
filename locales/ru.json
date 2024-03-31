@@ -77,22 +77,16 @@
           "exclude": {
             "description": "Исключить участника или роль из просмотра таблицы лидеров",
             "options": {
-              "member": {
-                "description": "Упомяните участника сервера"
-              },
-              "role": {
-                "description": "Упомяните роль на сервере"
+              "mentionable": {
+                "description": "Mention a server member/role"
               }
             }
           },
           "include": {
             "description": "Включить участника или роль в таблицу лидеров",
             "options": {
-              "member": {
-                "description": "Упомяните участника сервера"
-              },
-              "role": {
-                "description": "Упомяните роль на сервере"
+              "mentionable": {
+                "description": "Mention a server member/role"
               }
             }
           },

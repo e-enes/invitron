@@ -51,28 +51,6 @@
               }
             }
           },
-          "exclude": {
-            "description": "Exclude a member or role from the invitation system",
-            "options": {
-              "member": {
-                "description": "Mention a server member"
-              },
-              "role": {
-                "description": "Mention a server role"
-              }
-            }
-          },
-          "include": {
-            "description": "Include a member or role from the invitation system",
-            "options": {
-              "member": {
-                "description": "Mention a server member"
-              },
-              "role": {
-                "description": "Mention a server role"
-              }
-            }
-          },
           "create": {
             "description": "Create an invitation link that never expires",
             "options": {
@@ -95,25 +73,77 @@
         }
       },
       "messages": {
+        "success_view": {
+          "title": "Validated Invites",
+          "description": "<@{{ member }}> has **{{ valid }}** invitations (**{{ total }}** Regular, **{{ invalid }}** Left, **{{ bonus }}** Bonus, **{{ fake }}** Fake)."
+        },
+        "error_view": {
+          "title": "Retrieval Failed",
+          "description": "Unable to retrieve invitations from <@{{ member }}>."
+        },
+        "invalid_bonus": {
+          "title": "Bonus Error",
+          "description": "The bonus is **negative** or exceeds **32 bits**!"
+        },
+        "error_bonus": {
+          "title": "Insertion Error",
+          "description": "An error occurred while trying to insert this bonus."
+        },
+        "success_bonus_add": {
+          "title": "Bonus Added",
+          "description": "The user <@{{ member }}> has successfully added **{{ number }}** invitations!"
+        },
+        "success_bonus_remove": {
+          "title": "Bonus Removed",
+          "description": "The user <@{{ member }}> has successfully removed **{{ number }}** invitations!"
+        },
+        "success_reset": {
+          "title": "Invitation Reset",
+          "description": "<@{{ member }}> invitations have been **reset**."
+        },
+        "error_reset": {
+          "title": "Reset Error",
+          "description": "An error occurred while trying to reset invitations."
+        },
         "existed_link": {
-          "title": "Error!",
+          "title": "Link Exists",
           "description": "You already have an invitation link (**{{ link }}**)."
         },
         "unable_create_link": {
-          "title": "Error!",
+          "title": "Creation Failed",
           "description": "Unable to create the invitation link, maybe the bot does not have permissions or the server has more than 1000 links."
         },
         "updated_link": {
-          "title": "Error!",
+          "title": "Update Offered",
           "description": "You already have an invitation link (**{{ link }}**).\n\nDo you want to update it with the new source (**{{ source }}**)?"
         },
         "success_link": {
-          "title": "Success!",
+          "title": "Link Created",
           "description": "Your invitation link has been created (**{{ link }}**)!"
         },
         "error_link": {
-          "title": "Error!",
+          "title": "Saving Error",
           "description": "An error occurred while saving your invitation link."
+        },
+        "invalid_check": {
+          "title": "Check Error",
+          "description": "You must specify at least one code or member."
+        },
+        "no_member_check": {
+          "title": "Absent Member",
+          "description": "No members were found with this information."
+        },
+        "success_member_check": {
+          "title": "Success Check",
+          "description": "A member was found with this information:\n\nMember: <@{{ member }}>\nInviter: <@{{ inviter }}>\n\nCode: **{{ code }}**\nCreated: <t:{{ createdAt }}:R>\n\nLeft: **{{ inactive }}**\nFake: **{{ fake }}**"
+        },
+        "success_code_check": {
+          "title": "Success Check",
+          "description": "Members who joined with this code:\n\n```{{ members }}```"
+        },
+        "error_check": {
+          "title": "Error Check",
+          "description": "An error occurred while trying to find information."
         }
       }
     },
@@ -130,22 +160,16 @@
           "exclude": {
             "description": "Exclude a member or role from the leaderboard view",
             "options": {
-              "member": {
-                "description": "Mention a server member"
-              },
-              "role": {
-                "description": "Mention a server role"
+              "mentionable": {
+                "description": "Mention a server member/role"
               }
             }
           },
           "include": {
             "description": "Include a member or role from the leaderboard",
             "options": {
-              "member": {
-                "description": "Mention a server member"
-              },
-              "role": {
-                "description": "Mention a server role"
+              "mentionable": {
+                "description": "Mention a server member/role"
               }
             }
           },
@@ -193,43 +217,47 @@
       },
       "messages": {
         "invalid_options": {
-          "title": "Error!",
+          "title": "Options Invalid",
           "description": "The options (role and/or number) are invalid."
         },
         "error_add": {
-          "title": "Error!",
+          "title": "Addition Error",
           "description": "An error occurred while trying to add the role (`{{ role }}`) with **{{ number }}** invitation(s)."
         },
         "success_add": {
-          "title": "Success!",
+          "title": "Role Added",
           "description": "The role (`{{ role }}`) has been successfully added."
         },
         "existed_role": {
-          "title": "Error!",
+          "title": "Role Exists",
+          "description": "The role (`{{ role }}`) already exists with the same number of invitations (`{{ number }}`)."
+        },
+        "existed_role_update": {
+          "title": "Update Role?",
           "description": "The role (`{{ role }}`) already exists.\n\nDo you want to update it with the new number (**{{ number }}**) of invitations?"
         },
         "not_existed_role": {
-          "title": "Error!",
+          "title": "Role Missing",
           "description": "The role (`{{ role }}`) does not exist."
         },
         "not_editable_role": {
-          "title": "Error!",
+          "title": "Role Restricted",
           "description": "The role (`{{ role }}`) cannot be assigned by the bot."
         },
         "error_remove": {
-          "title": "Error!",
+          "title": "Removal Error",
           "description": "An error occurred while trying to remove this role (`{{ role }}`)."
         },
         "success_remove": {
-          "title": "Success!",
+          "title": "Role Removed",
           "description": "The role (`{{ role }}`) has been successfully removed."
         },
         "empty_list": {
-          "title": "Invitation roles",
+          "title": "No Roles",
           "description": "You do not have an invitation role. Add some with `/roles add`"
         },
         "role_list": {
-          "title": "Invitation roles",
+          "title": "Roles Listed",
           "pre_invalid_description": "{{ index }}) `{{ role }}` is **inactive** due to permission change",
           "pre_valid_description": "{{ index }}) `{{ role }}` required **{{ number }}** invitations",
           "description": "You have a total of **{{ number }}** invitation roles!\n\n{{ roles }}"
@@ -247,7 +275,7 @@
       },
       "messages": {
         "success": {
-          "title": "Help command"
+          "title": "Help Command"
         }
       }
     },
@@ -271,11 +299,11 @@
           "description": "The current server language is `{{ lng }}`."
         },
         "error": {
-          "title": "Error!",
+          "title": "Change Failed",
           "description": "An error occurred while changing the language to `{{ lng }}`."
         },
         "success": {
-          "title": "Success!",
+          "title": "Language Updated",
           "description": "The server language was set to `{{ lng }}`."
         }
       }
@@ -291,11 +319,11 @@
       },
       "messages": {
         "success": {
-          "title": "Success!",
+          "title": "Cache Reset",
           "description": "The server cache has been successfully reset."
         },
         "error": {
-          "title": "Error!",
+          "title": "Reset Failed",
           "description": "An error occurred while trying to clear the server cache."
         }
       }
@@ -311,6 +339,20 @@
         "update": {
           "label": "Confirm update"
         }
+      },
+      "messages": {
+        "not_existed_role": {
+          "title": "Code Missing",
+          "description": "The code (`{{ code }}`) no longer exists."
+        },
+        "success": {
+          "title": "Code Updated",
+          "description": "The code (`{{ code }}`) has been successfully updated!"
+        },
+        "error": {
+          "title": "Update Failed",
+          "description": "An error occurred while trying to update the code (`{{ code }}`)!"
+        }
       }
     },
     "roles": {
@@ -321,16 +363,16 @@
       },
       "messages": {
         "not_existed_role": {
-          "title": "Error!",
+          "title": "Role Missing",
           "description": "The role (`{{ role }}`) no longer exists."
         },
         "success": {
-          "title": "Success!",
+          "title": "Role Updated",
           "description": "The role (`{{ role }}`) has been successfully updated!"
         },
         "error": {
-          "title": "Error!",
-          "description": "An error occurred while trying to update the role (`{{ role }}`)"
+          "title": "Update Failed",
+          "description": "An error occurred while trying to update the role (`{{ role }}`)!"
         }
       }
     }

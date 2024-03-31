@@ -27,7 +27,7 @@ const config = {
   mysql: {
     host: env.MYSQL_HOST!,
     port: Number(env.MYSQL_PORT)!,
-    user: env.MYSQL_USER!,
+    user: env.MYSQL_USERNAME!,
     database: env.MYSQL_DATABASE!,
     password: env.MYSQL_PASSWORD!,
   },

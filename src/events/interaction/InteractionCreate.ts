@@ -50,7 +50,7 @@ class InteractionCreate extends Listener {
         return;
       }
 
-      const data = await database.query("SELECT language FROM guilds WHERE guild_id = ?", [interaction.guild.id]);
+      const data = await database.query("SELECT language FROM guilds WHERE guild_id = ?", [interaction.guild.id]).catch(() => void 0);
 
       const keys = new CommandKeys();
       keys.language = data?.[0]?.language ?? "en";
@@ -87,7 +87,7 @@ class InteractionCreate extends Listener {
       return;
     }
 
-    const data = await database.query("SELECT language FROM guilds WHERE guild_id = ?", [interaction.guild.id]);
+    const data = await database.query("SELECT language FROM guilds WHERE guild_id = ?", [interaction.guild.id]).catch(() => void 0);
 
     const keys = new ComponentKeys(...references);
     keys.language = data?.[0]?.language ?? "en";

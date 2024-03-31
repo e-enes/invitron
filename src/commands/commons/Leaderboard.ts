@@ -1,4 +1,5 @@
-import { SlashCommandBuilder } from "discord.js";
+import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import i18next from "i18next";
 
 import Command from "../Command.js";
 import { localizations } from "../../utils/translations/localizations.js";
@@ -28,18 +29,11 @@ class Leaderboard extends Command {
             .setName("exclude")
             .setDescription("Exclude a member or role from the leaderboard view")
             .setDescriptionLocalizations(subcommands!.exclude.description)
-            .addUserOption((option) =>
+            .addMentionableOption((option) =>
               option
-                .setName("member")
-                .setDescription("Mention a server member")
-                .setDescriptionLocalizations(subcommands!.exclude.options!.member.description)
-                .setRequired(false)
-            )
-            .addRoleOption((option) =>
-              option
-                .setName("role")
-                .setDescription("Mention a server role")
-                .setDescriptionLocalizations(subcommands!.exclude.options!.role.description)
+                .setName("mentionable")
+                .setDescription("Mention a server member/role")
+                .setDescriptionLocalizations(subcommands!.exclude.options!.mentionable.description)
                 .setRequired(false)
             )
         )
@@ -48,18 +42,11 @@ class Leaderboard extends Command {
             .setName("include")
             .setDescription("Include a member or role from the leaderboard view")
             .setDescriptionLocalizations(subcommands!.include.description)
-            .addUserOption((option) =>
+            .addMentionableOption((option) =>
               option
-                .setName("member")
-                .setDescription("Mention a server member")
-                .setDescriptionLocalizations(subcommands!.include.options!.member.description)
-                .setRequired(false)
-            )
-            .addRoleOption((option) =>
-              option
-                .setName("role")
-                .setDescription("Mention a server role")
-                .setDescriptionLocalizations(subcommands!.include.options!.role.description)
+                .setName("mentionable")
+                .setDescription("Mention a server member/role")
+                .setDescriptionLocalizations(subcommands!.include.options!.mentionable.description)
                 .setRequired(false)
             )
         )
@@ -78,6 +65,27 @@ class Leaderboard extends Command {
         )
         .toJSON()
     );
+  }
+
+  public override async executeChatInput(interaction: Command.ChatInput, keys: Command.Keys) {
+    const { config } = this.client;
+
+    if (!interaction.options.getSubcommand()) {
+      await interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle(i18next.t("commands.unknown_command.title", { lng: keys.language }))
+            .setDescription(i18next.t("commands.unknown_command.description", { lng: keys.language }))
+            .setColor(config.message.colors.error)
+            .withDefaultFooter(),
+        ],
+        ephemeral: true,
+      });
+
+      return;
+    }
+
+    await this[interaction.options.getSubcommand()](interaction, keys);
   }
 }
 

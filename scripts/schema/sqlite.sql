@@ -26,14 +26,12 @@ CREATE TABLE IF NOT EXISTS invites
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS invites_exclude
+CREATE TABLE IF NOT EXISTS bonus
 (
-    guild_id      TEXT NOT NULL,
-    excluded_type TEXT NOT NULL CHECK (excluded_type IN ('role', 'member')),
-    excluded_id   TEXT NOT NULL,
-    can_invite    BOOL NOT NULL DEFAULT true,
-    is_invitation BOOL NOT NULL DEFAULT false,
-    PRIMARY KEY (guild_id, excluded_id),
+    guild_id   TEXT     NOT NULL,
+    inviter_id TEXT     NOT NULL,
+    bonus      INTEGER  NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
 );
 
@@ -59,7 +57,7 @@ CREATE TABLE IF NOT EXISTS roles
 (
     guild_id           TEXT    NOT NULL,
     role_id            TEXT    NOT NULL,
-    amount_invitations INTEGER NOT NULL,
+    number_invitations INTEGER NOT NULL,
     active             BOOL    NOT NULL DEFAULT true,
     PRIMARY KEY (guild_id, role_id),
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE

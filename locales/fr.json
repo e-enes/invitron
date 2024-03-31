@@ -77,22 +77,16 @@
           "exclude": {
             "description": "Exclure un membre ou un rôle de la vue du classement",
             "options": {
-              "member": {
-                "description": "Mentionnez un membre du serveur"
-              },
-              "role": {
-                "description": "Mentionnez un rôle du serveur"
+              "mentionable": {
+                "description": "Mention a server member/role"
               }
             }
           },
           "include": {
             "description": "Inclure un membre ou un rôle dans le classement",
             "options": {
-              "member": {
-                "description": "Mentionnez un membre du serveur"
-              },
-              "role": {
-                "description": "Mentionnez un rôle du serveur"
+              "mentionable": {
+                "description": "Mention a server member/role"
               }
             }
           },

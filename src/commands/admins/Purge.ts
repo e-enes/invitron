@@ -38,7 +38,7 @@ class Purge extends Command {
       await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`${i18next.t("commands.insufficient_permission.title", { lng: keys.language })}`)
+            .setTitle(i18next.t("commands.insufficient_permission.title", { lng: keys.language }))
             .setDescription(i18next.t("commands.insufficient_permission.description", { lng: keys.language }))
             .setColor(config.message.colors.error)
             .withDefaultFooter(),
@@ -53,7 +53,7 @@ class Purge extends Command {
       await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`${i18next.t("commands.unknown_command.title", { lng: keys.language })}`)
+            .setTitle(i18next.t("commands.unknown_command.title", { lng: keys.language }))
             .setDescription(i18next.t("commands.unknown_command.description", { lng: keys.language }))
             .setColor(config.message.colors.error)
             .withDefaultFooter(),
@@ -70,7 +70,7 @@ class Purge extends Command {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`commands.${this.name}.messages.success.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`commands.${this.name}.messages.success.title`, { lng: keys.language }))
               .setDescription(
                 i18next.t(`commands.${this.name}.messages.success.description`, {
                   lng: keys.language,
@@ -85,7 +85,7 @@ class Purge extends Command {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`commands.${this.name}.messages.error.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`commands.${this.name}.messages.error.title`, { lng: keys.language }))
               .setDescription(
                 i18next.t(`commands.${this.name}.messages.error.description`, {
                   lng: keys.language,

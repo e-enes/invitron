@@ -12,7 +12,7 @@ class GuildRoleDelete extends Listener {
 
     const data = await database.query("SELECT role_id FROM roles WHERE role_id = ?", [role.id]).catch(() => void 0);
 
-    if (!data && data.length === 0) {
+    if (!data || data.length === 0) {
       return;
     }
 

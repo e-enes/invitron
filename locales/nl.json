@@ -77,22 +77,16 @@
           "exclude": {
             "description": "Sluit een lid of een rol uit van de ranglijstweergave",
             "options": {
-              "member": {
-                "description": "Vermeld een lid van de server"
-              },
-              "role": {
-                "description": "Vermeld een rol van de server"
+              "mentionable": {
+                "description": "Mention a server member/role"
               }
             }
           },
           "include": {
             "description": "Voeg een lid of een rol toe aan de ranglijst",
             "options": {
-              "member": {
-                "description": "Vermeld een lid van de server"
-              },
-              "role": {
-                "description": "Vermeld een rol van de server"
+              "mentionable": {
+                "description": "Mention a server member/role"
               }
             }
           },

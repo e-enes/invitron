@@ -68,8 +68,9 @@ class Roles extends Command {
   }
 
   public override async executeChatInput(interaction: Command.ChatInput, keys: Command.Keys) {
-    const member = interaction.member as GuildMember;
     const { config } = this.client;
+
+    const member = interaction.member as GuildMember;
 
     if (!member.permissions.has(PermissionFlagsBits.ManageGuild)) {
       await interaction.reply({
@@ -107,14 +108,14 @@ class Roles extends Command {
   private async add(interaction: Command.ChatInput, keys: Command.Keys) {
     const { database, config } = this.client;
 
-    const role = interaction.options.get("role", true).role as Role;
+    const role = interaction.options.getRole("role", true) as Role;
     const number = interaction.options.get("number", true).value as number;
 
     if (!role || !number) {
       await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`${i18next.t(`commands.${this.name}.messages.invalid_options.title`, { lng: keys.language })}`)
+            .setTitle(i18next.t(`commands.${this.name}.messages.invalid_options.title`, { lng: keys.language }))
             .setDescription(i18next.t(`commands.${this.name}.messages.invalid_options.description`, { lng: keys.language }))
             .setColor(config.message.colors.error)
             .withDefaultFooter(),
@@ -129,7 +130,7 @@ class Roles extends Command {
       await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`${i18next.t(`commands.${this.name}.messages.not_editable_role.title`, { lng: keys.language })}`)
+            .setTitle(i18next.t(`commands.${this.name}.messages.not_editable_role.title`, { lng: keys.language }))
             .setDescription(
               i18next.t(`commands.${this.name}.messages.not_editable_role.description`, { lng: keys.language, role: role.name })
             )
@@ -142,39 +143,53 @@ class Roles extends Command {
       return;
     }
 
-    const data = await database.query("SELECT role_id FROM roles WHERE role_id = ?", [role.id]).catch(() => void 0);
+    const data = await database.query("SELECT role_id, number_invitations FROM roles WHERE role_id = ?", [role.id]).catch(() => void 0);
 
-    if (data || data.length !== 0) {
-      await interaction.reply({
-        embeds: [
-          new EmbedBuilder()
-            .setTitle(`${i18next.t(`commands.${this.name}.messages.existed_role.title`, { lng: keys.language })}`)
-            .setDescription(
-              i18next.t(`commands.${this.name}.messages.existed_role.description`, { lng: keys.language, role: role.name, number })
-            )
-            .setColor(config.message.colors.error)
-            .withDefaultFooter(),
-        ],
-        components: [
-          new ActionRowBuilder<ButtonBuilder>().setComponents(
-            new ButtonBuilder()
-              .setCustomId(`roles:${role.id}:${number}:${interaction.member!.user.id}`)
-              .setLabel(i18next.t(`components.${this.name}.button.update.label`, { lng: keys.language }))
-              .setStyle(ButtonStyle.Danger)
-          ),
-        ],
-      });
+    if (data.length !== 0) {
+      if (data[0].number_invitations !== number) {
+        await interaction.reply({
+          embeds: [
+            new EmbedBuilder()
+              .setTitle(i18next.t(`commands.${this.name}.messages.existed_role_update.title`, { lng: keys.language }))
+              .setDescription(
+                i18next.t(`commands.${this.name}.messages.existed_role_update.description`, { lng: keys.language, role: role.name, number })
+              )
+              .setColor(config.message.colors.error)
+              .withDefaultFooter(),
+          ],
+          components: [
+            new ActionRowBuilder<ButtonBuilder>().setComponents(
+              new ButtonBuilder()
+                .setCustomId(`roles:${role.id}:${number}:${interaction.member!.user.id}`)
+                .setLabel(i18next.t(`components.${this.name}.button.update.label`, { lng: keys.language }))
+                .setStyle(ButtonStyle.Danger)
+            ),
+          ],
+        });
+      } else {
+        await interaction.reply({
+          embeds: [
+            new EmbedBuilder()
+              .setTitle(i18next.t(`commands.${this.name}.messages.existed_role.title`, { lng: keys.language }))
+              .setDescription(
+                i18next.t(`commands.${this.name}.messages.existed_role.description`, { lng: keys.language, role: role.name, number })
+              )
+              .setColor(config.message.colors.error)
+              .withDefaultFooter(),
+          ],
+        });
+      }
 
       return;
     }
 
     await database
-      .query("INSERT INTO roles (guild_id, role_id, amount_invitations) VALUES (?, ?, ?)", [interaction.guild!.id, role.id, number])
+      .query("INSERT INTO roles (guild_id, role_id, number_invitations) VALUES (?, ?, ?)", [interaction.guild!.id, role.id, number])
       .then(() => {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`commands.${this.name}.messages.success_add.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`commands.${this.name}.messages.success_add.title`, { lng: keys.language }))
               .setDescription(i18next.t(`commands.${this.name}.messages.success_add.description`, { lng: keys.language, role: role.name }))
               .setColor(config.message.colors.success)
               .withDefaultFooter(),
@@ -185,7 +200,7 @@ class Roles extends Command {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`commands.${this.name}.messages.error_add.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`commands.${this.name}.messages.error_add.title`, { lng: keys.language }))
               .setDescription(
                 i18next.t(`commands.${this.name}.messages.error_add.description`, { lng: keys.language, role: role.name, number })
               )
@@ -200,14 +215,14 @@ class Roles extends Command {
   private async remove(interaction: Command.ChatInput, keys: Command.Keys) {
     const { database, config } = this.client;
 
-    const role = interaction.options.get("role", true).role as Role;
-    const del = interaction.options.get("delete")?.value as boolean;
+    const role = interaction.options.getRole("role", true) as Role;
+    const del = interaction.options.getBoolean("delete");
 
     if (!role) {
       await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`${i18next.t(`commands.${this.name}.messages.invalid_options.title`, { lng: keys.language })}`)
+            .setTitle(i18next.t(`commands.${this.name}.messages.invalid_options.title`, { lng: keys.language }))
             .setDescription(i18next.t(`commands.${this.name}.messages.invalid_options.description`, { lng: keys.language }))
             .setColor(config.message.colors.error)
             .withDefaultFooter(),
@@ -220,11 +235,11 @@ class Roles extends Command {
 
     const data = await database.query("SELECT role_id FROM roles WHERE role_id = ?", [role.id]).catch(() => void 0);
 
-    if (data || data.length === 0) {
+    if (data.length === 0) {
       await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`${i18next.t(`commands.${this.name}.messages.not_existed_role.title`, { lng: keys.language })}`)
+            .setTitle(i18next.t(`commands.${this.name}.messages.not_existed_role.title`, { lng: keys.language }))
             .setDescription(
               i18next.t(`commands.${this.name}.messages.not_existed_role.description`, { lng: keys.language, role: role.name })
             )
@@ -243,7 +258,7 @@ class Roles extends Command {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`commands.${this.name}.messages.success_remove.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`commands.${this.name}.messages.success_remove.title`, { lng: keys.language }))
               .setDescription(
                 i18next.t(`commands.${this.name}.messages.success_remove.description`, { lng: keys.language, role: role.name })
               )
@@ -260,7 +275,7 @@ class Roles extends Command {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`commands.${this.name}.messages.error_remove.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`commands.${this.name}.messages.error_remove.title`, { lng: keys.language }))
               .setDescription(i18next.t(`commands.${this.name}.messages.error_remove.description`, { lng: keys.language, role: role.name }))
               .setColor(config.message.colors.error)
               .withDefaultFooter(),
@@ -276,7 +291,7 @@ class Roles extends Command {
     const { database, config } = this.client;
 
     const data = await database.query(
-      "SELECT role_id AS role, amount_invitations AS number, active FROM roles WHERE guild_id = ? ORDER BY role",
+      "SELECT role_id AS role, number_invitations AS number, active FROM roles WHERE guild_id = ? ORDER BY role",
       [interaction.guild!.id]
     );
 
@@ -284,9 +299,9 @@ class Roles extends Command {
       await interaction.editReply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`${i18next.t(`commands.${this.name}.messages.empty_list.title`, { lng: keys.language })}`)
+            .setTitle(i18next.t(`commands.${this.name}.messages.empty_list.title`, { lng: keys.language }))
             .setDescription(i18next.t(`commands.${this.name}.messages.empty_list.description`, { lng: keys.language }))
-            .setColor(config.message.colors.success)
+            .setColor(config.message.colors.warn)
             .withDefaultFooter(),
         ],
       });
@@ -330,7 +345,7 @@ class Roles extends Command {
     await interaction.editReply({
       embeds: [
         new EmbedBuilder()
-          .setTitle(`${i18next.t(`commands.${this.name}.messages.role_list.title`, { lng: keys.language })}`)
+          .setTitle(i18next.t(`commands.${this.name}.messages.role_list.title`, { lng: keys.language }))
           .setDescription(
             i18next.t(`commands.${this.name}.messages.role_list.description`, {
               lng: keys.language,

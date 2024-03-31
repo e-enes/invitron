@@ -4,14 +4,18 @@ import i18next from "i18next";
 
 import Component from "../Component.js";
 
-class Roles extends Component {
+class Invites extends Component {
   public constructor() {
-    super("roles");
+    super("invites");
   }
 
   public override async executeButton(interaction: Component.Button, keys: Component.Keys) {
     const { database, config } = this.client;
-    const [roleId, number] = keys.entries;
+    const [link, preSource] = keys.entries;
+    const source = preSource.replace("_", " ");
+
+    const code = await interaction.guild.invites.fetch({ cache: true, code: link }).catch(() => null);
+    const data = await database.query("SELECT link FROM links WHERE link = ?", [link]);
 
     await interaction.message.edit({
       components: [
@@ -21,18 +25,15 @@ class Roles extends Component {
       ],
     });
 
-    const role = await interaction.guild.roles.fetch(roleId, { cache: true }).catch(() => null);
-    const data = await database.query("SELECT role_id FROM roles WHERE role_id = ?", [roleId]);
-
-    if (!role || data.length === 0) {
+    if (!code || data.length === 0) {
       await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`${i18next.t(`components.${this.key}.messages.not_existed_role.title`, { lng: keys.language })}`)
+            .setTitle(`${i18next.t(`components.${this.key}.messages.not_existed_code.title`, { lng: keys.language })}`)
             .setDescription(
-              i18next.t(`components.${this.key}.messages.not_existed_role.description`, {
+              i18next.t(`components.${this.key}.messages.not_existed_code.description`, {
                 lng: keys.language,
-                role: roleId,
+                code: link,
               })
             )
             .setColor(config.message.colors.warn)
@@ -45,7 +46,7 @@ class Roles extends Component {
     }
 
     await database
-      .query("UPDATE roles SET number_invitations = ? WHERE role_id = ?", [number, roleId])
+      .query("UPDATE links SET source = ? WHERE link = ?", [source, link])
       .then(() => {
         interaction.reply({
           embeds: [
@@ -54,7 +55,7 @@ class Roles extends Component {
               .setDescription(
                 i18next.t(`components.${this.key}.messages.success.description`, {
                   lng: keys.language,
-                  role: role.name,
+                  code: link,
                 })
               )
               .setColor(config.message.colors.success)
@@ -70,7 +71,7 @@ class Roles extends Component {
               .setDescription(
                 i18next.t(`components.${this.key}.messages.error.description`, {
                   lng: keys.language,
-                  role: role.name,
+                  code: link,
                 })
               )
               .setColor(config.message.colors.error)
@@ -82,4 +83,4 @@ class Roles extends Component {
   }
 }
 
-export default Roles;
+export default Invites;

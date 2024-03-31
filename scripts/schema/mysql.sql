@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS guilds
 (
-    guild_id VARCHAR(36) NOT NULL,
+    guild_id VARCHAR(36)                         NOT NULL,
     language ENUM ('en', 'fr', 'nl', 'ru', 'vi') NOT NULL,
     PRIMARY KEY (guild_id)
 );
@@ -26,14 +26,12 @@ CREATE TABLE IF NOT EXISTS invites
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS invites_exclude
+CREATE TABLE IF NOT EXISTS bonus
 (
-    guild_id      VARCHAR(36)             NOT NULL,
-    excluded_type ENUM ('role', 'member') NOT NULL,
-    excluded_id   VARCHAR(36)             NOT NULL,
-    can_invite    BOOLEAN                 NOT NULL DEFAULT true,
-    is_invitation BOOLEAN                 NOT NULL DEFAULT false,
-    PRIMARY KEY (guild_id, excluded_id),
+    guild_id   VARCHAR(36) NOT NULL,
+    inviter_id VARCHAR(36) NOT NULL,
+    bonus      INT         NOT NULL,
+    created_at TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
 );
 
@@ -59,7 +57,7 @@ CREATE TABLE IF NOT EXISTS roles
 (
     guild_id           VARCHAR(36) NOT NULL,
     role_id            VARCHAR(36) NOT NULL,
-    amount_invitations INT         NOT NULL,
+    number_invitations INT         NOT NULL,
     active             BOOLEAN     NOT NULL DEFAULT false,
     PRIMARY KEY (guild_id, role_id),
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE

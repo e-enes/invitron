@@ -77,22 +77,16 @@
           "exclude": {
             "description": "Loại trừ một thành viên hoặc vai trò khỏi xem bảng xếp hạng",
             "options": {
-              "member": {
-                "description": "Đề cập đến một thành viên trong máy chủ"
-              },
-              "role": {
-                "description": "Đề cập đến một vai trò trong máy chủ"
+              "mentionable": {
+                "description": "Mention a server member/role"
               }
             }
           },
           "include": {
             "description": "Bao gồm một thành viên hoặc vai trò vào bảng xếp hạng",
             "options": {
-              "member": {
-                "description": "Đề cập đến một thành viên trong máy chủ"
-              },
-              "role": {
-                "description": "Đề cập đến một vai trò trong máy chủ"
+              "mentionable": {
+                "description": "Mention a server member/role"
               }
             }
           },
