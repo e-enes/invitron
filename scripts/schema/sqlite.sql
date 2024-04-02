@@ -64,6 +64,15 @@ CREATE TABLE IF NOT EXISTS roles
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS roles_configuration
+(
+    guild_id     TEXT NOT NULL,
+    keep_role    BOOL NOT NULL DEFAULT false,
+    stacked_role BOOL NOT NULL DEFAULT true,
+    PRIMARY KEY (guild_id),
+    FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS links
 (
     guild_id  TEXT NOT NULL,

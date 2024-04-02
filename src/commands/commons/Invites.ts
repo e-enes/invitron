@@ -255,6 +255,8 @@ class Invites extends Command {
               .withDefaultFooter(),
           ],
         });
+
+        this.updateRole(interaction.guild!.id, target);
       })
       .catch(() => {
         interaction.reply({
@@ -325,6 +327,8 @@ class Invites extends Command {
               .withDefaultFooter(),
           ],
         });
+
+        this.updateRole(interaction.guild!.id, target);
       })
       .catch(() => {
         interaction.reply({
@@ -378,6 +382,8 @@ class Invites extends Command {
               .withDefaultFooter(),
           ],
         });
+
+        this.updateRole(interaction.guild!.id, target);
       })
       .catch(() => {
         interaction.reply({
@@ -677,6 +683,72 @@ class Invites extends Command {
           });
         });
     }
+  }
+
+  private async updateRole(guildId: string, inviter: GuildMember) {
+    const { database } = this.client;
+
+    const data = await database
+      .query(
+        "SELECT R.role_id AS role, R.number_invitations AS requiredInvitations, RC.keep_role AS keepRole, RC.stacked_role AS stackedRole FROM roles R LEFT JOIN roles_configuration RC ON R.guild_id = RC.guild_id WHERE R.guild_id = ? AND R.active = true GROUP BY R.role_id",
+        [guildId]
+      )
+      .catch(() => void 0);
+
+    if (!data || data.length === 0) {
+      return;
+    }
+
+    const preInvites = (
+      await database
+        .query(
+          "SELECT COALESCE(SUM(CASE WHEN I.inactive = 0 AND I.fake = 0 THEN 1 ELSE 0 END), 0) AS valid, COALESCE((SELECT SUM(B.bonus) FROM bonus B WHERE B.guild_id = ? AND B.inviter_id = ?), 0) AS bonus FROM invites I WHERE I.guild_id = ? AND I.inviter_id = ?",
+          [guildId, inviter.id, guildId, inviter.id]
+        )
+        .catch(() => void 0)
+    )?.[0];
+
+    const invites = preInvites?.valid + preInvites?.bonus;
+
+    const { keepRole, stackedRole } = data[0];
+    const currentRoles = inviter.roles.cache;
+
+    let rolesToAdd: string[] = [];
+    let rolesToRemove: string[] = [];
+
+    for (const { role, requiredInvitations } of data) {
+      const hasRole = currentRoles.has(role);
+      const meetsRequirement = invites >= requiredInvitations;
+
+      if (meetsRequirement && !hasRole) {
+        console.log("add", role, invites, requiredInvitations);
+        rolesToAdd.push(role);
+      } else if (!meetsRequirement && hasRole && !keepRole) {
+        console.log("remove", role, invites, requiredInvitations);
+        rolesToRemove.push(role);
+      }
+    }
+
+    if (!stackedRole) {
+      const highestRequiredInvitations = Math.max(...rolesToAdd.map((role) => data.find((r) => r.role === role).requiredInvitations));
+      rolesToAdd = rolesToAdd.filter((role) => data.find((r) => r.role === role).requiredInvitations === highestRequiredInvitations);
+
+      rolesToRemove = rolesToRemove.concat(
+        currentRoles
+          .filter((roleCache) => {
+            const roleData = data.find((r) => r.role === roleCache.id);
+            return roleData && roleData.requiredInvitations < highestRequiredInvitations;
+          })
+          .map((roleCache) => roleCache.id)
+      );
+    }
+
+    rolesToRemove = rolesToRemove.filter((role) => !rolesToAdd.includes(role));
+
+    await Promise.allSettled([
+      ...rolesToAdd.map((role) => inviter.roles.add(role)),
+      ...rolesToRemove.map((role) => inviter.roles.remove(role)),
+    ]);
   }
 }
 
