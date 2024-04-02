@@ -23,7 +23,7 @@ const client = new Client({
     repliedUser: false,
     parse: ["roles", "users"],
   },
-  partials: [Partials.GuildMember],
+  partials: [Partials.GuildMember, Partials.Channel],
 });
 
 client.invites = new Collection();

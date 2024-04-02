@@ -1,5 +1,63 @@
 {
   "emoji": "🇺🇸",
+  "events": {
+    "guildMemberAdd": {
+      "messages": {
+        "bot": {
+          "title": "[+] A bot has joined the server!",
+          "description": "<@{{ member }}> joined the server, this user is a bot.\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "vanity": {
+          "title": "[+] A member has joined the server!",
+          "description": "{{ member }} **joined via vanity code**.\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "first": {
+          "title": "[+] A member has joined the server!",
+          "description": "{{ member }} **joined for the second time**, their invitation is **invalid**.\n\nCode used: `{{ code }}`\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "first_vanity": {
+          "title": "[+] A member has joined the server!",
+          "description": "{{ member }} **joined via vanity code** for the second time\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "invalid": {
+          "title": "[+] A member has joined the server!",
+          "description": "{{ member }} **unable to find your inviter**.\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "valid": {
+          "title": "[+] A member has joined the server!",
+          "description": "<@{{ member }}> **invited by** <@{{ inviter }}> **who now has** `{{ invites }}` invitations.\n\nCode used: `{{ code }}`\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "valid_source": {
+          "title": "[+] A member has joined the server!",
+          "description": "<@{{ member }}> **invited by** <@{{ inviter }}> **who now has** `{{ invites }}` invitations.\n\nSource: `{{ source }}`\nAccount create: <t:{{ createdAt }}:R>"
+        }
+      }
+    },
+    "guildMemberRemove": {
+      "messages": {
+        "bot": {
+          "title": "[-] A bot has left the server!",
+          "description": "<@{{ member }}> left the server, this user is a bot.\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "vanity": {
+          "title": "[-] A member has left the server!",
+          "description": "{{ member }} left, **joined via vanity code**.\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "invalid": {
+          "title": "[-] A member has left the server!",
+          "description": "{{ member }} left, **unable to find inviter**.\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "valid": {
+          "title": "[-] A member has left the server!",
+          "description": "<@{{ member }}> left, **invited by** <@{{ inviter }}> **who now has** `{{ invites }}` invitations.\n\nCode used: `{{ code }}`\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "valid_source": {
+          "title": "[-] A member has left the server!",
+          "description": "<@{{ member }}> left, **invited by** <@{{ inviter }}> **who now has** `{{ invites }}` invitations.\n\nSource: `{{ source }}`\nAccount create: <t:{{ createdAt }}:R>"
+        }
+      }
+    }
+  },
   "commands": {
     "insufficient_permission": {
       "title": "Unauthorized Command!",
@@ -182,7 +240,8 @@
             }
           }
         }
-      }
+      },
+      "messages": {}
     },
     "roles": {
       "data": {
@@ -277,11 +336,6 @@
         "success": {
           "title": "Help Command"
         }
-      }
-    },
-    "author": {
-      "data": {
-        "description": "View bot information"
       }
     },
     "language": {

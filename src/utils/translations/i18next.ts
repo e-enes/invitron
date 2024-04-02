@@ -12,6 +12,9 @@ const options: InitOptions<FsBackendOptions> = {
     loadPath: "locales/{{lng}}.json",
     addPath: "locales/{{lng}}.json",
   },
+  interpolation: {
+    escapeValue: false,
+  },
 };
 
 await i18next

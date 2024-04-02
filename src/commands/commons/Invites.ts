@@ -557,7 +557,7 @@ class Invites extends Command {
         params.push(code);
       }
 
-      query += " ORDER BY createdAt LIMIT 1";
+      query += " ORDER BY createdAt DESC LIMIT 1";
 
       await database
         .query(query, params)
@@ -591,7 +591,7 @@ class Invites extends Command {
                     inactive: inactive == true,
                     fake: fake == true,
                     code,
-                    createdAt: Math.floor(new Date(createdAt).getTime() / 1000),
+                    createdAt: Math.floor(new Date(createdAt + "Z").getTime() / 1000),
                   })
                 )
                 .setColor(config.message.colors.success)
@@ -618,7 +618,7 @@ class Invites extends Command {
 
     if (code) {
       await database
-        .query("SELECT I.member_id AS member, I.fake AS fake FROM invites I WHERE I.guild_id = ? AND I.code = ?", [
+        .query("SELECT I.member_id AS member, I.fake AS fake FROM invites I WHERE I.guild_id = ? AND I.code = ? AND inactive = false", [
           interaction.guild!.id,
           code,
         ])

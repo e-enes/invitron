@@ -1,5 +1,6 @@
 import { Client, Collection, Guild } from "discord.js";
-import { CachedInvite } from "../types/global.js";
+
+import { CachedInvite } from "../types/index.js";
 
 class ClientUtils {
   public constructor(private client: Client) {}
@@ -21,12 +22,19 @@ class ClientUtils {
       invites.each((invite) => {
         const customInvite = customInvites?.find((value: { code: string }) => value.code === invite.code);
         cachedInvites.set(invite.code, {
-          member: customInvite?.inviter ?? invite.inviter,
+          member: customInvite?.inviter ?? invite.inviter!.id,
           uses: invite.uses!,
           source: customInvite?.source,
         });
       });
     });
+
+    if (guild.vanityURLCode) {
+      cachedInvites.set(guild.vanityURLCode, {
+        member: guild.id,
+        uses: guild.vanityURLUses ?? 0,
+      });
+    }
 
     invites.set(guild.id, cachedInvites);
   }

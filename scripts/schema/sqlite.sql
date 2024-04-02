@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS channels
 (
     guild_id     TEXT NOT NULL,
     channel_id   TEXT NOT NULL,
-    channel_type TEXT NOT NULL CHECK (channel_type IN ('leave', 'log', 'welcome')),
+    channel_type TEXT NOT NULL CHECK (channel_type IN ('leave', 'welcome')),
+    active       BOOL NOT NULL DEFAULT true,
     PRIMARY KEY (guild_id, channel_id, channel_type),
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
 );
@@ -17,9 +18,9 @@ CREATE TABLE IF NOT EXISTS channels
 CREATE TABLE IF NOT EXISTS invites
 (
     guild_id   TEXT     NOT NULL,
-    inviter_id TEXT     NOT NULL,
+    inviter_id TEXT,
     member_id  TEXT     NOT NULL,
-    code       TEXT     NOT NULL,
+    code       TEXT,
     inactive   BOOL     NOT NULL DEFAULT false,
     fake       BOOL     NOT NULL DEFAULT false,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

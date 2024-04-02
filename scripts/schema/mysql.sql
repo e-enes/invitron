@@ -7,9 +7,10 @@ CREATE TABLE IF NOT EXISTS guilds
 
 CREATE TABLE IF NOT EXISTS channels
 (
-    guild_id     VARCHAR(36)                      NOT NULL,
+    guild_id     VARCHAR(36)               NOT NULL,
     channel_id   VARCHAR(36),
-    channel_type ENUM ('leave', 'log', 'welcome') NOT NULL,
+    channel_type ENUM ('leave', 'welcome') NOT NULL,
+    active       BOOLEAN                   NOT NULL DEFAULT true,
     PRIMARY KEY (guild_id, channel_id, channel_type),
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
 );
@@ -17,9 +18,9 @@ CREATE TABLE IF NOT EXISTS channels
 CREATE TABLE IF NOT EXISTS invites
 (
     guild_id   VARCHAR(36) NOT NULL,
-    inviter_id VARCHAR(36) NOT NULL,
+    inviter_id VARCHAR(36),
     member_id  VARCHAR(36) NOT NULL,
-    code       VARCHAR(15) NOT NULL,
+    code       VARCHAR(15),
     inactive   BOOLEAN     NOT NULL DEFAULT false,
     fake       BOOLEAN     NOT NULL DEFAULT false,
     created_at TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -58,7 +59,7 @@ CREATE TABLE IF NOT EXISTS roles
     guild_id           VARCHAR(36) NOT NULL,
     role_id            VARCHAR(36) NOT NULL,
     number_invitations INT         NOT NULL,
-    active             BOOLEAN     NOT NULL DEFAULT false,
+    active             BOOLEAN     NOT NULL DEFAULT true,
     PRIMARY KEY (guild_id, role_id),
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
 );

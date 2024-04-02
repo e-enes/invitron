@@ -4,7 +4,9 @@ import config from "../config.js";
 
 import MySql from "../database/MySql.js";
 import Sqlite from "../database/Sqlite.js";
+
 import ClientUtils from "../utils/ClientUtils.js";
+import { CachedInvite } from "./index.js";
 
 declare module "discord.js" {
   export interface Client {
@@ -35,9 +37,3 @@ declare global {
     }
   }
 }
-
-export type CachedInvite = {
-  member: string;
-  uses: number;
-  source?: string;
-};
