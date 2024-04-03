@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS channels
 (
     guild_id     TEXT NOT NULL,
     channel_id   TEXT NOT NULL,
-    channel_type TEXT NOT NULL CHECK (channel_type IN ('leave', 'welcome')),
+    channel_type TEXT NOT NULL CHECK (channel_type IN ('leave', 'join')),
     active       BOOL NOT NULL DEFAULT true,
     PRIMARY KEY (guild_id, channel_id, channel_type),
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE

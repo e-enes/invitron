@@ -33,6 +33,7 @@ class Help extends Command {
     this.client.commands
       .map((command) => command.applicationCommands)
       .flat()
+      .filter((command) => command.name !== "purge" && command.name !== "help")
       .forEach((command) => {
         helpEmbed.addFields({
           name: `\`${command.name}\``,

@@ -224,7 +224,7 @@ class GuildMemberAdd extends Listener {
     const { database } = this.client;
 
     const data = await database.query(
-      "SELECT G.language AS language, C.channel_id AS send, F.role_id AS role, F.own_invite AS ownInvite, F.older AS older, F.custom_profile_pic AS profilePic, F.first_join AS firstJoin, F.back_original_inviter AS originalInviter FROM guilds G LEFT JOIN channels C ON G.guild_id = C.guild_id AND C.channel_type = 'welcome' AND C.active = true LEFT JOIN fakes F ON F.guild_id = G.guild_id WHERE G.guild_id = ?",
+      "SELECT G.language AS language, C.channel_id AS send, F.role_id AS role, F.own_invite AS ownInvite, F.older AS older, F.custom_profile_pic AS profilePic, F.first_join AS firstJoin, F.back_original_inviter AS originalInviter FROM guilds G LEFT JOIN channels C ON G.guild_id = C.guild_id AND C.channel_type = 'join' AND C.active = true LEFT JOIN fakes F ON F.guild_id = G.guild_id WHERE G.guild_id = ?",
       [guildId]
     );
 
