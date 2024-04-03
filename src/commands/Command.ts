@@ -20,11 +20,11 @@ namespace Command {
   export type Keys = CommandKeys;
 }
 
-class Command {
+abstract class Command {
   public applicationCommands: RESTPostAPIApplicationCommandsJSONBody[] = [];
   public client!: Client<true>;
 
-  public constructor(public name: string) {}
+  protected constructor(public name: string) {}
 
   public initialize?(): Awaitable<void>;
   public executeAutocomplete?(interaction: Command.Autocomplete): Awaitable<void>;

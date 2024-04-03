@@ -38,9 +38,9 @@ CREATE TABLE IF NOT EXISTS bonus
 
 CREATE TABLE IF NOT EXISTS leaderboards
 (
-    guild_id          TEXT    NOT NULL,
-    view_top          INTEGER NOT NULL DEFAULT 10,
-    view_left_inviter BOOL    NOT NULL DEFAULT false,
+    guild_id             TEXT    NOT NULL,
+    display_top          INTEGER NOT NULL DEFAULT 10,
+    display_left_inviter BOOL    NOT NULL DEFAULT false,
     PRIMARY KEY (guild_id),
     FOREIGN KEY (guild_id) REFERENCES guilds (guild_id) ON DELETE CASCADE
 );

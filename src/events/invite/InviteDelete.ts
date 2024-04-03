@@ -10,11 +10,12 @@ class InviteDelete extends Listener {
   public override async execute(invite: Invite) {
     this.client.invites.get(invite.guild!.id)?.delete(invite.code);
 
-    const data = await this.client.database
-      .query("SELECT link FROM links WHERE guild_id = ? AND link = ?", [invite.guild!.id, invite.code])
-      .catch(() => void 0);
+    const data = await this.client.database.query("SELECT link FROM links WHERE guild_id = ? AND link = ?", [
+      invite.guild!.id,
+      invite.code,
+    ]);
 
-    if (data && data.length !== 0) {
+    if (data.length !== 0) {
       await this.client.database.query("DELETE FROM links WHERE guild_id = ? and link = ?", [invite.guild!.id, invite.code]);
     }
   }

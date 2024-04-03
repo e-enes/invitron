@@ -35,15 +35,13 @@ class GuildMemberRemove extends Listener {
       return;
     }
 
-    const data = await database
-      .query(
-        "SELECT inviter_id AS inviter, inactive, code FROM invites WHERE guild_id = ? AND member_id = ? ORDER BY created_at DESC LIMIT 1",
-        [member.guild.id, member.user.id]
-      )
-      .catch(() => void 0);
+    const data = await database.query(
+      "SELECT inviter_id AS inviter, inactive, code FROM invites WHERE guild_id = ? AND member_id = ? ORDER BY created_at DESC LIMIT 1",
+      [member.guild.id, member.user.id]
+    );
 
-    if (!data || data.length === 0 || data[0].inactive) {
-      if (!data || data.length === 0 || !data[0].inactive) {
+    if (data.length === 0 || data[0].inactive) {
+      if (data.length === 0 || !data[0].inactive) {
         await database.query("INSERT INTO invites (guild_id, member_id, inactive) VALUES (?, ?, ?)", [
           member.guild.id,
           member.user.id,
@@ -100,12 +98,10 @@ class GuildMemberRemove extends Listener {
       const source = this.client.invites.get(member.guild.id)!.get(row.code)?.source;
 
       const preInvites = (
-        await database
-          .query(
-            "SELECT COALESCE(SUM(CASE WHEN I.inactive = 0 AND I.fake = 0 THEN 1 ELSE 0 END), 0) AS valid, COALESCE((SELECT SUM(B.bonus) FROM bonus B WHERE B.guild_id = ? AND B.inviter_id = ?), 0) AS bonus FROM invites I WHERE I.guild_id = ? AND I.inviter_id = ?",
-            [member.guild.id, row.inviter, member.guild.id, row.inviter]
-          )
-          .catch(() => void 0)
+        await database.query(
+          "SELECT COALESCE(SUM(CASE WHEN I.inactive = 0 AND I.fake = 0 THEN 1 ELSE 0 END), 0) AS valid, COALESCE((SELECT SUM(B.bonus) FROM bonus B WHERE B.guild_id = ? AND B.inviter_id = ?), 0) AS bonus FROM invites I WHERE I.guild_id = ? AND I.inviter_id = ?",
+          [member.guild.id, row.inviter, member.guild.id, row.inviter]
+        )
       )?.[0];
       const invites = preInvites?.valid + preInvites?.bonus;
 
@@ -160,14 +156,12 @@ class GuildMemberRemove extends Listener {
   private async getContext(guildId: string): Promise<Partial<ContextGuildMember>> {
     const { database } = this.client;
 
-    const data = await database
-      .query(
-        "SELECT G.language AS language, C.channel_id AS send FROM guilds G LEFT JOIN channels C ON G.guild_id = C.guild_id AND C.channel_type = 'leave' AND C.active = true LEFT JOIN fakes F ON F.guild_id = G.guild_id WHERE G.guild_id = ?",
-        [guildId]
-      )
-      .catch(() => void 0);
+    const data = await database.query(
+      "SELECT G.language AS language, C.channel_id AS send FROM guilds G LEFT JOIN channels C ON G.guild_id = C.guild_id AND C.channel_type = 'leave' AND C.active = true LEFT JOIN fakes F ON F.guild_id = G.guild_id WHERE G.guild_id = ?",
+      [guildId]
+    );
 
-    if (!data || data.length === 0) {
+    if (data.length === 0) {
       return {};
     }
 

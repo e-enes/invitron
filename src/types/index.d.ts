@@ -14,3 +14,12 @@ export type ContextGuildMember = {
   firstJoin?: boolean;
   originalInviter?: boolean;
 };
+
+export type LeaderboardObject = {
+  inviter: string;
+  valid: number;
+  total: number;
+  invalid: number;
+  fake: number;
+  bonus: number;
+};

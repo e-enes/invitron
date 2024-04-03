@@ -143,10 +143,10 @@ class Roles extends Command {
       return;
     }
 
-    const data = await database.query("SELECT role_id, number_invitations FROM roles WHERE role_id = ?", [role.id]).catch(() => void 0);
+    const data = await database.query("SELECT number_invitations AS requiredInvitations FROM roles WHERE role_id = ?", [role.id]);
 
     if (data.length !== 0) {
-      if (data[0].number_invitations !== number) {
+      if (data[0].requiredInvitations !== number) {
         await interaction.reply({
           embeds: [
             new EmbedBuilder()
@@ -233,7 +233,7 @@ class Roles extends Command {
       return;
     }
 
-    const data = await database.query("SELECT role_id FROM roles WHERE role_id = ?", [role.id]).catch(() => void 0);
+    const data = await database.query("SELECT 1 FROM roles WHERE role_id = ?", [role.id]);
 
     if (data.length === 0) {
       await interaction.reply({
@@ -307,13 +307,14 @@ class Roles extends Command {
 
     let number = 0;
     const rolesPromises: Promise<string | undefined>[] = [];
+
     data.forEach((row: { role: string; number: number; active: boolean }, index: number) => {
       rolesPromises.push(
         (async () => {
           const role = await interaction.guild!.roles.fetch(row.role, { cache: true }).catch(() => null);
 
           if (!role) {
-            await database.query("DELETE FROM roles WHERE role_id = ?", [row.role]).catch(() => void 0);
+            await database.query("DELETE FROM roles WHERE role_id = ?", [row.role]);
             return;
           }
 

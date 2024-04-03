@@ -21,14 +21,14 @@ class Invites extends Command {
         .setDMPermission(false)
         .addSubcommand((subcommand) =>
           subcommand
-            .setName("view")
-            .setDescription("View invitation")
-            .setDescriptionLocalizations(subcommands!.view.description)
+            .setName("display")
+            .setDescription("Display invitation")
+            .setDescriptionLocalizations(subcommands!.display.description)
             .addUserOption((option) =>
               option
                 .setName("member")
                 .setDescription("Mention a server member")
-                .setDescriptionLocalizations(subcommands!.view.options!.member.description)
+                .setDescriptionLocalizations(subcommands!.display.options!.member.description)
                 .setRequired(false)
             )
         )
@@ -145,10 +145,10 @@ class Invites extends Command {
   }
 
   public override async executeUserContextMenu(interaction: Command.UserContextMenu, keys: Command.Keys) {
-    await this.view(interaction, keys);
+    await this.display(interaction, keys);
   }
 
-  private async view(interaction: Command.ChatInput | Command.UserContextMenu, keys: Command.Keys) {
+  private async display(interaction: Command.ChatInput | Command.UserContextMenu, keys: Command.Keys) {
     const { database, config } = this.client;
 
     const member =
@@ -163,9 +163,9 @@ class Invites extends Command {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(i18next.t(`commands.${this.name}.messages.success_view.title`, { lng: keys.language }))
+              .setTitle(i18next.t(`commands.${this.name}.messages.success_display.title`, { lng: keys.language }))
               .setDescription(
-                i18next.t(`commands.${this.name}.messages.success_view.description`, {
+                i18next.t(`commands.${this.name}.messages.success_display.description`, {
                   lng: keys.language,
                   member,
                   valid: valid + bonus,
@@ -184,9 +184,9 @@ class Invites extends Command {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(i18next.t(`commands.${this.name}.messages.error_view.title`, { lng: keys.language }))
+              .setTitle(i18next.t(`commands.${this.name}.messages.error_display.title`, { lng: keys.language }))
               .setDescription(
-                i18next.t(`commands.${this.name}.messages.error_view.description`, {
+                i18next.t(`commands.${this.name}.messages.error_display.description`, {
                   lng: keys.language,
                   member,
                 })

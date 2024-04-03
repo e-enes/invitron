@@ -71,8 +71,8 @@
       "data": {
         "description": "Manage invitations",
         "subcommands": {
-          "view": {
-            "description": "View invitation",
+          "display": {
+            "description": "Display invitation",
             "options": {
               "member": {
                 "description": "Mention a server member"
@@ -131,11 +131,11 @@
         }
       },
       "messages": {
-        "success_view": {
+        "success_display": {
           "title": "Validated Invites",
           "description": "<@{{ member }}> has **{{ valid }}** invitations (**{{ total }}** Regular, **{{ invalid }}** Left, **{{ bonus }}** Bonus, **{{ fake }}** Fake)."
         },
-        "error_view": {
+        "error_display": {
           "title": "Retrieval Failed",
           "description": "Unable to retrieve invitations from <@{{ member }}>."
         },
@@ -209,14 +209,11 @@
       "data": {
         "description": "Manage leaderboard",
         "subcommands": {
-          "basic": {
-            "description": "View basic leaderboard"
-          },
-          "smart": {
-            "description": "View smart leaderboard"
+          "display": {
+            "description": "Display leaderboard"
           },
           "exclude": {
-            "description": "Exclude a member or role from the leaderboard view",
+            "description": "Exclude a member or role from the leaderboard display",
             "options": {
               "mentionable": {
                 "description": "Mention a server member/role"
@@ -224,7 +221,7 @@
             }
           },
           "include": {
-            "description": "Include a member or role from the leaderboard",
+            "description": "Include a member or role from the leaderboard display",
             "options": {
               "mentionable": {
                 "description": "Mention a server member/role"
@@ -238,10 +235,92 @@
                 "description": "Number of members"
               }
             }
+          },
+          "left": {
+            "description": "Define whether members who have left the server should be displayed",
+            "options": {
+              "show": {
+                "description": "Show left members"
+              }
+            }
           }
         }
       },
-      "messages": {}
+      "messages": {
+        "no_inviter": {
+          "title": "No Inviter",
+          "description": "No inviters were found in this server!"
+        },
+        "leaderboard": {
+          "title": "Leaderboard",
+          "pre_description": "{{ index }}) <@{{ inviter }}> has **{{ valid }}** invitations (**{{ total }}** Regular, **{{ invalid }}** Left, **{{ bonus }}** Bonus, **{{ fake }}** Fake).",
+          "description": "**{{ guild }}** leaderboard. \n\n{{ leaderboard }}\n\n *...and {{ count }} more row(s).*"
+        },
+        "excluded_role": {
+          "title": "Role Excluded",
+          "description": "This role (<@&{{ target }}>) has been excluded from the leaderboard display."
+        },
+        "excluded_member": {
+          "title": "Member Excluded",
+          "description": "This member (<@{{ target }}>) has been excluded from the leaderboard display."
+        },
+        "included_role": {
+          "title": "Role Included",
+          "description": "This role (<@&{{ target }}>) has been included from the leaderboard display."
+        },
+        "included_member": {
+          "title": "Member Included",
+          "description": "This member (<@{{ target }}>) has been included from the leaderboard display."
+        },
+        "error_included_role": {
+          "title": "Error Included",
+          "description": "An error occurred while trying to include role <@&{{ target }}>."
+        },
+        "error_included_member": {
+          "title": "Error Included",
+          "description": "An error occurred while trying to include member <@{{ target }}>."
+        },
+        "error_excluded_role": {
+          "title": "Error Excluded",
+          "description": "An error occurred while trying to exclude role <@&{{ target }}>."
+        },
+        "error_excluded_member": {
+          "title": "Error Excluded",
+          "description": "An error occurred while trying to exclude member <@{{ target }}>."
+        },
+        "invalid_included": {
+          "title": "Invalid Included",
+          "description": "This role/member is already included."
+        },
+        "invalid_excluded": {
+          "title": "Invalid Excluded",
+          "description": "This role/member is already excluded."
+        },
+        "invalid_top": {
+          "title": "Invalid Top",
+          "description": "The top must be greater than 0 and less than 25."
+        },
+        "success_top": {
+          "title": "Success Top",
+          "description": "The number of members displayed has been changed to `{{ top }}`."
+        },
+        "error_top": {
+          "title": "Error Top",
+          "description": "An error occurred while trying to change the top to `{{ top }}`."
+        },
+        "success_left_true": {
+          "title": "Success Show",
+          "description": "Members who have left the server will now be visible in the leaderboard display"
+        },
+        "success_left_false": {
+          "title": "Success Show",
+          "description": "Members who have left the server will now not be visible in the leaderboard display"
+        },
+        "error_left": {
+          "title": "Error Show",
+          "description": "An error occurred while trying to change the show to `{{ show }}`."
+        }
+      }
     },
     "roles": {
       "data": {
@@ -270,7 +349,7 @@
             }
           },
           "list": {
-            "description": "View invitation roles list"
+            "description": "Display invitation roles list"
           }
         }
       },
@@ -325,12 +404,12 @@
     },
     "ping": {
       "data": {
-        "description": "View bot latency"
+        "description": "Display bot latency"
       }
     },
     "help": {
       "data": {
-        "description": "View commands details"
+        "description": "Display commands details"
       },
       "messages": {
         "success": {

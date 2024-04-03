@@ -23,10 +23,10 @@ namespace Component {
   export type Keys = ComponentKeys;
 }
 
-class Component {
+abstract class Component {
   public client!: Client<true>;
 
-  public constructor(public key: string) {}
+  protected constructor(public key: string) {}
 
   public executeButton?(interaction: Component.Button, keys: Component.Keys): Awaitable<void>;
   public executeSelectMenu?(interaction: Component.SelectMenu, keys: Component.Keys): Awaitable<void>;

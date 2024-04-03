@@ -71,11 +71,7 @@ class Purge extends Command {
           embeds: [
             new EmbedBuilder()
               .setTitle(i18next.t(`commands.${this.name}.messages.success.title`, { lng: keys.language }))
-              .setDescription(
-                i18next.t(`commands.${this.name}.messages.success.description`, {
-                  lng: keys.language,
-                })
-              )
+              .setDescription(i18next.t(`commands.${this.name}.messages.success.description`, { lng: keys.language }))
               .setColor(config.message.colors.success)
               .withDefaultFooter(),
           ],
@@ -86,11 +82,7 @@ class Purge extends Command {
           embeds: [
             new EmbedBuilder()
               .setTitle(i18next.t(`commands.${this.name}.messages.error.title`, { lng: keys.language }))
-              .setDescription(
-                i18next.t(`commands.${this.name}.messages.error.description`, {
-                  lng: keys.language,
-                })
-              )
+              .setDescription(i18next.t(`commands.${this.name}.messages.error.description`, { lng: keys.language }))
               .setColor(config.message.colors.success)
               .withDefaultFooter(),
           ],
