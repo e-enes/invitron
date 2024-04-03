@@ -15,13 +15,13 @@ class ChannelDelete extends Listener {
       return;
     }
 
-    const data = await database.query("SELECT channel_id FROM channels WHERE channel_id = ?", [channel.id]).catch(() => void 0);
+    const data = await database.query("SELECT channel_id FROM channels WHERE channel_id = ?", [channel.id]);
 
     if (!data || data.length === 0) {
       return;
     }
 
-    await database.query("DELETE FROM channels WHERE channel_id = ?", [channel.id]).catch(() => void 0);
+    await database.query("DELETE FROM channels WHERE channel_id = ?", [channel.id]);
   }
 }
 

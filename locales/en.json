@@ -477,6 +477,24 @@
             }
           }
         }
+      },
+      "messages": {
+        "success_join": {
+          "title": "Set Join",
+          "description": "The join channel has been set to <#{{ channel }}>!"
+        },
+        "success_leave": {
+          "title": "Set Leave",
+          "description": "The leave channel has been set to <#{{ channel }}>!"
+        },
+        "error_join": {
+          "title": "Error Join",
+          "description": "An error occurred while trying to set the join channel to <#{{ channel }}>."
+        },
+        "error_leave": {
+          "title": "Error Leave",
+          "description": "An error occurred while trying to set the leave channel to <#{{ channel }}>."
+        }
       }
     },
     "fake": {

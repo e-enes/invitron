@@ -15,7 +15,7 @@ class ChannelUpdate extends Listener {
       return;
     }
 
-    const data = await database.query("SELECT active FROM channels WHERE channel_id = ?", [oldChannel.id]).catch(() => void 0);
+    const data = await database.query("SELECT active FROM channels WHERE channel_id = ?", [oldChannel.id]);
 
     if (!data || data.length === 0) {
       return;
@@ -24,7 +24,7 @@ class ChannelUpdate extends Listener {
     const active = data[0].active;
 
     if (active !== newChannel.viewable) {
-      await database.query("UPDATE channels SET active = ? WHERE channel_id = ?", [newChannel.viewable, oldChannel.id]).catch(() => void 0);
+      await database.query("UPDATE channels SET active = ? WHERE channel_id = ?", [newChannel.viewable, oldChannel.id]);
     }
   }
 }
