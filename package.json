@@ -1,7 +1,7 @@
 {
-  "name": "sene-bot",
+  "name": "invitron",
   "version": "2.0.0",
-  "description": "A powerful discord bot that helps you keep track of your server's invite count",
+  "description": "The Best Way to Track Your Discord Server's Invites!",
   "main": "dist/index.js",
   "type": "module",
   "private": true,
