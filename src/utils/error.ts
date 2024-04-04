@@ -1,6 +1,6 @@
 import { EmbedBuilder, WebhookClient } from "discord.js";
 
-import config from "../config";
+import config from "../config.js";
 
 const webhookId = process.env?.WEBHOOK_ID;
 const webhookToken = process.env?.WEBHOOK_TOKEN;
