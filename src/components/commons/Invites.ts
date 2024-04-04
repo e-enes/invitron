@@ -29,7 +29,7 @@ class Invites extends Component {
       await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`${i18next.t(`components.${this.key}.messages.not_existed_code.title`, { lng: keys.language })}`)
+            .setTitle(i18next.t(`components.${this.key}.messages.not_existed_code.title`, { lng: keys.language }))
             .setDescription(
               i18next.t(`components.${this.key}.messages.not_existed_code.description`, {
                 lng: keys.language,
@@ -51,7 +51,7 @@ class Invites extends Component {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`components.${this.key}.messages.success.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`components.${this.key}.messages.success.title`, { lng: keys.language }))
               .setDescription(
                 i18next.t(`components.${this.key}.messages.success.description`, {
                   lng: keys.language,
@@ -67,7 +67,7 @@ class Invites extends Component {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`components.${this.key}.messages.error.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`components.${this.key}.messages.error.title`, { lng: keys.language }))
               .setDescription(
                 i18next.t(`components.${this.key}.messages.error.description`, {
                   lng: keys.language,

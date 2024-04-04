@@ -55,7 +55,7 @@ class Channel extends Command {
       await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`${i18next.t("commands.insufficient_permission.title", { lng: keys.language })}`)
+            .setTitle(i18next.t("commands.insufficient_permission.title", { lng: keys.language }))
             .setDescription(i18next.t("commands.insufficient_permission.description", { lng: keys.language }))
             .setColor(config.message.colors.error)
             .withDefaultFooter(),

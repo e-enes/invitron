@@ -30,7 +30,7 @@ class Roles extends Component {
       await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`${i18next.t(`components.${this.key}.messages.not_existed_role.title`, { lng: keys.language })}`)
+            .setTitle(i18next.t(`components.${this.key}.messages.not_existed_role.title`, { lng: keys.language }))
             .setDescription(
               i18next.t(`components.${this.key}.messages.not_existed_role.description`, {
                 lng: keys.language,
@@ -52,7 +52,7 @@ class Roles extends Component {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`components.${this.key}.messages.success.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`components.${this.key}.messages.success.title`, { lng: keys.language }))
               .setDescription(
                 i18next.t(`components.${this.key}.messages.success.description`, {
                   lng: keys.language,
@@ -68,7 +68,7 @@ class Roles extends Component {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`components.${this.key}.messages.error.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`components.${this.key}.messages.error.title`, { lng: keys.language }))
               .setDescription(
                 i18next.t(`components.${this.key}.messages.error.description`, {
                   lng: keys.language,

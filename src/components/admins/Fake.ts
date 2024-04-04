@@ -50,7 +50,7 @@ class Fake extends Component {
         await interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`components.${this.key}.messages.success.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`components.${this.key}.messages.success.title`, { lng: keys.language }))
               .setDescription(i18next.t(`components.${this.key}.messages.success.description`, { lng: keys.language }))
               .setColor(config.message.colors.success)
               .withDefaultFooter(),
@@ -62,7 +62,7 @@ class Fake extends Component {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`components.${this.key}.messages.error.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`components.${this.key}.messages.error.title`, { lng: keys.language }))
               .setDescription(i18next.t(`components.${this.key}.messages.error.description`, { lng: keys.language }))
               .setColor(config.message.colors.error)
               .withDefaultFooter(),
@@ -109,7 +109,7 @@ class Fake extends Component {
       await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`${i18next.t(`components.${this.key}.messages.role.title`, { lng: keys.language })}`)
+            .setTitle(i18next.t(`components.${this.key}.messages.role.title`, { lng: keys.language }))
             .setDescription(i18next.t(`components.${this.key}.messages.role.description`, { lng: keys.language }))
             .setColor(config.message.colors.success)
             .withDefaultFooter(),
@@ -167,7 +167,7 @@ class Fake extends Component {
         await interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`components.${this.key}.messages.success.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`components.${this.key}.messages.success.title`, { lng: keys.language }))
               .setDescription(i18next.t(`components.${this.key}.messages.success.description`, { lng: keys.language }))
               .setColor(config.message.colors.success)
               .withDefaultFooter(),
@@ -179,7 +179,7 @@ class Fake extends Component {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`components.${this.key}.messages.error.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`components.${this.key}.messages.error.title`, { lng: keys.language }))
               .setDescription(i18next.t(`components.${this.key}.messages.error.description`, { lng: keys.language }))
               .setColor(config.message.colors.error)
               .withDefaultFooter(),
@@ -230,7 +230,7 @@ class Fake extends Component {
         await interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`components.${this.key}.messages.success.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`components.${this.key}.messages.success.title`, { lng: keys.language }))
               .setDescription(i18next.t(`components.${this.key}.messages.success.description`, { lng: keys.language }))
               .setColor(config.message.colors.success)
               .withDefaultFooter(),
@@ -242,7 +242,7 @@ class Fake extends Component {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`components.${this.key}.messages.error.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`components.${this.key}.messages.error.title`, { lng: keys.language }))
               .setDescription(i18next.t(`components.${this.key}.messages.error.description`, { lng: keys.language }))
               .setColor(config.message.colors.error)
               .withDefaultFooter(),
@@ -274,7 +274,7 @@ class Fake extends Component {
       await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`${i18next.t(`components.${this.key}.messages.older_nan.title`, { lng: keys.language })}`)
+            .setTitle(i18next.t(`components.${this.key}.messages.older_nan.title`, { lng: keys.language }))
             .setDescription(i18next.t(`components.${this.key}.messages.older_nan.description`, { lng: keys.language }))
             .setColor(config.message.colors.error)
             .withDefaultFooter(),
@@ -303,7 +303,7 @@ class Fake extends Component {
         await interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`components.${this.key}.messages.success.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`components.${this.key}.messages.success.title`, { lng: keys.language }))
               .setDescription(i18next.t(`components.${this.key}.messages.success.description`, { lng: keys.language }))
               .setColor(config.message.colors.success)
               .withDefaultFooter(),
@@ -315,7 +315,7 @@ class Fake extends Component {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t(`components.${this.key}.messages.error.title`, { lng: keys.language })}`)
+              .setTitle(i18next.t(`components.${this.key}.messages.error.title`, { lng: keys.language }))
               .setDescription(i18next.t(`components.${this.key}.messages.error.description`, { lng: keys.language }))
               .setColor(config.message.colors.error)
               .withDefaultFooter(),

@@ -103,7 +103,7 @@ class InteractionCreate extends Listener {
         await interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setTitle(`${i18next.t("components.insufficient_permission.title", { lng: keys.language })}`)
+              .setTitle(i18next.t("components.insufficient_permission.title", { lng: keys.language }))
               .setDescription(
                 i18next.t("components.insufficient_permission.description", {
                   lng: keys.language,
