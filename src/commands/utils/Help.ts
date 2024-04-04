@@ -27,7 +27,7 @@ class Help extends Command {
 
     const helpEmbed = new EmbedBuilder()
       .setTitle(i18next.t(`commands.${this.name}.messages.success.title`))
-      .setColor(config.message.colors.success)
+      .setColor(config.message.colors.default)
       .withDefaultFooter();
 
     this.client.commands

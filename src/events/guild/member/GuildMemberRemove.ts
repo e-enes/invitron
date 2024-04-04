@@ -10,6 +10,10 @@ class GuildMemberRemove extends Listener {
   }
 
   public override async execute(member: GuildMember) {
+    if (!member.guild.available) {
+      return;
+    }
+
     const { database, config, utils } = this.client;
 
     const context = await this.getContext(member.guild.id);
@@ -106,7 +110,6 @@ class GuildMemberRemove extends Listener {
       const invites = preInvites?.valid + preInvites?.bonus;
 
       const inviter = member.guild.members.cache.get(row.inviter) || (await member.guild.members.fetch(row.inviter));
-
       await utils.updateRole(member.guild.id, inviter, invites);
 
       if (source) {

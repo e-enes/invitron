@@ -8,15 +8,16 @@ const config = {
       icon: undefined, // Optional, set to 'undefined' if you don't want it
     },
     colors: {
+      default: 0x5c40f2, // Required
       error: 0xff6961, // Required
       warn: 0xffcc00, // Required
       success: 0x7abd7e, // Required
     },
   },
   presence: {
-    status: "online", // dnd, idle, invisible, online
+    status: "idle", // dnd, idle, invisible, online
     activities: {
-      name: "Sene Bot", // Required
+      name: "Your Invitations!", // Required
       type: 3, // 0 (Playing), 1 (Streaming), 2 (Listening), 3 (Watching), 4 (Custom), 5 (Competing)
     },
   },

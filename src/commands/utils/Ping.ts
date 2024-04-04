@@ -22,6 +22,8 @@ class Ping extends Command {
   }
 
   public override async executeChatInput(interaction: Command.ChatInput) {
+    const { config } = this.client;
+
     const message = await interaction.reply({
       embeds: [new EmbedBuilder().setTitle("Pinging...").setColor(this.client.config.message.colors.success)],
     });
@@ -37,7 +39,7 @@ class Ping extends Command {
               `Database: \`${await this.client.database.ping()}\`ms`,
             ].join("\n")
           )
-          .setColor(this.client.config.message.colors.success),
+          .setColor(config.message.colors.default),
       ],
     });
   }

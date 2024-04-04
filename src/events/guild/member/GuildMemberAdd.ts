@@ -10,6 +10,10 @@ class GuildMemberAdd extends Listener {
   }
 
   public override async execute(member: GuildMember) {
+    if (!member.guild.available) {
+      return;
+    }
+
     const { database, config, utils } = this.client;
 
     const context = await this.getContext(member.guild.id);
@@ -139,24 +143,14 @@ class GuildMemberAdd extends Listener {
 
     let fake = false;
 
-    if (context.older && Date.now() - member.user.createdTimestamp < 1000 * 60 * 60 * 24 * context.older) {
-      fake = true;
-    }
-
-    if (context.ownInvite && usedInvite.member === member.user.id) {
-      fake = true;
-    }
-
-    if (context.profilePic && !member.user.avatar) {
-      fake = true;
-    }
-
-    const inviter = member.guild.members.cache.get(usedInvite.member) || (await member.guild.members.fetch(usedInvite.member));
-
     if (context.role) {
-      if (inviter.roles.cache.has(context.role)) {
-        fake = true;
-      }
+      fake = true;
+    } else if (context.older && Date.now() - member.user.createdTimestamp < 1000 * 60 * 60 * 24 * context.older) {
+      fake = true;
+    } else if (context.ownInvite && usedInvite.member === member.user.id) {
+      fake = true;
+    } else if (context.profilePic && !member.user.avatar) {
+      fake = true;
     }
 
     await database.query("INSERT INTO invites (guild_id, inviter_id, member_id, code, fake) VALUES (?, ?, ?, ?, ?)", [
@@ -175,6 +169,7 @@ class GuildMemberAdd extends Listener {
     )?.[0];
     const invites = preInvites?.valid + preInvites?.bonus;
 
+    const inviter = member.guild.members.cache.get(usedInvite.member) || (await member.guild.members.fetch(usedInvite.member));
     await utils.updateRole(member.guild.id, inviter, invites);
 
     if (usedInvite.source) {

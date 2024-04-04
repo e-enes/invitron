@@ -57,7 +57,7 @@ class Fake extends Command {
         new EmbedBuilder()
           .setTitle(i18next.t(`commands.${this.name}.messages.dropdown.title`, { lng: keys.language }))
           .setDescription(i18next.t(`commands.${this.name}.messages.dropdown.description`, { lng: keys.language, configuration }))
-          .setColor(config.message.colors.success)
+          .setColor(config.message.colors.default)
           .withDefaultFooter(),
       ],
       components: [

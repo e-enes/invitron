@@ -191,7 +191,7 @@ class Roles extends Command {
             new EmbedBuilder()
               .setTitle(i18next.t(`commands.${this.name}.messages.success_add.title`, { lng: keys.language }))
               .setDescription(i18next.t(`commands.${this.name}.messages.success_add.description`, { lng: keys.language, role: role.id }))
-              .setColor(config.message.colors.success)
+              .setColor(config.message.colors.default)
               .withDefaultFooter(),
           ],
         });
@@ -258,7 +258,7 @@ class Roles extends Command {
             new EmbedBuilder()
               .setTitle(i18next.t(`commands.${this.name}.messages.success_remove.title`, { lng: keys.language }))
               .setDescription(i18next.t(`commands.${this.name}.messages.success_remove.description`, { lng: keys.language, role: role.id }))
-              .setColor(config.message.colors.success)
+              .setColor(config.message.colors.default)
               .withDefaultFooter(),
           ],
         });
@@ -350,7 +350,7 @@ class Roles extends Command {
               number,
             })
           )
-          .setColor(config.message.colors.success)
+          .setColor(config.message.colors.default)
           .withDefaultFooter(),
       ],
     });

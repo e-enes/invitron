@@ -566,7 +566,7 @@
         "placeholder": "Make a choice...",
         "role": {
           "label": "Specific Role",
-          "description": "Inviter who have a specific role will be considered fake."
+          "description": "The members must have this role to be considered valid."
         },
         "profile_pic": {
           "label": "Custom Avatar",

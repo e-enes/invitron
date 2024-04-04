@@ -231,7 +231,7 @@ class Leaderboard extends Command {
               count,
             })
           )
-          .setColor(config.message.colors.success)
+          .setColor(config.message.colors.default)
           .withDefaultFooter(),
       ],
     });
@@ -289,7 +289,7 @@ class Leaderboard extends Command {
               .setDescription(
                 i18next.t(`commands.${this.name}.messages.excluded_${targetType}.description`, { lng: keys.language, target: target.id })
               )
-              .setColor(config.message.colors.success)
+              .setColor(config.message.colors.default)
               .withDefaultFooter(),
           ],
         });
@@ -361,7 +361,7 @@ class Leaderboard extends Command {
               .setDescription(
                 i18next.t(`commands.${this.name}.messages.included_${targetType}.description`, { lng: keys.language, target: target.id })
               )
-              .setColor(config.message.colors.success)
+              .setColor(config.message.colors.default)
               .withDefaultFooter(),
           ],
         });
@@ -436,7 +436,7 @@ class Leaderboard extends Command {
             new EmbedBuilder()
               .setTitle(i18next.t(`commands.${this.name}.messages.success_top.title`, { lng: keys.language }))
               .setDescription(i18next.t(`commands.${this.name}.messages.success_top.description`, { lng: keys.language, top }))
-              .setColor(config.message.colors.success)
+              .setColor(config.message.colors.default)
               .withDefaultFooter(),
           ],
         });
@@ -493,7 +493,7 @@ class Leaderboard extends Command {
             new EmbedBuilder()
               .setTitle(i18next.t(`commands.${this.name}.messages.success_left_${show}.title`, { lng: keys.language }))
               .setDescription(i18next.t(`commands.${this.name}.messages.success_left_${show}.description`, { lng: keys.language }))
-              .setColor(config.message.colors.success)
+              .setColor(config.message.colors.default)
               .withDefaultFooter(),
           ],
         });

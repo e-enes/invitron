@@ -89,7 +89,7 @@ class Channel extends Command {
               .setDescription(
                 i18next.t(`commands.${this.name}.messages.success_${type}.description`, { lng: keys.language, channel: channel.id })
               )
-              .setColor(config.message.colors.success)
+              .setColor(config.message.colors.default)
               .withDefaultFooter(),
           ],
         });

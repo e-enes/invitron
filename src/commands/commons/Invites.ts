@@ -175,7 +175,7 @@ class Invites extends Command {
                   fake,
                 })
               )
-              .setColor(config.message.colors.success)
+              .setColor(config.message.colors.default)
               .withDefaultFooter(),
           ],
         });
@@ -251,7 +251,7 @@ class Invites extends Command {
                   number,
                 })
               )
-              .setColor(config.message.colors.success)
+              .setColor(config.message.colors.default)
               .withDefaultFooter(),
           ],
         });
@@ -323,7 +323,7 @@ class Invites extends Command {
                   number,
                 })
               )
-              .setColor(config.message.colors.success)
+              .setColor(config.message.colors.default)
               .withDefaultFooter(),
           ],
         });
@@ -378,7 +378,7 @@ class Invites extends Command {
               .setDescription(
                 i18next.t(`commands.${this.name}.messages.success_reset.description`, { lng: keys.language, member: target.user.id })
               )
-              .setColor(config.message.colors.success)
+              .setColor(config.message.colors.default)
               .withDefaultFooter(),
           ],
         });
@@ -491,7 +491,7 @@ class Invites extends Command {
               .setDescription(
                 i18next.t(`commands.${this.name}.messages.success_link.description`, { lng: keys.language, link: invite.code })
               )
-              .setColor(config.message.colors.success)
+              .setColor(config.message.colors.default)
               .withDefaultFooter(),
           ],
         });
@@ -600,7 +600,7 @@ class Invites extends Command {
                     createdAt: Math.floor(new Date(createdAt + "Z").getTime() / 1000),
                   })
                 )
-                .setColor(config.message.colors.success)
+                .setColor(config.message.colors.default)
                 .withDefaultFooter(),
             ],
             ephemeral: true,
@@ -612,7 +612,7 @@ class Invites extends Command {
               new EmbedBuilder()
                 .setTitle(i18next.t(`commands.${this.name}.messages.error_check.title`, { lng: keys.language }))
                 .setDescription(i18next.t(`commands.${this.name}.messages.error_check.description`, { lng: keys.language }))
-                .setColor(config.message.colors.success)
+                .setColor(config.message.colors.error)
                 .withDefaultFooter(),
             ],
             ephemeral: true,
@@ -635,7 +635,7 @@ class Invites extends Command {
                 new EmbedBuilder()
                   .setTitle(i18next.t(`commands.${this.name}.messages.no_member_check.title`, { lng: keys.language }))
                   .setDescription(i18next.t(`commands.${this.name}.messages.no_member_check.description`, { lng: keys.language }))
-                  .setColor(config.message.colors.error)
+                  .setColor(config.message.colors.default)
                   .withDefaultFooter(),
               ],
               ephemeral: true,
@@ -664,7 +664,7 @@ class Invites extends Command {
               new EmbedBuilder()
                 .setTitle(i18next.t(`commands.${this.name}.messages.success_code_check.title`, { lng: keys.language }))
                 .setDescription(i18next.t(`commands.${this.name}.messages.success_code_check.description`, { lng: keys.language, members }))
-                .setColor(config.message.colors.success)
+                .setColor(config.message.colors.default)
                 .withDefaultFooter(),
             ],
             ephemeral: true,
@@ -676,7 +676,7 @@ class Invites extends Command {
               new EmbedBuilder()
                 .setTitle(i18next.t(`commands.${this.name}.messages.error_check.title`, { lng: keys.language }))
                 .setDescription(i18next.t(`commands.${this.name}.messages.error_check.description`, { lng: keys.language }))
-                .setColor(config.message.colors.success)
+                .setColor(config.message.colors.error)
                 .withDefaultFooter(),
             ],
             ephemeral: true,
