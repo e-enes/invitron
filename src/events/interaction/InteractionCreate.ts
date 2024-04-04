@@ -135,6 +135,10 @@ class InteractionCreate extends Listener {
       component.executeChannelSelectMenu?.(interaction, keys);
     }
 
+    if (interaction.isRoleSelectMenu()) {
+      component.executeRoleSelectMenu?.(interaction, keys);
+    }
+
     if (interaction.isMentionableSelectMenu()) {
       component.executeMentionableSelectMenu?.(interaction, keys);
     }

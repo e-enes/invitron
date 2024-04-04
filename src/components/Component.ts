@@ -6,6 +6,7 @@ import {
   Client,
   MentionableSelectMenuInteraction,
   ModalSubmitInteraction,
+  RoleSelectMenuInteraction,
   StringSelectMenuInteraction,
   UserSelectMenuInteraction,
 } from "discord.js";
@@ -17,6 +18,7 @@ namespace Component {
   export type SelectMenu = AnySelectMenuInteraction<"cached">;
   export type ChannelSelectMenu = ChannelSelectMenuInteraction<"cached">;
   export type MentionableSelectMenu = MentionableSelectMenuInteraction<"cached">;
+  export type RoleSelectMenu = RoleSelectMenuInteraction<"cached">;
   export type StringSelectMenu = StringSelectMenuInteraction<"cached">;
   export type UserSelectMenu = UserSelectMenuInteraction<"cached">;
   export type Modal = ModalSubmitInteraction<"cached">;
@@ -33,6 +35,7 @@ abstract class Component {
   public executeChannelSelectMenu?(interaction: Component.ChannelSelectMenu, keys: Component.Keys): Awaitable<void>;
   public executeMentionableSelectMenu?(interaction: Component.MentionableSelectMenu, keys: Component.Keys): Awaitable<void>;
   public executeStringSelectMenu?(interaction: Component.StringSelectMenu, keys: Component.Keys): Awaitable<void>;
+  public executeRoleSelectMenu?(interaction: Component.RoleSelectMenu, keys: Component.Keys): Awaitable<void>;
   public executeUserSelectMenu?(interaction: Component.UserSelectMenu, keys: Component.Keys): Awaitable<void>;
   public executeModal?(interaction: Component.Modal, keys: Component.Keys): Awaitable<void>;
 }

@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS links
 CREATE TABLE IF NOT EXISTS fakes
 (
     guild_id              TEXT NOT NULL,
-    role_id               TEXT NOT NULL,
+    role_id               TEXT,
     custom_profile_pic    BOOL NOT NULL DEFAULT false,
     older                 INT  NOT NULL DEFAULT 10,
     own_invite            BOOL NOT NULL DEFAULT true,

@@ -500,6 +500,12 @@
     "fake": {
       "data": {
         "description": "Manage the fake system"
+      },
+      "messages": {
+        "dropdown": {
+          "title": "Fake System",
+          "description": "Use the dropdown menu to configure the fake invitation system.\n\n**Actual configuration:**\n\n{{ configuration }}\n\n*If you need assistance, use the `/setup` command instead.*"
+        }
       }
     },
     "setup": {
@@ -552,6 +558,63 @@
         "error": {
           "title": "Update Failed",
           "description": "An error occurred while trying to update the role (<@&{{ role }}>)!"
+        }
+      }
+    },
+    "fake": {
+      "selectMenu": {
+        "placeholder": "Make a choice...",
+        "role": {
+          "label": "Specific Role",
+          "description": "Inviter who have a specific role will be considered fake."
+        },
+        "profile_pic": {
+          "label": "Custom Avatar",
+          "description": "The member must have a custom avatar."
+        },
+        "older": {
+          "label": "Aged Account",
+          "description": "The member must have an aged account."
+        },
+        "own_invite": {
+          "label": "No Self-Invite",
+          "description": "The member must not join with their own invitation."
+        },
+        "first_join": {
+          "label": "Single Count",
+          "description": "The invitation is counted only once."
+        },
+        "back_inviter": {
+          "label": "Return Invite",
+          "description": "The invitation is returned to the original inviter."
+        }
+      },
+      "button": {
+        "disable": {
+          "label": "Disable"
+        }
+      },
+      "modal": {
+        "older": {
+          "label": "Set the age in day"
+        }
+      },
+      "messages": {
+        "role": {
+          "title": "Select Role",
+          "description": "Choose the role where invitations will be considered fake."
+        },
+        "success": {
+          "title": "Updated Fake",
+          "description": "The fake system has been updated!"
+        },
+        "error": {
+          "title": "Error Fake",
+          "description": "An error occurred while trying to update the fake system."
+        },
+        "older_nan": {
+          "title": "Invalid Number",
+          "description": "The older must be a valid number."
         }
       }
     }

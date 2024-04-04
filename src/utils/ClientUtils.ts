@@ -11,6 +11,7 @@ class ClientUtils {
     const data = await database.query("SELECT guild_id FROM guilds WHERE guild_id = ?", [guild.id]);
     if (data.length === 0) {
       await database.query("INSERT INTO guilds (guild_id, language) VALUES (?, ?)", [guild.id, "en"]);
+      await database.query("INSERT INTO fakes (guild_id) VALUES (?)", [guild.id]);
     }
 
     const cachedInvites = new Collection<string, CachedInvite>();

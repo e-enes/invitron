@@ -13,13 +13,15 @@ class Roles extends Component {
     const { database, config } = this.client;
     const [roleId, number] = keys.entries;
 
-    await interaction.message.edit({
-      components: [
-        new ActionRowBuilder<ButtonBuilder>().setComponents(
-          ButtonBuilder.from(interaction.message.components[0].components[0] as APIButtonComponent).setDisabled(true)
-        ),
-      ],
-    });
+    await interaction.message
+      .edit({
+        components: [
+          new ActionRowBuilder<ButtonBuilder>().setComponents(
+            ButtonBuilder.from(interaction.message.components[0].components[0] as APIButtonComponent).setDisabled(true)
+          ),
+        ],
+      })
+      .catch(() => void 0);
 
     const role = await interaction.guild.roles.fetch(roleId, { cache: true }).catch(() => null);
     const data = await database.query("SELECT role_id FROM roles WHERE role_id = ?", [roleId]);
