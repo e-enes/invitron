@@ -9,6 +9,7 @@ import config from "./config.js";
 import Sqlite from "./database/Sqlite.js";
 import MySql from "./database/MySql.js";
 
+import "./utils/error.js";
 import "./utils/translations/i18next.js";
 
 const client = new Client({

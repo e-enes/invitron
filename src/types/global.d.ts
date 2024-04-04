@@ -33,6 +33,8 @@ declare global {
       MYSQL_USERNAME?: string;
       MYSQL_DATABASE?: string;
       MYSQL_PASSWORD?: string;
+      WEBHOOK_ID?: string;
+      WEBHOOK_TOKEN?: string;
       NODE_ENV?: string;
     }
   }
