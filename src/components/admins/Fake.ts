@@ -265,7 +265,7 @@ class Fake extends Component {
 
     if (!row) {
       row = {};
-      query = "INSERT INTO fakes (older, guild_id) VALUES (null, ?)";
+      query = "INSERT INTO fakes (older, guild_id) VALUES (?, ?)";
     } else {
       query = "UPDATE fakes SET older = ? WHERE guild_id = ?";
     }
