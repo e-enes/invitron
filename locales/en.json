@@ -536,7 +536,7 @@
         }
       },
       "messages": {
-        "not_existed_role": {
+        "not_existed_code": {
           "title": "Code Missing",
           "description": "The code (`{{ code }}`) no longer exists."
         },
