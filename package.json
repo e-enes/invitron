@@ -14,7 +14,7 @@
     "lint:staged": "lint-staged",
     "prepare": "husky"
   },
-  "author": "Enes Tahiri",
+  "author": "Enes Tahiri <125091714+e-enes@users.noreply.github.com>",
   "license": "MIT",
   "lint-staged": {
     "*.{js,ts,tsx}": [
@@ -38,10 +38,10 @@
       "NODE_ENV": "development"
     }
   },
-  "homepage": "https://github.com/e-enes/discord-invite-tracker#readme",
+  "homepage": "https://github.com/e-enes/invitron#readme",
   "bugs": {
     "email": "contact@enes.gg",
-    "url": "https://github.com/e-enes/discord-invite-tracker/issues"
+    "url": "https://github.com/e-enes/invitron/issues"
   },
   "packageManager": "pnpm@8.15.3",
   "devDependencies": {
