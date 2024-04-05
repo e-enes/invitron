@@ -74,10 +74,8 @@ class ClientUtils {
       const meetsRequirement = invites >= requiredInvitations;
 
       if (meetsRequirement && !hasRole) {
-        console.log("add", role, invites, requiredInvitations);
         rolesToAdd.push(role);
       } else if (!meetsRequirement && hasRole && !keepRole) {
-        console.log("remove", role, invites, requiredInvitations);
         rolesToRemove.push(role);
       }
     }

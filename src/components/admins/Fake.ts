@@ -1,8 +1,8 @@
 import { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ModalBuilder, RoleSelectMenuBuilder, TextInputBuilder } from "discord.js";
+import { ButtonStyle, TextInputStyle } from "discord-api-types/v10";
 import i18next from "i18next";
 
 import Component from "../Component.js";
-import { ButtonStyle, TextInputStyle } from "discord-api-types/v10";
 
 class Fake extends Component {
   public constructor() {

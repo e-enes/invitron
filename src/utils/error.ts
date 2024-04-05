@@ -14,7 +14,14 @@ if (webhookId && webhookToken) {
 process.on("uncaughtException", (error) => {
   webhookClient
     .send({
-      embeds: [new EmbedBuilder().setTitle("Uncaught Exception").setDescription(error.message).setColor(config.message.colors.error)],
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Uncaught Exception")
+          .setDescription(
+            `**Message:** ${error?.message}\n\n**Name:** ${error?.name}\n**Cause:** ${error?.cause}\n**Source:** ${String(error?.cause)}\n\n**Stack:**\n\`${error?.stack}\``
+          )
+          .setColor(config.message.colors.error),
+      ],
     })
     ?.catch(() => {
       console.error(error);

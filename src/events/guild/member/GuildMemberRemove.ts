@@ -98,61 +98,63 @@ class GuildMemberRemove extends Listener {
             .withDefaultFooter(),
         ],
       });
+
+      return;
+    }
+
+    const source = this.client.invites.get(member.guild.id)!.get(row.code)?.source;
+
+    const preInvites = (
+      await database.query(
+        "SELECT COALESCE(SUM(CASE WHEN I.inactive = 0 AND I.fake = 0 THEN 1 ELSE 0 END), 0) AS valid, COALESCE((SELECT SUM(B.bonus) FROM bonus B WHERE B.guild_id = ? AND B.inviter_id = ?), 0) AS bonus FROM invites I WHERE I.guild_id = ? AND I.inviter_id = ?",
+        [member.guild.id, row.inviter, member.guild.id, row.inviter]
+      )
+    )?.[0];
+    const invites = preInvites?.valid + preInvites?.bonus;
+
+    const inviter = member.guild.members.cache.get(row.inviter) || (await member.guild.members.fetch(row.inviter));
+    await utils.updateRole(member.guild.id, inviter, invites);
+
+    if (source) {
+      await context.send?.({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle(i18next.t(`events.${this.name}.messages.valid_source.title`, { lng: context.language }))
+            .setDescription(
+              i18next.t(`events.${this.name}.messages.valid_source.description`, {
+                lng: context.language,
+                member: member.user.id,
+                inviter: row.inviter,
+                invites,
+                source,
+                createdAt: Math.floor(member.user.createdTimestamp / 1000),
+              })
+            )
+            .setColor(config.message.colors.error)
+            .setThumbnail(member.displayAvatarURL({ forceStatic: true }))
+            .withDefaultFooter(),
+        ],
+      });
     } else {
-      const source = this.client.invites.get(member.guild.id)!.get(row.code)?.source;
-
-      const preInvites = (
-        await database.query(
-          "SELECT COALESCE(SUM(CASE WHEN I.inactive = 0 AND I.fake = 0 THEN 1 ELSE 0 END), 0) AS valid, COALESCE((SELECT SUM(B.bonus) FROM bonus B WHERE B.guild_id = ? AND B.inviter_id = ?), 0) AS bonus FROM invites I WHERE I.guild_id = ? AND I.inviter_id = ?",
-          [member.guild.id, row.inviter, member.guild.id, row.inviter]
-        )
-      )?.[0];
-      const invites = preInvites?.valid + preInvites?.bonus;
-
-      const inviter = member.guild.members.cache.get(row.inviter) || (await member.guild.members.fetch(row.inviter));
-      await utils.updateRole(member.guild.id, inviter, invites);
-
-      if (source) {
-        await context.send?.({
-          embeds: [
-            new EmbedBuilder()
-              .setTitle(i18next.t(`events.${this.name}.messages.valid_source.title`, { lng: context.language }))
-              .setDescription(
-                i18next.t(`events.${this.name}.messages.valid_source.description`, {
-                  lng: context.language,
-                  member: member.user.id,
-                  inviter: row.inviter,
-                  invites,
-                  source,
-                  createdAt: Math.floor(member.user.createdTimestamp / 1000),
-                })
-              )
-              .setColor(config.message.colors.error)
-              .setThumbnail(member.displayAvatarURL({ forceStatic: true }))
-              .withDefaultFooter(),
-          ],
-        });
-      } else {
-        await context.send?.({
-          embeds: [
-            new EmbedBuilder()
-              .setTitle(i18next.t(`events.${this.name}.messages.valid.title`, { lng: context.language }))
-              .setDescription(
-                i18next.t(`events.${this.name}.messages.valid.description`, {
-                  lng: context.language,
-                  member: member.user.id,
-                  inviter: row.inviter,
-                  invites,
-                  code: row.code,
-                  createdAt: Math.floor(member.user.createdTimestamp / 1000),
-                })
-              )
-              .setColor(config.message.colors.error)
-              .setThumbnail(member.displayAvatarURL({ forceStatic: true }))
-              .withDefaultFooter(),
-          ],
-        });
-      }
+      await context.send?.({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle(i18next.t(`events.${this.name}.messages.valid.title`, { lng: context.language }))
+            .setDescription(
+              i18next.t(`events.${this.name}.messages.valid.description`, {
+                lng: context.language,
+                member: member.user.id,
+                inviter: row.inviter,
+                invites,
+                code: row.code,
+                createdAt: Math.floor(member.user.createdTimestamp / 1000),
+              })
+            )
+            .setColor(config.message.colors.error)
+            .setThumbnail(member.displayAvatarURL({ forceStatic: true }))
+            .withDefaultFooter(),
+        ],
+      });
     }
   }
 

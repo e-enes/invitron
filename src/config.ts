@@ -8,7 +8,7 @@ const config = {
       icon: undefined, // Optional, set to 'undefined' if you don't want it
     },
     colors: {
-      default: 0x5c40f2, // Required
+      default: 0x5c40f2, // Required, must be the hexColor of the avatar for better rendering of the embeds
       error: 0xff6961, // Required
       warn: 0xffcc00, // Required
       success: 0x7abd7e, // Required

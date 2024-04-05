@@ -111,6 +111,7 @@ class GuildMemberAdd extends Listener {
                   })
                 )
                 .setColor(config.message.colors.success)
+                .setThumbnail(member.displayAvatarURL({ forceStatic: true }))
                 .withDefaultFooter(),
             ],
           });
@@ -160,6 +161,27 @@ class GuildMemberAdd extends Listener {
       code,
       fake,
     ]);
+
+    if (usedInvite.member === member.guild.id) {
+      await context.send?.({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle(i18next.t(`events.${this.name}.messages.vanity.title`, { lng: context.language }))
+            .setDescription(
+              i18next.t(`events.${this.name}.messages.vanity.description`, {
+                lng: context.language,
+                member: member.user.id,
+                createdAt: Math.floor(member.user.createdTimestamp / 1000),
+              })
+            )
+            .setColor(config.message.colors.success)
+            .setThumbnail(member.displayAvatarURL({ forceStatic: true }))
+            .withDefaultFooter(),
+        ],
+      });
+
+      return;
+    }
 
     const preInvites = (
       await database.query(

@@ -9,19 +9,19 @@
         },
         "vanity": {
           "title": "[+] A member has joined the server!",
-          "description": "{{ member }} **joined via vanity code**.\n\nAccount create: <t:{{ createdAt }}:R>"
+          "description": "<@{{ member }}> **joined via vanity code**.\n\nAccount create: <t:{{ createdAt }}:R>"
         },
         "first": {
           "title": "[+] A member has joined the server!",
-          "description": "{{ member }} **joined for the second time**, their invitation is **invalid**.\n\nCode used: `{{ code }}`\nAccount create: <t:{{ createdAt }}:R>"
+          "description": "<@{{ member }}> **joined for the second time**, their invitation is **invalid**.\n\nCode used: `{{ code }}`\nAccount create: <t:{{ createdAt }}:R>"
         },
         "first_vanity": {
           "title": "[+] A member has joined the server!",
-          "description": "{{ member }} **joined via vanity code** for the second time\n\nAccount create: <t:{{ createdAt }}:R>"
+          "description": "<@{{ member }}> **joined via vanity code** for the second time\n\nAccount create: <t:{{ createdAt }}:R>"
         },
         "invalid": {
           "title": "[+] A member has joined the server!",
-          "description": "{{ member }} **unable to find your inviter**.\n\nAccount create: <t:{{ createdAt }}:R>"
+          "description": "<@{{ member }}> **unable to find your inviter**.\n\nAccount create: <t:{{ createdAt }}:R>"
         },
         "valid": {
           "title": "[+] A member has joined the server!",
@@ -41,11 +41,11 @@
         },
         "vanity": {
           "title": "[-] A member has left the server!",
-          "description": "{{ member }} left, **joined via vanity code**.\n\nAccount create: <t:{{ createdAt }}:R>"
+          "description": "<@{{ member }}> left, **joined via vanity code**.\n\nAccount create: <t:{{ createdAt }}:R>"
         },
         "invalid": {
           "title": "[-] A member has left the server!",
-          "description": "{{ member }} left, **unable to find inviter**.\n\nAccount create: <t:{{ createdAt }}:R>"
+          "description": "<@{{ member }}> left, **unable to find inviter**.\n\nAccount create: <t:{{ createdAt }}:R>"
         },
         "valid": {
           "title": "[-] A member has left the server!",
@@ -494,6 +494,10 @@
         "error_leave": {
           "title": "Error Leave",
           "description": "An error occurred while trying to set the leave channel to <#{{ channel }}>."
+        },
+        "invalid_channel": {
+          "title": "Invalid Channel",
+          "description": "The bot cannot send messages in <#{{ channel }}>."
         }
       }
     },
@@ -511,6 +515,12 @@
     "setup": {
       "data": {
         "description": "Setup the bot with advanced guidance"
+      },
+      "messages": {
+        "stage": {
+          "title": "Bot Setup",
+          "description": "Welcome to the setup!\n\nStart by choosing what you want to configure."
+        }
       }
     }
   },
@@ -615,6 +625,98 @@
         "older_nan": {
           "title": "Invalid Number",
           "description": "The older must be a valid number."
+        }
+      }
+    },
+    "setup": {
+      "modal": {
+        "invitation_role": {
+          "title": "Set Invitation Role",
+          "label": "Number of invitations required for this role"
+        }
+      },
+      "button": {
+        "back": {
+          "label": "Back"
+        },
+        "confirm": {
+          "label": "Got It!"
+        },
+        "same": {
+          "label": "Same Channel"
+        }
+      },
+      "selectMenu": {
+        "placeholder": "Make a choice...",
+        "language": {
+          "label": "Language Settings",
+          "description": "Configure the bot's language for your server."
+        },
+        "channel": {
+          "label": "Channel Join/Leave",
+          "description": "Set up channels for join and leave notifications."
+        },
+        "role": {
+          "label": "Role Invitations",
+          "description": "Assign roles based on invitation milestones."
+        },
+        "fake": {
+          "label": "Fake System",
+          "description": "Access real-time configuration for the fake system."
+        },
+        "leaderboard": {
+          "label": "Leaderboard Configuration",
+          "description": "Customize the leaderboard settings, including visibility and exclusions."
+        }
+      },
+      "messages": {
+        "error_back": {
+          "title": "Error Back",
+          "description": "This interaction no longer exists, please re-execute the command."
+        },
+        "stage_language_1": {
+          "title": "Language",
+          "description": "Please select the language the bot will use on the server.\n\nThis will determine the language for all automated messages and interactions."
+        },
+        "stage_language_2": {
+          "title": "Language Confirmation",
+          "description": "Your language selection has been saved!\n\nTo change the bot's language later, you can use the `/language set` command at any time."
+        },
+        "stage_channel_1": {
+          "title": "Join Channel",
+          "description": "Please select the channel designated for join notifications.\n\nIt's where messages will be posted when a new member joins the server."
+        },
+        "stage_channel_2": {
+          "title": "Leave Channel",
+          "description": "Please select the channel designated for leave notifications.\n\nIt's where messages will be posted when a member leaves the server."
+        },
+        "stage_channel_3": {
+          "title": "Channel Confirmation",
+          "description": "Your selections have been saved!\n\nTo modify the join or leave notification channels later, simply use the `/channel set` command at any time."
+        },
+        "stage_role_1": {
+          "title": "Invitations Role",
+          "description": "Please select the role you wish to assign for a certain number of invitations.\n\nThis is the role that will be granted automatically when members reach the specified invitation milestone."
+        },
+        "stage_role_2": {
+          "title": "Role Confirmation",
+          "description": "Your role settings have been saved!\n\nTo modify roles for invitation milestones later, use the `/role add`, `/role remove`, or `/role list` commands at any time."
+        },
+        "stage_fake_1": {
+          "title": "Fake System",
+          "description": "You can use the `/fake` command to access the real-time configuration menu.\n\nThis allows for immediate adjustments and customizations to the fake system settings."
+        },
+        "stage_leaderboard_1": {
+          "title": "Leaderboard System",
+          "description": "To configure the leaderboard, use the appropriate command `/leaderboard [type]`"
+        },
+        "invalid_role": {
+          "title": "Invalid Role",
+          "description": "The bot cannot edit this role."
+        },
+        "invalid_channel": {
+          "title": "Invalid Channel",
+          "description": "The bot cannot send messages in this channel."
         }
       }
     }

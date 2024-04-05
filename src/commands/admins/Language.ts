@@ -54,10 +54,10 @@ class Language extends Command {
   }
 
   public override async executeChatInput(interaction: Command.ChatInput, keys: Command.Keys) {
-    const member = interaction.member as GuildMember;
     const { database, config } = this.client;
 
     const language = interaction.options.getString("language");
+    const member = interaction.member as GuildMember;
 
     if (!language) {
       await interaction.reply({

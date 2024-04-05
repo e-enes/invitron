@@ -13,13 +13,7 @@ import "./utils/error.js";
 import "./utils/translations/i18next.js";
 
 const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildInvites,
-    GatewayIntentBits.GuildModeration,
-    GatewayIntentBits.DirectMessages,
-  ],
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildInvites, GatewayIntentBits.DirectMessages],
   allowedMentions: {
     repliedUser: false,
     parse: ["roles", "users"],

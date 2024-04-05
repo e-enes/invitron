@@ -69,6 +69,23 @@ class Channel extends Command {
     const type = interaction.options.getString("type", true);
     const channel = interaction.options.getChannel("channel", true) as GuildTextBasedChannel;
 
+    if (!channel.viewable) {
+      await interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle(i18next.t(`commands.${this.name}.messages.invalid_channel.title`, { lng: keys.language }))
+            .setDescription(
+              i18next.t(`commands.${this.name}.messages.invalid_channel.description`, { lng: keys.language, channel: channel.id })
+            )
+            .setColor(config.message.colors.default)
+            .withDefaultFooter(),
+        ],
+        ephemeral: true,
+      });
+
+      return;
+    }
+
     const query = await database
       .query("SELECT 1 FROM channels WHERE guild_id = ? AND channel_type = ?", [interaction.guild!.id, type])
       .then((data) => {
