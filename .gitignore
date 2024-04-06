@@ -230,3 +230,6 @@ fabric.properties
 
 !.idea/codeStyles
 !.idea/runConfigurations
+
+### VSCode ###
+.vscode/

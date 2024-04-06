@@ -1,0 +1,724 @@
+{
+  "emoji": "🇺🇸",
+  "events": {
+    "guildMemberAdd": {
+      "messages": {
+        "bot": {
+          "title": "[+] A bot has joined the server!",
+          "description": "<@{{ member }}> joined the server, this user is a bot.\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "vanity": {
+          "title": "[+] A member has joined the server!",
+          "description": "<@{{ member }}> **joined via vanity code**.\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "first": {
+          "title": "[+] A member has joined the server!",
+          "description": "<@{{ member }}> **joined for the second time**, their invitation is **invalid**.\n\nCode used: `{{ code }}`\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "first_vanity": {
+          "title": "[+] A member has joined the server!",
+          "description": "<@{{ member }}> **joined via vanity code** for the second time\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "invalid": {
+          "title": "[+] A member has joined the server!",
+          "description": "<@{{ member }}> **unable to find your inviter**.\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "valid": {
+          "title": "[+] A member has joined the server!",
+          "description": "<@{{ member }}> **invited by** <@{{ inviter }}> **who now has** `{{ invites }}` invitations.\n\nCode used: `{{ code }}`\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "valid_source": {
+          "title": "[+] A member has joined the server!",
+          "description": "<@{{ member }}> **invited by** <@{{ inviter }}> **who now has** `{{ invites }}` invitations.\n\nSource: `{{ source }}`\nAccount create: <t:{{ createdAt }}:R>"
+        }
+      }
+    },
+    "guildMemberRemove": {
+      "messages": {
+        "bot": {
+          "title": "[-] A bot has left the server!",
+          "description": "<@{{ member }}> left the server, this user is a bot.\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "vanity": {
+          "title": "[-] A member has left the server!",
+          "description": "<@{{ member }}> left, **joined via vanity code**.\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "invalid": {
+          "title": "[-] A member has left the server!",
+          "description": "<@{{ member }}> left, **unable to find inviter**.\n\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "valid": {
+          "title": "[-] A member has left the server!",
+          "description": "<@{{ member }}> left, **invited by** <@{{ inviter }}> **who now has** `{{ invites }}` invitations.\n\nCode used: `{{ code }}`\nAccount create: <t:{{ createdAt }}:R>"
+        },
+        "valid_source": {
+          "title": "[-] A member has left the server!",
+          "description": "<@{{ member }}> left, **invited by** <@{{ inviter }}> **who now has** `{{ invites }}` invitations.\n\nSource: `{{ source }}`\nAccount create: <t:{{ createdAt }}:R>"
+        }
+      }
+    }
+  },
+  "commands": {
+    "insufficient_permission": {
+      "title": "Unauthorized Command!",
+      "description": "You are not authorized to execute this command!"
+    },
+    "unknown_command": {
+      "title": "Error!",
+      "description": "This command is unknown or does not exist."
+    },
+    "invites": {
+      "data": {
+        "description": "Manage invitations",
+        "subcommands": {
+          "display": {
+            "description": "Display invitation",
+            "options": {
+              "member": {
+                "description": "Mention a server member"
+              }
+            }
+          },
+          "add": {
+            "description": "Add invitation to a member",
+            "options": {
+              "member": {
+                "description": "Mention a server member"
+              },
+              "number": {
+                "description": "Number of invitations to add"
+              }
+            }
+          },
+          "remove": {
+            "description": "Remove invitation to a member",
+            "options": {
+              "member": {
+                "description": "Mention a server member"
+              },
+              "number": {
+                "description": "Number of invitations to remove"
+              }
+            }
+          },
+          "reset": {
+            "description": "Reset a member's invitations",
+            "options": {
+              "member": {
+                "description": "Mention a server member"
+              }
+            }
+          },
+          "create": {
+            "description": "Create an invitation link that never expires",
+            "options": {
+              "source": {
+                "description": "Set a source"
+              }
+            }
+          },
+          "check": {
+            "description": "Discover which members hava utilized this code or identify the member associated with it",
+            "options": {
+              "code": {
+                "description": "Code (without discord.gg/)"
+              },
+              "member": {
+                "description": "Mention a server member"
+              }
+            }
+          }
+        }
+      },
+      "messages": {
+        "success_display": {
+          "title": "Validated Invites",
+          "description": "<@{{ member }}> has **{{ valid }}** invitations (**{{ total }}** Regular, **{{ invalid }}** Left, **{{ bonus }}** Bonus, **{{ fake }}** Fake)."
+        },
+        "error_display": {
+          "title": "Retrieval Failed",
+          "description": "Unable to retrieve invitations from <@{{ member }}>."
+        },
+        "invalid_bonus": {
+          "title": "Bonus Error",
+          "description": "The bonus is **negative** or exceeds **32 bits**!"
+        },
+        "error_bonus": {
+          "title": "Insertion Error",
+          "description": "An error occurred while trying to insert this bonus."
+        },
+        "success_bonus_add": {
+          "title": "Bonus Added",
+          "description": "The user <@{{ member }}> has successfully added **{{ number }}** invitations!"
+        },
+        "success_bonus_remove": {
+          "title": "Bonus Removed",
+          "description": "The user <@{{ member }}> has successfully removed **{{ number }}** invitations!"
+        },
+        "success_reset": {
+          "title": "Invitation Reset",
+          "description": "<@{{ member }}> invitations have been **reset**."
+        },
+        "error_reset": {
+          "title": "Reset Error",
+          "description": "An error occurred while trying to reset invitations."
+        },
+        "existed_link": {
+          "title": "Link Exists",
+          "description": "You already have an invitation link (**{{ link }}**)."
+        },
+        "unable_create_link": {
+          "title": "Creation Failed",
+          "description": "Unable to create the invitation link, maybe the bot does not have permissions or the server has more than 1000 links."
+        },
+        "updated_link": {
+          "title": "Update Offered",
+          "description": "You already have an invitation link (**{{ link }}**).\n\nDo you want to update it with the new source (**{{ source }}**)?"
+        },
+        "success_link": {
+          "title": "Link Created",
+          "description": "Your invitation link has been created (**{{ link }}**)!"
+        },
+        "error_link": {
+          "title": "Saving Error",
+          "description": "An error occurred while saving your invitation link."
+        },
+        "invalid_check": {
+          "title": "Check Error",
+          "description": "You must specify at least one code or member."
+        },
+        "no_member_check": {
+          "title": "Absent Member",
+          "description": "No members were found with this information."
+        },
+        "success_member_check": {
+          "title": "Success Check",
+          "description": "A member was found with this information:\n\nMember: <@{{ member }}>\nInviter: <@{{ inviter }}>\n\nCode: **{{ code }}**\nCreated: <t:{{ createdAt }}:R>\n\nLeft: **{{ inactive }}**\nFake: **{{ fake }}**"
+        },
+        "success_code_check": {
+          "title": "Success Check",
+          "description": "Members who joined with this code:\n\n```{{ members }}```"
+        },
+        "error_check": {
+          "title": "Error Check",
+          "description": "An error occurred while trying to find information."
+        }
+      }
+    },
+    "leaderboard": {
+      "data": {
+        "description": "Manage leaderboard",
+        "subcommands": {
+          "display": {
+            "description": "Display leaderboard"
+          },
+          "exclude": {
+            "description": "Exclude a member or role from the leaderboard display",
+            "options": {
+              "mentionable": {
+                "description": "Mention a server member/role"
+              }
+            }
+          },
+          "include": {
+            "description": "Include a member or role from the leaderboard display",
+            "options": {
+              "mentionable": {
+                "description": "Mention a server member/role"
+              }
+            }
+          },
+          "top": {
+            "description": "Define how many members the leaderboard should display",
+            "options": {
+              "number": {
+                "description": "Number of members"
+              }
+            }
+          },
+          "left": {
+            "description": "Define whether members who have left the server should be displayed",
+            "options": {
+              "show": {
+                "description": "Show left members"
+              }
+            }
+          }
+        }
+      },
+      "messages": {
+        "no_inviter": {
+          "title": "No Inviter",
+          "description": "No inviters were found in this server!"
+        },
+        "leaderboard": {
+          "title": "Leaderboard",
+          "pre_description": "{{ index }}) <@{{ inviter }}> has **{{ valid }}** invitations (**{{ total }}** Regular, **{{ invalid }}** Left, **{{ bonus }}** Bonus, **{{ fake }}** Fake).",
+          "description": "**{{ guild }}** leaderboard. \n\n{{ leaderboard }}\n\n *...and {{ count }} more row(s).*"
+        },
+        "excluded_role": {
+          "title": "Role Excluded",
+          "description": "This role (<@&{{ target }}>) has been excluded from the leaderboard display."
+        },
+        "excluded_member": {
+          "title": "Member Excluded",
+          "description": "This member (<@{{ target }}>) has been excluded from the leaderboard display."
+        },
+        "included_role": {
+          "title": "Role Included",
+          "description": "This role (<@&{{ target }}>) has been included from the leaderboard display."
+        },
+        "included_member": {
+          "title": "Member Included",
+          "description": "This member (<@{{ target }}>) has been included from the leaderboard display."
+        },
+        "error_included_role": {
+          "title": "Error Included",
+          "description": "An error occurred while trying to include role <@&{{ target }}>."
+        },
+        "error_included_member": {
+          "title": "Error Included",
+          "description": "An error occurred while trying to include member <@{{ target }}>."
+        },
+        "error_excluded_role": {
+          "title": "Error Excluded",
+          "description": "An error occurred while trying to exclude role <@&{{ target }}>."
+        },
+        "error_excluded_member": {
+          "title": "Error Excluded",
+          "description": "An error occurred while trying to exclude member <@{{ target }}>."
+        },
+        "invalid_included": {
+          "title": "Invalid Included",
+          "description": "This role/member is already included."
+        },
+        "invalid_excluded": {
+          "title": "Invalid Excluded",
+          "description": "This role/member is already excluded."
+        },
+        "invalid_top": {
+          "title": "Invalid Top",
+          "description": "The top must be greater than 0 and less than 25."
+        },
+        "success_top": {
+          "title": "Success Top",
+          "description": "The number of members displayed has been changed to `{{ top }}`."
+        },
+        "error_top": {
+          "title": "Error Top",
+          "description": "An error occurred while trying to change the top to `{{ top }}`."
+        },
+        "success_left_true": {
+          "title": "Success Show",
+          "description": "Members who have left the server will now be visible in the leaderboard display"
+        },
+        "success_left_false": {
+          "title": "Success Show",
+          "description": "Members who have left the server will now not be visible in the leaderboard display"
+        },
+        "error_left": {
+          "title": "Error Show",
+          "description": "An error occurred while trying to change the show to `{{ show }}`."
+        }
+      }
+    },
+    "roles": {
+      "data": {
+        "description": "Manage invitation roles",
+        "subcommands": {
+          "add": {
+            "description": "Add invitation role",
+            "options": {
+              "role": {
+                "description": "Mention a server role"
+              },
+              "number": {
+                "description": "Number of invitations to have the role"
+              }
+            }
+          },
+          "remove": {
+            "description": "Remove invitation role",
+            "options": {
+              "role": {
+                "description": "Mention a server role"
+              },
+              "delete": {
+                "description": "Remove this role from members who have it"
+              }
+            }
+          },
+          "list": {
+            "description": "Display invitation roles list"
+          }
+        }
+      },
+      "messages": {
+        "invalid_options": {
+          "title": "Options Invalid",
+          "description": "The options (role and/or number) are invalid."
+        },
+        "error_add": {
+          "title": "Addition Error",
+          "description": "An error occurred while trying to add the role (<@&{{ role }}>) with **{{ number }}** invitation(s)."
+        },
+        "success_add": {
+          "title": "Role Added",
+          "description": "The role (<@&{{ role }}>) has been successfully added."
+        },
+        "existed_role": {
+          "title": "Role Exists",
+          "description": "The role (<@&{{ role }}>) already exists with the same number of invitations (`{{ number }}`)."
+        },
+        "existed_role_update": {
+          "title": "Update Role?",
+          "description": "The role (<@&{{ role }}>) already exists.\n\nDo you want to update it with the new number (**{{ number }}**) of invitations?"
+        },
+        "not_existed_role": {
+          "title": "Role Missing",
+          "description": "The role (`{{ role }}`) does not exist."
+        },
+        "not_editable_role": {
+          "title": "Role Restricted",
+          "description": "The role (<@&{{ role }}>) cannot be assigned by the bot."
+        },
+        "error_remove": {
+          "title": "Removal Error",
+          "description": "An error occurred while trying to remove this role (<@&{{ role }}>)."
+        },
+        "success_remove": {
+          "title": "Role Removed",
+          "description": "The role (<@&{{ role }}>) has been successfully removed."
+        },
+        "empty_list": {
+          "title": "No Roles",
+          "description": "You do not have an invitation role. Add some with `/roles add`"
+        },
+        "role_list": {
+          "title": "Roles Listed",
+          "pre_invalid_description": "{{ index }}) <@&{{ role }}> is **inactive** due to permission change",
+          "pre_valid_description": "{{ index }}) <@&{{ role }}> required **{{ number }}** invitations",
+          "description": "You have a total of **{{ number }}** invitation roles!\n\n{{ roles }}"
+        }
+      }
+    },
+    "ping": {
+      "data": {
+        "description": "Display bot latency"
+      }
+    },
+    "help": {
+      "data": {
+        "description": "Display commands details"
+      },
+      "messages": {
+        "success": {
+          "title": "Help Command"
+        }
+      }
+    },
+    "language": {
+      "data": {
+        "description": "Set a language for the bot",
+        "options": {
+          "language": {
+            "description": "Language to set"
+          }
+        }
+      },
+      "messages": {
+        "current_language": {
+          "title": "Current language",
+          "description": "The current server language is `{{ lng }}`."
+        },
+        "error": {
+          "title": "Change Failed",
+          "description": "An error occurred while changing the language to `{{ lng }}`."
+        },
+        "success": {
+          "title": "Language Updated",
+          "description": "The server language was set to `{{ lng }}`."
+        }
+      }
+    },
+    "purge": {
+      "data": {
+        "description": "Purge cached information",
+        "subcommands": {
+          "cache": {
+            "description": "Clear the cache on this server"
+          }
+        }
+      },
+      "messages": {
+        "success": {
+          "title": "Cache Reset",
+          "description": "The server cache has been successfully reset."
+        },
+        "error": {
+          "title": "Reset Failed",
+          "description": "An error occurred while trying to clear the server cache."
+        }
+      }
+    },
+    "channel": {
+      "data": {
+        "description": "Manage join/leave channel",
+        "subcommands": {
+          "set": {
+            "description": "Set join/leave channel",
+            "options": {
+              "type": {
+                "description": "Choose the type of channel to define"
+              },
+              "channel": {
+                "description": "Choose the channel"
+              }
+            }
+          }
+        }
+      },
+      "messages": {
+        "success_join": {
+          "title": "Set Join",
+          "description": "The join channel has been set to <#{{ channel }}>!"
+        },
+        "success_leave": {
+          "title": "Set Leave",
+          "description": "The leave channel has been set to <#{{ channel }}>!"
+        },
+        "error_join": {
+          "title": "Error Join",
+          "description": "An error occurred while trying to set the join channel to <#{{ channel }}>."
+        },
+        "error_leave": {
+          "title": "Error Leave",
+          "description": "An error occurred while trying to set the leave channel to <#{{ channel }}>."
+        },
+        "invalid_channel": {
+          "title": "Invalid Channel",
+          "description": "The bot cannot send messages in <#{{ channel }}>."
+        }
+      }
+    },
+    "fake": {
+      "data": {
+        "description": "Manage the fake system"
+      },
+      "messages": {
+        "dropdown": {
+          "title": "Fake System",
+          "description": "Use the dropdown menu to configure the fake invitation system.\n\n**Actual configuration:**\n\n{{ configuration }}\n\n*If you need assistance, use the `/setup` command instead.*"
+        }
+      }
+    },
+    "setup": {
+      "data": {
+        "description": "Setup the bot with advanced guidance"
+      },
+      "messages": {
+        "stage": {
+          "title": "Bot Setup",
+          "description": "Welcome to the setup!\n\nStart by choosing what you want to configure."
+        }
+      }
+    }
+  },
+  "components": {
+    "insufficient_permission": {
+      "title": "Unauthorized Interaction!",
+      "description": "You are not authorized to execute this interaction!"
+    },
+    "invites": {
+      "button": {
+        "update": {
+          "label": "Confirm update"
+        }
+      },
+      "messages": {
+        "not_existed_code": {
+          "title": "Code Missing",
+          "description": "The code (`{{ code }}`) no longer exists."
+        },
+        "success": {
+          "title": "Code Updated",
+          "description": "The code (`{{ code }}`) has been successfully updated!"
+        },
+        "error": {
+          "title": "Update Failed",
+          "description": "An error occurred while trying to update the code (`{{ code }}`)!"
+        }
+      }
+    },
+    "roles": {
+      "button": {
+        "update": {
+          "label": "Confirm update"
+        }
+      },
+      "messages": {
+        "not_existed_role": {
+          "title": "Role Missing",
+          "description": "The role (<@&{{ role }}>) no longer exists."
+        },
+        "success": {
+          "title": "Role Updated",
+          "description": "The role (<@&{{ role }}>) has been successfully updated!"
+        },
+        "error": {
+          "title": "Update Failed",
+          "description": "An error occurred while trying to update the role (<@&{{ role }}>)!"
+        }
+      }
+    },
+    "fake": {
+      "selectMenu": {
+        "placeholder": "Make a choice...",
+        "role": {
+          "label": "Specific Role",
+          "description": "The members must have this role to be considered valid."
+        },
+        "profile_pic": {
+          "label": "Custom Avatar",
+          "description": "The member must have a custom avatar."
+        },
+        "older": {
+          "label": "Aged Account",
+          "description": "The member must have an aged account."
+        },
+        "own_invite": {
+          "label": "No Self-Invite",
+          "description": "The member must not join with their own invitation."
+        },
+        "first_join": {
+          "label": "Single Count",
+          "description": "The invitation is counted only once."
+        },
+        "back_inviter": {
+          "label": "Return Invite",
+          "description": "The invitation is returned to the original inviter."
+        }
+      },
+      "button": {
+        "disable": {
+          "label": "Disable"
+        }
+      },
+      "modal": {
+        "older": {
+          "label": "Set the age in day"
+        }
+      },
+      "messages": {
+        "role": {
+          "title": "Select Role",
+          "description": "Choose the role where invitations will be considered fake."
+        },
+        "success": {
+          "title": "Updated Fake",
+          "description": "The fake system has been updated!"
+        },
+        "error": {
+          "title": "Error Fake",
+          "description": "An error occurred while trying to update the fake system."
+        },
+        "older_nan": {
+          "title": "Invalid Number",
+          "description": "The older must be a valid number."
+        }
+      }
+    },
+    "setup": {
+      "modal": {
+        "invitation_role": {
+          "title": "Set Invitation Role",
+          "label": "Number of invitations required for this role"
+        }
+      },
+      "button": {
+        "back": {
+          "label": "Back"
+        },
+        "confirm": {
+          "label": "Got It!"
+        },
+        "same": {
+          "label": "Same Channel"
+        }
+      },
+      "selectMenu": {
+        "placeholder": "Make a choice...",
+        "language": {
+          "label": "Language Settings",
+          "description": "Configure the bot's language for your server."
+        },
+        "channel": {
+          "label": "Channel Join/Leave",
+          "description": "Set up channels for join and leave notifications."
+        },
+        "role": {
+          "label": "Role Invitations",
+          "description": "Assign roles based on invitation milestones."
+        },
+        "fake": {
+          "label": "Fake System",
+          "description": "Access real-time configuration for the fake system."
+        },
+        "leaderboard": {
+          "label": "Leaderboard Configuration",
+          "description": "Customize the leaderboard settings, including visibility and exclusions."
+        }
+      },
+      "messages": {
+        "error_back": {
+          "title": "Error Back",
+          "description": "This interaction no longer exists, please re-execute the command."
+        },
+        "stage_language_1": {
+          "title": "Language",
+          "description": "Please select the language the bot will use on the server.\n\nThis will determine the language for all automated messages and interactions."
+        },
+        "stage_language_2": {
+          "title": "Language Confirmation",
+          "description": "Your language selection has been saved!\n\nTo change the bot's language later, you can use the `/language set` command at any time."
+        },
+        "stage_channel_1": {
+          "title": "Join Channel",
+          "description": "Please select the channel designated for join notifications.\n\nIt's where messages will be posted when a new member joins the server."
+        },
+        "stage_channel_2": {
+          "title": "Leave Channel",
+          "description": "Please select the channel designated for leave notifications.\n\nIt's where messages will be posted when a member leaves the server."
+        },
+        "stage_channel_3": {
+          "title": "Channel Confirmation",
+          "description": "Your selections have been saved!\n\nTo modify the join or leave notification channels later, simply use the `/channel set` command at any time."
+        },
+        "stage_role_1": {
+          "title": "Invitations Role",
+          "description": "Please select the role you wish to assign for a certain number of invitations.\n\nThis is the role that will be granted automatically when members reach the specified invitation milestone."
+        },
+        "stage_role_2": {
+          "title": "Role Confirmation",
+          "description": "Your role settings have been saved!\n\nTo modify roles for invitation milestones later, use the `/role add`, `/role remove`, or `/role list` commands at any time."
+        },
+        "stage_fake_1": {
+          "title": "Fake System",
+          "description": "You can use the `/fake` command to access the real-time configuration menu.\n\nThis allows for immediate adjustments and customizations to the fake system settings."
+        },
+        "stage_leaderboard_1": {
+          "title": "Leaderboard System",
+          "description": "To configure the leaderboard, use the appropriate command `/leaderboard [type]`"
+        },
+        "invalid_role": {
+          "title": "Invalid Role",
+          "description": "The bot cannot edit this role."
+        },
+        "invalid_channel": {
+          "title": "Invalid Channel",
+          "description": "The bot cannot send messages in this channel."
+        }
+      }
+    }
+  }
+}

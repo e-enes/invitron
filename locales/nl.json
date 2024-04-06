@@ -1,0 +1,724 @@
+{
+  "emoji": "🇳🇱",
+  "events": {
+    "guildMemberAdd": {
+      "messages": {
+        "bot": {
+          "title": "[+] Een bot is lid geworden van de server!",
+          "description": "<@{{ member }}> is lid geworden van de server, deze gebruiker is een bot.\n\nAccount aangemaakt: <t:{{ createdAt }}:R>"
+        },
+        "vanity": {
+          "title": "[+] Een lid is lid geworden van de server!",
+          "description": "<@{{ member }}> **is lid geworden via een vanity code**.\n\nAccount aangemaakt: <t:{{ createdAt }}:R>"
+        },
+        "first": {
+          "title": "[+] Een lid is lid geworden van de server!",
+          "description": "<@{{ member }}> **is voor de tweede keer lid geworden**, hun uitnodiging is **ongeldig**.\n\nCode gebruikt: `{{ code }}`\nAccount aangemaakt: <t:{{ createdAt }}:R>"
+        },
+        "first_vanity": {
+          "title": "[+] Een lid is lid geworden van de server!",
+          "description": "<@{{ member }}> **is via een vanity code voor de tweede keer lid geworden**\n\nAccount aangemaakt: <t:{{ createdAt }}:R>"
+        },
+        "invalid": {
+          "title": "[+] Een lid is lid geworden van de server!",
+          "description": "<@{{ member }}> **kan uw uitnodiger niet vinden**.\n\nAccount aangemaakt: <t:{{ createdAt }}:R>"
+        },
+        "valid": {
+          "title": "[+] Een lid is lid geworden van de server!",
+          "description": "<@{{ member }}> **uitgenodigd door** <@{{ inviter }}> **die nu heeft** `{{ invites }}` uitnodigingen.\n\nCode gebruikt: `{{ code }}`\nAccount aangemaakt: <t:{{ createdAt }}:R>"
+        },
+        "valid_source": {
+          "title": "[+] Een lid is lid geworden van de server!",
+          "description": "<@{{ member }}> **uitgenodigd door** <@{{ inviter }}> **die nu heeft** `{{ invites }}` uitnodigingen.\n\nBron: `{{ source }}`\nAccount aangemaakt: <t:{{ createdAt }}:R>"
+        }
+      }
+    },
+    "guildMemberRemove": {
+      "messages": {
+        "bot": {
+          "title": "[-] Een bot heeft de server verlaten!",
+          "description": "<@{{ member }}> heeft de server verlaten, deze gebruiker is een bot.\n\nAccount aangemaakt: <t:{{ createdAt }}:R>"
+        },
+        "vanity": {
+          "title": "[-] Een lid heeft de server verlaten!",
+          "description": "<@{{ member }}> heeft verlaten, **lid geworden via een vanity code**.\n\nAccount aangemaakt: <t:{{ createdAt }}:R>"
+        },
+        "invalid": {
+          "title": "[-] Een lid heeft de server verlaten!",
+          "description": "<@{{ member }}> heeft verlaten, **kan uitnodiger niet vinden**.\n\nAccount aangemaakt: <t:{{ createdAt }}:R>"
+        },
+        "valid": {
+          "title": "[-] Een lid heeft de server verlaten!",
+          "description": "<@{{ member }}> heeft verlaten, **uitgenodigd door** <@{{ inviter }}> **die nu heeft** `{{ invites }}` uitnodigingen.\n\nCode gebruikt: `{{ code }}`\nAccount aangemaakt: <t:{{ createdAt }}:R>"
+        },
+        "valid_source": {
+          "title": "[-] Een lid heeft de server verlaten!",
+          "description": "<@{{ member }}> heeft verlaten, **uitgenodigd door** <@{{ inviter }}> **die nu heeft** `{{ invites }}` uitnodigingen.\n\nBron: `{{ source }}`\nAccount aangemaakt: <t:{{ createdAt }}:R>"
+        }
+      }
+    }
+  },
+  "commands": {
+    "insufficient_permission": {
+      "title": "Onbevoegde Commando!",
+      "description": "U bent niet gemachtigd om dit commando uit te voeren!"
+    },
+    "unknown_command": {
+      "title": "Fout!",
+      "description": "Dit commando is onbekend of bestaat niet."
+    },
+    "invites": {
+      "data": {
+        "description": "Beheer uitnodigingen",
+        "subcommands": {
+          "display": {
+            "description": "Toon uitnodiging",
+            "options": {
+              "member": {
+                "description": "Vermeld een serverlid"
+              }
+            }
+          },
+          "add": {
+            "description": "Voeg uitnodiging toe aan een lid",
+            "options": {
+              "member": {
+                "description": "Vermeld een serverlid"
+              },
+              "number": {
+                "description": "Aantal uitnodigingen toe te voegen"
+              }
+            }
+          },
+          "remove": {
+            "description": "Verwijder uitnodiging van een lid",
+            "options": {
+              "member": {
+                "description": "Vermeld een serverlid"
+              },
+              "number": {
+                "description": "Aantal uitnodigingen te verwijderen"
+              }
+            }
+          },
+          "reset": {
+            "description": "Reset uitnodigingen van een lid",
+            "options": {
+              "member": {
+                "description": "Vermeld een serverlid"
+              }
+            }
+          },
+          "create": {
+            "description": "Maak een uitnodigingslink die nooit verloopt",
+            "options": {
+              "source": {
+                "description": "Stel een bron in"
+              }
+            }
+          },
+          "check": {
+            "description": "Ontdek welke leden deze code hebben gebruikt of identificeer het lid dat ermee geassocieerd wordt",
+            "options": {
+              "code": {
+                "description": "Code (zonder discord.gg/)"
+              },
+              "member": {
+                "description": "Vermeld een serverlid"
+              }
+            }
+          }
+        }
+      },
+      "messages": {
+        "success_display": {
+          "title": "Gevalideerde Uitnodigingen",
+          "description": "<@{{ member }}> heeft **{{ valid }}** uitnodigingen (**{{ total }}** Regulier, **{{ invalid }}** Verlaten, **{{ bonus }}** Bonus, **{{ fake }}** Nep)."
+        },
+        "error_display": {
+          "title": "Ophalen Mislukt",
+          "description": "Kan uitnodigingen van <@{{ member }}> niet ophalen."
+        },
+        "invalid_bonus": {
+          "title": "Bonusfout",
+          "description": "De bonus is **negatief** of overschrijdt **32 bits**!"
+        },
+        "error_bonus": {
+          "title": "Invoegfout",
+          "description": "Er is een fout opgetreden bij het invoegen van deze bonus."
+        },
+        "success_bonus_add": {
+          "title": "Bonus Toegevoegd",
+          "description": "De gebruiker <@{{ member }}> heeft succesvol **{{ number }}** uitnodigingen toegevoegd!"
+        },
+        "success_bonus_remove": {
+          "title": "Bonus Verwijderd",
+          "description": "De gebruiker <@{{ member }}> heeft succesvol **{{ number }}** uitnodigingen verwijderd!"
+        },
+        "success_reset": {
+          "title": "Uitnodigingen Gereset",
+          "description": "De uitnodigingen van <@{{ member }}> zijn **gereset**."
+        },
+        "error_reset": {
+          "title": "Resetfout",
+          "description": "Er is een fout opgetreden bij het resetten van uitnodigingen."
+        },
+        "existed_link": {
+          "title": "Link Bestaat",
+          "description": "U heeft al een uitnodigingslink (**{{ link }}**)."
+        },
+        "unable_create_link": {
+          "title": "Aanmaak Mislukt",
+          "description": "Kan de uitnodigingslink niet maken, misschien heeft de bot geen rechten of heeft de server meer dan 1000 links."
+        },
+        "updated_link": {
+          "title": "Update Aangeboden",
+          "description": "U heeft al een uitnodigingslink (**{{ link }}**).\n\nWilt u deze updaten met de nieuwe bron (**{{ source }}**)?"
+        },
+        "success_link": {
+          "title": "Link Gemaakt",
+          "description": "Uw uitnodigingslink is gemaakt (**{{ link }}**)!"
+        },
+        "error_link": {
+          "title": "Opslagfout",
+          "description": "Er is een fout opgetreden bij het opslaan van uw uitnodigingslink."
+        },
+        "invalid_check": {
+          "title": "Controlefout",
+          "description": "U moet ten minste één code of lid specificeren."
+        },
+        "no_member_check": {
+          "title": "Lid Afwezig",
+          "description": "Geen leden gevonden met deze informatie."
+        },
+        "success_member_check": {
+          "title": "Succesvolle Controle",
+          "description": "Een lid is gevonden met deze informatie:\n\nLid: <@{{ member }}>\nUitnodiger: <@{{ inviter }}>\n\nCode: **{{ code }}**\nAangemaakt: <t:{{ createdAt }}:R>\n\nVerlaten: **{{ inactive }}**\nNep: **{{ fake }}**"
+        },
+        "success_code_check": {
+          "title": "Succesvolle Controle",
+          "description": "Leden die met deze code zijn lid geworden:\n\n```{{ members }}```"
+        },
+        "error_check": {
+          "title": "Controlefout",
+          "description": "Er is een fout opgetreden bij het zoeken naar informatie."
+        }
+      }
+    },
+    "leaderboard": {
+      "data": {
+        "description": "Beheer leaderboard",
+        "subcommands": {
+          "display": {
+            "description": "Toon leaderboard"
+          },
+          "exclude": {
+            "description": "Sluit een lid of rol uit van de weergave van het leaderboard",
+            "options": {
+              "mentionable": {
+                "description": "Vermeld een serverlid/rol"
+              }
+            }
+          },
+          "include": {
+            "description": "Neem een lid of rol op in de weergave van het leaderboard",
+            "options": {
+              "mentionable": {
+                "description": "Vermeld een serverlid/rol"
+              }
+            }
+          },
+          "top": {
+            "description": "Bepaal hoeveel leden het leaderboard moet weergeven",
+            "options": {
+              "number": {
+                "description": "Aantal leden"
+              }
+            }
+          },
+          "left": {
+            "description": "Bepaal of leden die de server hebben verlaten worden weergegeven",
+            "options": {
+              "show": {
+                "description": "Toon vertrokken leden"
+              }
+            }
+          }
+        }
+      },
+      "messages": {
+        "no_inviter": {
+          "title": "Geen Uitnodiger",
+          "description": "Geen uitnodigers gevonden op deze server!"
+        },
+        "leaderboard": {
+          "title": "Leaderboard",
+          "pre_description": "{{ index }}) <@{{ inviter }}> heeft **{{ valid }}** uitnodigingen (**{{ total }}** Regulier, **{{ invalid }}** Verlaten, **{{ bonus }}** Bonus, **{{ fake }}** Nep).",
+          "description": "Leaderboard van **{{ guild }}**. \n\n{{ leaderboard }}\n\n *...en {{ count }} meer rij(en).*"
+        },
+        "excluded_role": {
+          "title": "Rol Uitgesloten",
+          "description": "Deze rol (<@&{{ target }}>) is uitgesloten van de weergave van het leaderboard."
+        },
+        "excluded_member": {
+          "title": "Lid Uitgesloten",
+          "description": "Dit lid (<@{{ target }}>) is uitgesloten van de weergave van het leaderboard."
+        },
+        "included_role": {
+          "title": "Rol Opgenomen",
+          "description": "Deze rol (<@&{{ target }}>) is opgenomen in de weergave van het leaderboard."
+        },
+        "included_member": {
+          "title": "Lid Opgenomen",
+          "description": "Dit lid (<@{{ target }}>) is opgenomen in de weergave van het leaderboard."
+        },
+        "error_included_role": {
+          "title": "Fout Inbegrepen",
+          "description": "Er is een fout opgetreden bij het proberen op te nemen van rol <@&{{ target }}>."
+        },
+        "error_included_member": {
+          "title": "Fout Inbegrepen",
+          "description": "Er is een fout opgetreden bij het proberen op te nemen van lid <@{{ target }}>."
+        },
+        "error_excluded_role": {
+          "title": "Fout Uitgesloten",
+          "description": "Er is een fout opgetreden bij het proberen uit te sluiten van rol <@&{{ target }}>."
+        },
+        "error_excluded_member": {
+          "title": "Fout Uitgesloten",
+          "description": "Er is een fout opgetreden bij het proberen uit te sluiten van lid <@{{ target }}>."
+        },
+        "invalid_included": {
+          "title": "Ongeldige Inbegrepen",
+          "description": "Deze rol/lid is al opgenomen."
+        },
+        "invalid_excluded": {
+          "title": "Ongeldige Uitgesloten",
+          "description": "Deze rol/lid is al uitgesloten."
+        },
+        "invalid_top": {
+          "title": "Ongeldige Top",
+          "description": "De top moet groter dan 0 en minder dan 25 zijn."
+        },
+        "success_top": {
+          "title": "Succesvolle Top",
+          "description": "Het aantal weergegeven leden is veranderd naar `{{ top }}`."
+        },
+        "error_top": {
+          "title": "Fout Top",
+          "description": "Er is een fout opgetreden bij het proberen te veranderen van de top naar `{{ top }}`."
+        },
+        "success_left_true": {
+          "title": "Succes Toon",
+          "description": "Leden die de server hebben verlaten zullen nu zichtbaar zijn in de weergave van het leaderboard"
+        },
+        "success_left_false": {
+          "title": "Succes Verberg",
+          "description": "Leden die de server hebben verlaten zullen nu niet zichtbaar zijn in de weergave van het leaderboard"
+        },
+        "error_left": {
+          "title": "Fout Toon",
+          "description": "Er is een fout opgetreden bij het proberen te veranderen van de toon naar `{{ show }}`."
+        }
+      }
+    },
+    "roles": {
+      "data": {
+        "description": "Beheer uitnodigingsrollen",
+        "subcommands": {
+          "add": {
+            "description": "Voeg uitnodigingsrol toe",
+            "options": {
+              "role": {
+                "description": "Vermeld een serverrol"
+              },
+              "number": {
+                "description": "Aantal uitnodigingen om de rol te hebben"
+              }
+            }
+          },
+          "remove": {
+            "description": "Verwijder uitnodigingsrol",
+            "options": {
+              "role": {
+                "description": "Vermeld een serverrol"
+              },
+              "delete": {
+                "description": "Verwijder deze rol van leden die het hebben"
+              }
+            }
+          },
+          "list": {
+            "description": "Toon lijst met uitnodigingsrollen"
+          }
+        }
+      },
+      "messages": {
+        "invalid_options": {
+          "title": "Ongeldige Opties",
+          "description": "De opties (rol en/of aantal) zijn ongeldig."
+        },
+        "error_add": {
+          "title": "Toevoegfout",
+          "description": "Er is een fout opgetreden bij het toevoegen van de rol (<@&{{ role }}>) met **{{ number }}** uitnodiging(en)."
+        },
+        "success_add": {
+          "title": "Rol Toegevoegd",
+          "description": "De rol (<@&{{ role }}>) is succesvol toegevoegd."
+        },
+        "existed_role": {
+          "title": "Rol Bestaat",
+          "description": "De rol (<@&{{ role }}>) bestaat al met hetzelfde aantal uitnodigingen (`{{ number }}`)."
+        },
+        "existed_role_update": {
+          "title": "Rol Bijwerken?",
+          "description": "De rol (<@&{{ role }}>) bestaat al.\n\nWilt u deze bijwerken met het nieuwe aantal (**{{ number }}**) uitnodigingen?"
+        },
+        "not_existed_role": {
+          "title": "Rol Mist",
+          "description": "De rol (`{{ role }}`) bestaat niet."
+        },
+        "not_editable_role": {
+          "title": "Rol Beperkt",
+          "description": "De rol (<@&{{ role }}>) kan niet worden toegewezen door de bot."
+        },
+        "error_remove": {
+          "title": "Verwijderfout",
+          "description": "Er is een fout opgetreden bij het verwijderen van deze rol (<@&{{ role }}>)."
+        },
+        "success_remove": {
+          "title": "Rol Verwijderd",
+          "description": "De rol (<@&{{ role }}>) is succesvol verwijderd."
+        },
+        "empty_list": {
+          "title": "Geen Rollen",
+          "description": "U heeft geen uitnodigingsrol. Voeg er enkele toe met `/roles add`"
+        },
+        "role_list": {
+          "title": "Rollen Vermeld",
+          "pre_invalid_description": "{{ index }}) <@&{{ role }}> is **inactief** vanwege wijziging van permissie",
+          "pre_valid_description": "{{ index }}) <@&{{ role }}> vereist **{{ number }}** uitnodigingen",
+          "description": "U heeft in totaal **{{ number }}** uitnodigingsrollen!\n\n{{ roles }}"
+        }
+      }
+    },
+    "ping": {
+      "data": {
+        "description": "Toon bot latency"
+      }
+    },
+    "help": {
+      "data": {
+        "description": "Toon details van commando's"
+      },
+      "messages": {
+        "success": {
+          "title": "Help Commando"
+        }
+      }
+    },
+    "language": {
+      "data": {
+        "description": "Stel een taal in voor de bot",
+        "options": {
+          "language": {
+            "description": "Te instellen taal"
+          }
+        }
+      },
+      "messages": {
+        "current_language": {
+          "title": "Huidige taal",
+          "description": "De huidige server taal is `{{ lng }}`."
+        },
+        "error": {
+          "title": "Wijziging Mislukt",
+          "description": "Er is een fout opgetreden bij het wijzigen van de taal naar `{{ lng }}`."
+        },
+        "success": {
+          "title": "Taal Bijgewerkt",
+          "description": "De server taal is ingesteld op `{{ lng }}`."
+        }
+      }
+    },
+    "purge": {
+      "data": {
+        "description": "Purge gecachte informatie",
+        "subcommands": {
+          "cache": {
+            "description": "Wis de cache op deze server"
+          }
+        }
+      },
+      "messages": {
+        "success": {
+          "title": "Cache Gereset",
+          "description": "De server cache is succesvol gereset."
+        },
+        "error": {
+          "title": "Reset Mislukt",
+          "description": "Er is een fout opgetreden bij het proberen te wissen van de server cache."
+        }
+      }
+    },
+    "channel": {
+      "data": {
+        "description": "Beheer join/leave kanaal",
+        "subcommands": {
+          "set": {
+            "description": "Stel join/leave kanaal in",
+            "options": {
+              "type": {
+                "description": "Kies het type kanaal om te definiëren"
+              },
+              "channel": {
+                "description": "Kies het kanaal"
+              }
+            }
+          }
+        }
+      },
+      "messages": {
+        "success_join": {
+          "title": "Join Ingesteld",
+          "description": "Het join kanaal is ingesteld op <#{{ channel }}>!"
+        },
+        "success_leave": {
+          "title": "Leave Ingesteld",
+          "description": "Het leave kanaal is ingesteld op <#{{ channel }}>!"
+        },
+        "error_join": {
+          "title": "Fout Join",
+          "description": "Er is een fout opgetreden bij het instellen van het join kanaal op <#{{ channel }}>."
+        },
+        "error_leave": {
+          "title": "Fout Leave",
+          "description": "Er is een fout opgetreden bij het instellen van het leave kanaal op <#{{ channel }}>."
+        },
+        "invalid_channel": {
+          "title": "Ongeldig Kanaal",
+          "description": "De bot kan geen berichten verzenden in <#{{ channel }}>."
+        }
+      }
+    },
+    "fake": {
+      "data": {
+        "description": "Beheer het fake systeem"
+      },
+      "messages": {
+        "dropdown": {
+          "title": "Fake Systeem",
+          "description": "Gebruik het dropdown menu om het fake uitnodigingssysteem te configureren.\n\n**Huidige configuratie:**\n\n{{ configuration }}\n\n*Als u hulp nodig heeft, gebruik dan in plaats daarvan de `/setup` commando.*"
+        }
+      }
+    },
+    "setup": {
+      "data": {
+        "description": "Stel de bot in met geavanceerde begeleiding"
+      },
+      "messages": {
+        "stage": {
+          "title": "Bot Instelling",
+          "description": "Welkom bij de instelling!\n\nBegin met te kiezen wat u wilt configureren."
+        }
+      }
+    }
+  },
+  "components": {
+    "insufficient_permission": {
+      "title": "Onbevoegde Interactie!",
+      "description": "U bent niet gemachtigd om deze interactie uit te voeren!"
+    },
+    "invites": {
+      "button": {
+        "update": {
+          "label": "Bevestig update"
+        }
+      },
+      "messages": {
+        "not_existed_role": {
+          "title": "Code Mist",
+          "description": "De code (`{{ code }}`) bestaat niet meer."
+        },
+        "success": {
+          "title": "Code Bijgewerkt",
+          "description": "De code (`{{ code }}`) is succesvol bijgewerkt!"
+        },
+        "error": {
+          "title": "Update Mislukt",
+          "description": "Er is een fout opgetreden bij het bijwerken van de code (`{{ code }}`)!"
+        }
+      }
+    },
+    "roles": {
+      "button": {
+        "update": {
+          "label": "Bevestig update"
+        }
+      },
+      "messages": {
+        "not_existed_role": {
+          "title": "Rol Mist",
+          "description": "De rol (<@&{{ role }}>) bestaat niet meer."
+        },
+        "success": {
+          "title": "Rol Bijgewerkt",
+          "description": "De rol (<@&{{ role }}>) is succesvol bijgewerkt!"
+        },
+        "error": {
+          "title": "Update Mislukt",
+          "description": "Er is een fout opgetreden bij het bijwerken van de rol (<@&{{ role }}>)!"
+        }
+      }
+    },
+    "fake": {
+      "selectMenu": {
+        "placeholder": "Maak een keuze...",
+        "role": {
+          "label": "Specifieke Rol",
+          "description": "De leden moeten deze rol hebben om als geldig beschouwd te worden."
+        },
+        "profile_pic": {
+          "label": "Aangepaste Avatar",
+          "description": "Het lid moet een aangepaste avatar hebben."
+        },
+        "older": {
+          "label": "Ouder Account",
+          "description": "Het lid moet een ouder account hebben."
+        },
+        "own_invite": {
+          "label": "Geen Zelf-Uitnodiging",
+          "description": "Het lid mag niet met zijn eigen uitnodiging lid worden."
+        },
+        "first_join": {
+          "label": "Enkele Telling",
+          "description": "De uitnodiging wordt slechts één keer geteld."
+        },
+        "back_inviter": {
+          "label": "Terug Uitnodiging",
+          "description": "De uitnodiging wordt teruggestuurd naar de oorspronkelijke uitnodiger."
+        }
+      },
+      "button": {
+        "disable": {
+          "label": "Uitschakelen"
+        }
+      },
+      "modal": {
+        "older": {
+          "label": "Stel de leeftijd in dagen in"
+        }
+      },
+      "messages": {
+        "role": {
+          "title": "Selecteer Rol",
+          "description": "Kies de rol waar uitnodigingen als nep worden beschouwd."
+        },
+        "success": {
+          "title": "Fake Bijgewerkt",
+          "description": "Het fake systeem is bijgewerkt!"
+        },
+        "error": {
+          "title": "Fake Fout",
+          "description": "Er is een fout opgetreden bij het bijwerken van het fake systeem."
+        },
+        "older_nan": {
+          "title": "Ongeldig Nummer",
+          "description": "De oudere moet een geldig nummer zijn."
+        }
+      }
+    },
+    "setup": {
+      "modal": {
+        "invitation_role": {
+          "title": "Stel Uitnodigingsrol in",
+          "label": "Aantal uitnodigingen vereist voor deze rol"
+        }
+      },
+      "button": {
+        "back": {
+          "label": "Terug"
+        },
+        "confirm": {
+          "label": "Begrepen!"
+        },
+        "same": {
+          "label": "Zelfde Kanaal"
+        }
+      },
+      "selectMenu": {
+        "placeholder": "Maak een keuze...",
+        "language": {
+          "label": "Taalinstellingen",
+          "description": "Configureer de taal van de bot voor uw server."
+        },
+        "channel": {
+          "label": "Join/Leave Kanaal",
+          "description": "Stel kanalen in voor join en leave meldingen."
+        },
+        "role": {
+          "label": "Uitnodigingsrollen",
+          "description": "Wijs rollen toe op basis van uitnodigingsmijlpalen."
+        },
+        "fake": {
+          "label": "Fake Systeem",
+          "description": "Configureer in real-time het fake systeem."
+        },
+        "leaderboard": {
+          "label": "Leaderboard Configuratie",
+          "description": "Pas de leaderboard instellingen aan, inclusief zichtbaarheid en uitsluitingen."
+        }
+      },
+      "messages": {
+        "error_back": {
+          "title": "Fout Terug",
+          "description": "Deze interactie bestaat niet meer, voer het commando opnieuw uit."
+        },
+        "stage_language_1": {
+          "title": "Taal",
+          "description": "Selecteer alstublieft de taal die de bot zal gebruiken op de server.\n\nDit zal de taal bepalen voor alle automatische berichten en interacties."
+        },
+        "stage_language_2": {
+          "title": "Taalbevestiging",
+          "description": "Uw taalselectie is opgeslagen!\n\nOm de taal van de bot later te wijzigen, kunt u op elk moment het commando `/language set` gebruiken."
+        },
+        "stage_channel_1": {
+          "title": "Join Kanaal",
+          "description": "Selecteer het kanaal dat bestemd is voor join-meldingen.\n\nHier worden berichten geplaatst wanneer een nieuw lid zich bij de server voegt."
+        },
+        "stage_channel_2": {
+          "title": "Leave Kanaal",
+          "description": "Selecteer het kanaal dat bestemd is voor leave-meldingen.\n\nHier worden berichten geplaatst wanneer een lid de server verlaat."
+        },
+        "stage_channel_3": {
+          "title": "Kanaalbevestiging",
+          "description": "Uw selecties zijn opgeslagen!\n\nOm de join of leave notificatiekanalen later te wijzigen, gebruik gewoon het commando `/channel set` op elk moment."
+        },
+        "stage_role_1": {
+          "title": "Uitnodigingsrollen",
+          "description": "Selecteer de rol die u wilt toewijzen voor een bepaald aantal uitnodigingen.\n\nDit is de rol die automatisch wordt verleend wanneer leden de gespecificeerde uitnodigingsmijlpaal bereiken."
+        },
+        "stage_role_2": {
+          "title": "Rolbevestiging",
+          "description": "Uw rolinstellingen zijn opgeslagen!\n\nOm rollen voor uitnodigingsmijlpalen later te wijzigen, gebruik de commando's `/role add`, `/role remove`, of `/role list` op elk moment."
+        },
+        "stage_fake_1": {
+          "title": "Fake Systeem",
+          "description": "U kunt het commando `/fake` gebruiken om toegang te krijgen tot het real-time configuratiemenu.\n\nDit maakt onmiddellijke aanpassingen en aanpassingen aan de fake systeeminstellingen mogelijk."
+        },
+        "stage_leaderboard_1": {
+          "title": "Leaderboard Systeem",
+          "description": "Om het leaderboard te configureren, gebruik het juiste commando `/leaderboard [type]`"
+        },
+        "invalid_role": {
+          "title": "Ongeldige Rol",
+          "description": "De bot kan deze rol niet bewerken."
+        },
+        "invalid_channel": {
+          "title": "Ongeldig Kanaal",
+          "description": "De bot kan geen berichten versturen in dit kanaal."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,724 @@
+{
+  "emoji": "🇫🇷",
+  "events": {
+    "guildMemberAdd": {
+      "messages": {
+        "bot": {
+          "title": "[+] Un bot a rejoint le serveur !",
+          "description": "<@{{ member }}> a rejoint le serveur, cet utilisateur est un bot.\n\nCompte créé : <t:{{ createdAt }}:R>"
+        },
+        "vanity": {
+          "title": "[+] Un membre a rejoint le serveur !",
+          "description": "<@{{ member }}> **a rejoint via un code de vanité**.\n\nCompte créé : <t:{{ createdAt }}:R>"
+        },
+        "first": {
+          "title": "[+] Un membre a rejoint le serveur !",
+          "description": "<@{{ member }}> **a rejoint pour la seconde fois**, son invitation est **invalide**.\n\nCode utilisé : `{{ code }}`\nCompte créé : <t:{{ createdAt }}:R>"
+        },
+        "first_vanity": {
+          "title": "[+] Un membre a rejoint le serveur !",
+          "description": "<@{{ member }}> **a rejoint via un code de vanité** pour la seconde fois\n\nCompte créé : <t:{{ createdAt }}:R>"
+        },
+        "invalid": {
+          "title": "[+] Un membre a rejoint le serveur !",
+          "description": "<@{{ member }}> **impossible de trouver votre invitant**.\n\nCompte créé : <t:{{ createdAt }}:R>"
+        },
+        "valid": {
+          "title": "[+] Un membre a rejoint le serveur !",
+          "description": "<@{{ member }}> **invité par** <@{{ inviter }}> **qui a maintenant** `{{ invites }}` invitations.\n\nCode utilisé : `{{ code }}`\nCompte créé : <t:{{ createdAt }}:R>"
+        },
+        "valid_source": {
+          "title": "[+] Un membre a rejoint le serveur !",
+          "description": "<@{{ member }}> **invité par** <@{{ inviter }}> **qui a maintenant** `{{ invites }}` invitations.\n\nSource : `{{ source }}`\nCompte créé : <t:{{ createdAt }}:R>"
+        }
+      }
+    },
+    "guildMemberRemove": {
+      "messages": {
+        "bot": {
+          "title": "[-] Un bot a quitté le serveur !",
+          "description": "<@{{ member }}> a quitté le serveur, cet utilisateur est un bot.\n\nCompte créé : <t:{{ createdAt }}:R>"
+        },
+        "vanity": {
+          "title": "[-] Un membre a quitté le serveur !",
+          "description": "<@{{ member }}> a quitté, **a rejoint via un code de vanité**.\n\nCompte créé : <t:{{ createdAt }}:R>"
+        },
+        "invalid": {
+          "title": "[-] Un membre a quitté le serveur !",
+          "description": "<@{{ member }}> a quitté, **impossible de trouver l'invitant**.\n\nCompte créé : <t:{{ createdAt }}:R>"
+        },
+        "valid": {
+          "title": "[-] Un membre a quitté le serveur !",
+          "description": "<@{{ member }}> a quitté, **invité par** <@{{ inviter }}> **qui a maintenant** `{{ invites }}` invitations.\n\nCode utilisé : `{{ code }}`\nCompte créé : <t:{{ createdAt }}:R>"
+        },
+        "valid_source": {
+          "title": "[-] Un membre a quitté le serveur !",
+          "description": "<@{{ member }}> a quitté, **invité par** <@{{ inviter }}> **qui a maintenant** `{{ invites }}` invitations.\n\nSource : `{{ source }}`\nCompte créé : <t:{{ createdAt }}:R>"
+        }
+      }
+    }
+  },
+  "commands": {
+    "insufficient_permission": {
+      "title": "Commande non autorisée !",
+      "description": "Vous n'êtes pas autorisé à exécuter cette commande !"
+    },
+    "unknown_command": {
+      "title": "Erreur !",
+      "description": "Cette commande est inconnue ou n'existe pas."
+    },
+    "invites": {
+      "data": {
+        "description": "Gérer les invitations",
+        "subcommands": {
+          "display": {
+            "description": "Afficher l'invitation",
+            "options": {
+              "member": {
+                "description": "Mentionner un membre du serveur"
+              }
+            }
+          },
+          "add": {
+            "description": "Ajouter une invitation à un membre",
+            "options": {
+              "member": {
+                "description": "Mentionner un membre du serveur"
+              },
+              "number": {
+                "description": "Nombre d'invitations à ajouter"
+              }
+            }
+          },
+          "remove": {
+            "description": "Supprimer une invitation à un membre",
+            "options": {
+              "member": {
+                "description": "Mentionner un membre du serveur"
+              },
+              "number": {
+                "description": "Nombre d'invitations à supprimer"
+              }
+            }
+          },
+          "reset": {
+            "description": "Réinitialiser les invitations d'un membre",
+            "options": {
+              "member": {
+                "description": "Mentionner un membre du serveur"
+              }
+            }
+          },
+          "create": {
+            "description": "Créer un lien d'invitation qui n'expire jamais",
+            "options": {
+              "source": {
+                "description": "Définir une source"
+              }
+            }
+          },
+          "check": {
+            "description": "Découvrir quels membres ont utilisé ce code ou identifier le membre associé",
+            "options": {
+              "code": {
+                "description": "Code (sans discord.gg/)"
+              },
+              "member": {
+                "description": "Mentionner un membre du serveur"
+              }
+            }
+          }
+        }
+      },
+      "messages": {
+        "success_display": {
+          "title": "Invitations validées",
+          "description": "<@{{ member }}> a **{{ valid }}** invitations (**{{ total }}** Régulières, **{{ invalid }}** Partis, **{{ bonus }}** Bonus, **{{ fake }}** Faux)."
+        },
+        "error_display": {
+          "title": "Échec de la récupération",
+          "description": "Impossible de récupérer les invitations de <@{{ member }}>."
+        },
+        "invalid_bonus": {
+          "title": "Erreur de bonus",
+          "description": "Le bonus est **négatif** ou dépasse **32 bits** !"
+        },
+        "error_bonus": {
+          "title": "Erreur d'insertion",
+          "description": "Une erreur s'est produite lors de la tentative d'insertion de ce bonus."
+        },
+        "success_bonus_add": {
+          "title": "Bonus ajouté",
+          "description": "L'utilisateur <@{{ member }}> a ajouté avec succès **{{ number }}** invitations !"
+        },
+        "success_bonus_remove": {
+          "title": "Bonus supprimé",
+          "description": "L'utilisateur <@{{ member }}> a supprimé avec succès **{{ number }}** invitations !"
+        },
+        "success_reset": {
+          "title": "Invitations réinitialisées",
+          "description": "Les invitations de <@{{ member }}> ont été **réinitialisées**."
+        },
+        "error_reset": {
+          "title": "Erreur de réinitialisation",
+          "description": "Une erreur s'est produite lors de la tentative de réinitialisation des invitations."
+        },
+        "existed_link": {
+          "title": "Lien existant",
+          "description": "Vous avez déjà un lien d'invitation (**{{ link }}**)."
+        },
+        "unable_create_link": {
+          "title": "Création échouée",
+          "description": "Impossible de créer le lien d'invitation, peut-être que le bot n'a pas les permissions ou que le serveur a plus de 1000 liens."
+        },
+        "updated_link": {
+          "title": "Mise à jour proposée",
+          "description": "Vous avez déjà un lien d'invitation (**{{ link }}**).\n\nVoulez-vous le mettre à jour avec la nouvelle source (**{{ source }}**)?"
+        },
+        "success_link": {
+          "title": "Lien créé",
+          "description": "Votre lien d'invitation a été créé (**{{ link }}**) !"
+        },
+        "error_link": {
+          "title": "Erreur de sauvegarde",
+          "description": "Une erreur s'est produite lors de la sauvegarde de votre lien d'invitation."
+        },
+        "invalid_check": {
+          "title": "Erreur de vérification",
+          "description": "Vous devez spécifier au moins un code ou un membre."
+        },
+        "no_member_check": {
+          "title": "Membre absent",
+          "description": "Aucun membre trouvé avec ces informations."
+        },
+        "success_member_check": {
+          "title": "Vérification réussie",
+          "description": "Un membre a été trouvé avec ces informations :\n\nMembre : <@{{ member }}>\nInvitant : <@{{ inviter }}>\n\nCode : **{{ code }}**\nCréé : <t:{{ createdAt }}:R>\n\nParti : **{{ inactive }}**\nFaux : **{{ fake }}**"
+        },
+        "success_code_check": {
+          "title": "Vérification réussie",
+          "description": "Membres ayant rejoint avec ce code :\n\n```{{ members }}```"
+        },
+        "error_check": {
+          "title": "Erreur de vérification",
+          "description": "Une erreur s'est produite lors de la recherche d'informations."
+        }
+      }
+    },
+    "leaderboard": {
+      "data": {
+        "description": "Gérer le classement",
+        "subcommands": {
+          "display": {
+            "description": "Afficher le classement"
+          },
+          "exclude": {
+            "description": "Exclure un membre ou un rôle de l'affichage du classement",
+            "options": {
+              "mentionable": {
+                "description": "Mentionner un membre/role du serveur"
+              }
+            }
+          },
+          "include": {
+            "description": "Inclure un membre ou un rôle dans l'affichage du classement",
+            "options": {
+              "mentionable": {
+                "description": "Mentionner un membre/role du serveur"
+              }
+            }
+          },
+          "top": {
+            "description": "Définir combien de membres le classement doit afficher",
+            "options": {
+              "number": {
+                "description": "Nombre de membres"
+              }
+            }
+          },
+          "left": {
+            "description": "Définir si les membres qui ont quitté le serveur doivent être affichés",
+            "options": {
+              "show": {
+                "description": "Afficher les membres partis"
+              }
+            }
+          }
+        }
+      },
+      "messages": {
+        "no_inviter": {
+          "title": "Pas d'invitant",
+          "description": "Aucun invitant trouvé dans ce serveur !"
+        },
+        "leaderboard": {
+          "title": "Classement",
+          "pre_description": "{{ index }}) <@{{ inviter }}> a **{{ valid }}** invitations (**{{ total }}** Régulières, **{{ invalid }}** Partis, **{{ bonus }}** Bonus, **{{ fake }}** Faux).",
+          "description": "Classement de **{{ guild }}**. \n\n{{ leaderboard }}\n\n *...et {{ count }} ligne(s) supplémentaire(s).*"
+        },
+        "excluded_role": {
+          "title": "Rôle exclu",
+          "description": "Ce rôle (<@&{{ target }}>) a été exclu de l'affichage du classement."
+        },
+        "excluded_member": {
+          "title": "Membre exclu",
+          "description": "Ce membre (<@{{ target }}>) a été exclu de l'affichage du classement."
+        },
+        "included_role": {
+          "title": "Rôle inclus",
+          "description": "Ce rôle (<@&{{ target }}>) a été inclus dans l'affichage du classement."
+        },
+        "included_member": {
+          "title": "Membre inclus",
+          "description": "Ce membre (<@{{ target }}>) a été inclus dans l'affichage du classement."
+        },
+        "error_included_role": {
+          "title": "Erreur d'inclusion",
+          "description": "Une erreur s'est produite lors de la tentative d'inclusion du rôle <@&{{ target }}>."
+        },
+        "error_included_member": {
+          "title": "Erreur d'inclusion",
+          "description": "Une erreur s'est produite lors de la tentative d'inclusion du membre <@{{ target }}>."
+        },
+        "error_excluded_role": {
+          "title": "Erreur d'exclusion",
+          "description": "Une erreur s'est produite lors de la tentative d'exclusion du rôle <@&{{ target }}>."
+        },
+        "error_excluded_member": {
+          "title": "Erreur d'exclusion",
+          "description": "Une erreur s'est produite lors de la tentative d'exclusion du membre <@{{ target }}>."
+        },
+        "invalid_included": {
+          "title": "Inclusion invalide",
+          "description": "Ce rôle/membre est déjà inclus."
+        },
+        "invalid_excluded": {
+          "title": "Exclusion invalide",
+          "description": "Ce rôle/membre est déjà exclu."
+        },
+        "invalid_top": {
+          "title": "Top invalide",
+          "description": "Le top doit être supérieur à 0 et inférieur à 25."
+        },
+        "success_top": {
+          "title": "Top modifié",
+          "description": "Le nombre de membres affichés a été modifié à `{{ top }}`."
+        },
+        "error_top": {
+          "title": "Erreur de top",
+          "description": "Une erreur s'est produite lors de la tentative de modification du top à `{{ top }}`."
+        },
+        "success_left_true": {
+          "title": "Affichage des membres partis",
+          "description": "Les membres qui ont quitté le serveur seront maintenant visibles dans l'affichage du classement"
+        },
+        "success_left_false": {
+          "title": "Masquer les membres partis",
+          "description": "Les membres qui ont quitté le serveur ne seront plus visibles dans l'affichage du classement"
+        },
+        "error_left": {
+          "title": "Erreur d'affichage",
+          "description": "Une erreur s'est produite lors de la tentative de modification de l'affichage à `{{ show }}`."
+        }
+      }
+    },
+    "roles": {
+      "data": {
+        "description": "Gérer les rôles d'invitation",
+        "subcommands": {
+          "add": {
+            "description": "Ajouter un rôle d'invitation",
+            "options": {
+              "role": {
+                "description": "Mentionner un rôle du serveur"
+              },
+              "number": {
+                "description": "Nombre d'invitations pour avoir le rôle"
+              }
+            }
+          },
+          "remove": {
+            "description": "Supprimer un rôle d'invitation",
+            "options": {
+              "role": {
+                "description": "Mentionner un rôle du serveur"
+              },
+              "delete": {
+                "description": "Supprimer ce rôle des membres qui l'ont"
+              }
+            }
+          },
+          "list": {
+            "description": "Afficher la liste des rôles d'invitation"
+          }
+        }
+      },
+      "messages": {
+        "invalid_options": {
+          "title": "Options invalides",
+          "description": "Les options (rôle et/ou nombre) sont invalides."
+        },
+        "error_add": {
+          "title": "Erreur d'ajout",
+          "description": "Une erreur s'est produite lors de la tentative d'ajout du rôle (<@&{{ role }}>) avec **{{ number }}** invitation(s)."
+        },
+        "success_add": {
+          "title": "Rôle ajouté",
+          "description": "Le rôle (<@&{{ role }}>) a été ajouté avec succès."
+        },
+        "existed_role": {
+          "title": "Rôle existant",
+          "description": "Le rôle (<@&{{ role }}>) existe déjà avec le même nombre d'invitations (`{{ number }}`)."
+        },
+        "existed_role_update": {
+          "title": "Mise à jour du rôle ?",
+          "description": "Le rôle (<@&{{ role }}>) existe déjà.\n\nVoulez-vous le mettre à jour avec le nouveau nombre (**{{ number }}**) d'invitations ?"
+        },
+        "not_existed_role": {
+          "title": "Rôle manquant",
+          "description": "Le rôle (`{{ role }}`) n'existe pas."
+        },
+        "not_editable_role": {
+          "title": "Rôle restreint",
+          "description": "Le rôle (<@&{{ role }}>) ne peut pas être attribué par le bot."
+        },
+        "error_remove": {
+          "title": "Erreur de suppression",
+          "description": "Une erreur s'est produite lors de la tentative de suppression de ce rôle (<@&{{ role }}>)."
+        },
+        "success_remove": {
+          "title": "Rôle supprimé",
+          "description": "Le rôle (<@&{{ role }}>) a été supprimé avec succès."
+        },
+        "empty_list": {
+          "title": "Aucun rôle",
+          "description": "Vous n'avez pas de rôle d'invitation. Ajoutez-en avec `/roles add`"
+        },
+        "role_list": {
+          "title": "Rôles listés",
+          "pre_invalid_description": "{{ index }}) <@&{{ role }}> est **inactif** en raison d'un changement de permission",
+          "pre_valid_description": "{{ index }}) <@&{{ role }}> nécessite **{{ number }}** invitations",
+          "description": "Vous avez un total de **{{ number }}** rôles d'invitation !\n\n{{ roles }}"
+        }
+      }
+    },
+    "ping": {
+      "data": {
+        "description": "Afficher la latence du bot"
+      }
+    },
+    "help": {
+      "data": {
+        "description": "Afficher les détails des commandes"
+      },
+      "messages": {
+        "success": {
+          "title": "Commande d'aide"
+        }
+      }
+    },
+    "language": {
+      "data": {
+        "description": "Définir une langue pour le bot",
+        "options": {
+          "language": {
+            "description": "Langue à définir"
+          }
+        }
+      },
+      "messages": {
+        "current_language": {
+          "title": "Langue actuelle",
+          "description": "La langue actuelle du serveur est `{{ lng }}`."
+        },
+        "error": {
+          "title": "Changement échoué",
+          "description": "Une erreur s'est produite lors du changement de langue en `{{ lng }}`."
+        },
+        "success": {
+          "title": "Langue mise à jour",
+          "description": "La langue du serveur a été définie à `{{ lng }}`."
+        }
+      }
+    },
+    "purge": {
+      "data": {
+        "description": "Purger les informations en cache",
+        "subcommands": {
+          "cache": {
+            "description": "Effacer le cache de ce serveur"
+          }
+        }
+      },
+      "messages": {
+        "success": {
+          "title": "Cache réinitialisé",
+          "description": "Le cache du serveur a été réinitialisé avec succès."
+        },
+        "error": {
+          "title": "Réinitialisation échouée",
+          "description": "Une erreur s'est produite lors de la tentative de réinitialisation du cache du serveur."
+        }
+      }
+    },
+    "channel": {
+      "data": {
+        "description": "Gérer le salon d'arrivée/départ",
+        "subcommands": {
+          "set": {
+            "description": "Définir le salon d'arrivée/départ",
+            "options": {
+              "type": {
+                "description": "Choisir le type de salon à définir"
+              },
+              "channel": {
+                "description": "Choisir le salon"
+              }
+            }
+          }
+        }
+      },
+      "messages": {
+        "success_join": {
+          "title": "Salon d'arrivée défini",
+          "description": "Le salon d'arrivée a été défini à <#{{ channel }}> !"
+        },
+        "success_leave": {
+          "title": "Salon de départ défini",
+          "description": "Le salon de départ a été défini à <#{{ channel }}> !"
+        },
+        "error_join": {
+          "title": "Erreur salon d'arrivée",
+          "description": "Une erreur s'est produite lors de la tentative de définir le salon d'arrivée à <#{{ channel }}>."
+        },
+        "error_leave": {
+          "title": "Erreur salon de départ",
+          "description": "Une erreur s'est produite lors de la tentative de définir le salon de départ à <#{{ channel }}>."
+        },
+        "invalid_channel": {
+          "title": "Salon invalide",
+          "description": "Le bot ne peut pas envoyer de messages dans <#{{ channel }}>."
+        }
+      }
+    },
+    "fake": {
+      "data": {
+        "description": "Gérer le système de faux"
+      },
+      "messages": {
+        "dropdown": {
+          "title": "Système de faux",
+          "description": "Utilisez le menu déroulant pour configurer le système d'invitation fausse.\n\n**Configuration actuelle :**\n\n{{ configuration }}\n\n*Si vous avez besoin d'aide, utilisez la commande `/setup` à la place.*"
+        }
+      }
+    },
+    "setup": {
+      "data": {
+        "description": "Configurer le bot avec un guide avancé"
+      },
+      "messages": {
+        "stage": {
+          "title": "Configuration du bot",
+          "description": "Bienvenue dans la configuration !\n\nCommencez par choisir ce que vous voulez configurer."
+        }
+      }
+    }
+  },
+  "components": {
+    "insufficient_permission": {
+      "title": "Interaction non autorisée !",
+      "description": "Vous n'êtes pas autorisé à exécuter cette interaction !"
+    },
+    "invites": {
+      "button": {
+        "update": {
+          "label": "Confirmer la mise à jour"
+        }
+      },
+      "messages": {
+        "not_existed_role": {
+          "title": "Code manquant",
+          "description": "Le code (`{{ code }}`) n'existe plus."
+        },
+        "success": {
+          "title": "Code mis à jour",
+          "description": "Le code (`{{ code }}`) a été mis à jour avec succès !"
+        },
+        "error": {
+          "title": "Mise à jour échouée",
+          "description": "Une erreur s'est produite lors de la tentative de mise à jour du code (`{{ code }}`) !"
+        }
+      }
+    },
+    "roles": {
+      "button": {
+        "update": {
+          "label": "Confirmer la mise à jour"
+        }
+      },
+      "messages": {
+        "not_existed_code": {
+          "title": "Rôle manquant",
+          "description": "Le rôle (<@&{{ role }}>) n'existe plus."
+        },
+        "success": {
+          "title": "Rôle mis à jour",
+          "description": "Le rôle (<@&{{ role }}>) a été mis à jour avec succès !"
+        },
+        "error": {
+          "title": "Mise à jour échouée",
+          "description": "Une erreur s'est produite lors de la tentative de mise à jour du rôle (<@&{{ role }}>) !"
+        }
+      }
+    },
+    "fake": {
+      "selectMenu": {
+        "placeholder": "Faites un choix...",
+        "role": {
+          "label": "Rôle spécifique",
+          "description": "Les membres doivent avoir ce rôle pour être considérés comme valides."
+        },
+        "profile_pic": {
+          "label": "Avatar personnalisé",
+          "description": "Le membre doit avoir un avatar personnalisé."
+        },
+        "older": {
+          "label": "Compte ancien",
+          "description": "Le membre doit avoir un compte ancien."
+        },
+        "own_invite": {
+          "label": "Pas d'auto-invitation",
+          "description": "Le membre ne doit pas rejoindre avec sa propre invitation."
+        },
+        "first_join": {
+          "label": "Compte unique",
+          "description": "L'invitation est comptée une seule fois."
+        },
+        "back_inviter": {
+          "label": "Invitation retour",
+          "description": "L'invitation est retournée à l'invitant original."
+        }
+      },
+      "button": {
+        "disable": {
+          "label": "Désactiver"
+        }
+      },
+      "modal": {
+        "older": {
+          "label": "Définir l'âge en jour"
+        }
+      },
+      "messages": {
+        "role": {
+          "title": "Sélectionner le rôle",
+          "description": "Choisissez le rôle où les invitations seront considérées comme fausses."
+        },
+        "success": {
+          "title": "Faux mis à jour",
+          "description": "Le système de faux a été mis à jour !"
+        },
+        "error": {
+          "title": "Erreur de faux",
+          "description": "Une erreur s'est produite lors de la tentative de mise à jour du système de faux."
+        },
+        "older_nan": {
+          "title": "Nombre invalide",
+          "description": "L'âge doit être un nombre valide."
+        }
+      }
+    },
+    "setup": {
+      "modal": {
+        "invitation_role": {
+          "title": "Définir le rôle d'invitation",
+          "label": "Nombre d'invitations requises pour ce rôle"
+        }
+      },
+      "button": {
+        "back": {
+          "label": "Retour"
+        },
+        "confirm": {
+          "label": "Compris !"
+        },
+        "same": {
+          "label": "Même salon"
+        }
+      },
+      "selectMenu": {
+        "placeholder": "Faites un choix...",
+        "language": {
+          "label": "Paramètres de langue",
+          "description": "Configurer la langue du bot pour votre serveur."
+        },
+        "channel": {
+          "label": "Salon d'arrivée/départ",
+          "description": "Configurer les salons pour les notifications d'arrivée et de départ."
+        },
+        "role": {
+          "label": "Rôles d'invitations",
+          "description": "Attribuer des rôles basés sur les jalons d'invitation."
+        },
+        "fake": {
+          "label": "Système de faux",
+          "description": "Configurer en temps réel le système de faux."
+        },
+        "leaderboard": {
+          "label": "Configuration du classement",
+          "description": "Personnaliser les paramètres du classement, y compris la visibilité et les exclusions."
+        }
+      },
+      "messages": {
+        "error_back": {
+          "title": "Erreur de retour",
+          "description": "Cette interaction n'existe plus, veuillez réexécuter la commande."
+        },
+        "stage_language_1": {
+          "title": "Langue",
+          "description": "Veuillez sélectionner la langue que le bot utilisera sur le serveur.\n\nCela déterminera la langue pour tous les messages automatiques et interactions."
+        },
+        "stage_language_2": {
+          "title": "Confirmation de la langue",
+          "description": "Votre sélection de langue a été enregistrée !\n\nPour changer la langue du bot plus tard, vous pouvez utiliser la commande `/language set` à tout moment."
+        },
+        "stage_channel_1": {
+          "title": "Salon d'arrivée",
+          "description": "Veuillez sélectionner le salon désigné pour les notifications d'arrivée.\n\nC'est là que les messages seront publiés lorsqu'un nouveau membre rejoint le serveur."
+        },
+        "stage_channel_2": {
+          "title": "Salon de départ",
+          "description": "Veuillez sélectionner le salon désigné pour les notifications de départ.\n\nC'est là que les messages seront publiés lorsqu'un membre quitte le serveur."
+        },
+        "stage_channel_3": {
+          "title": "Confirmation des salons",
+          "description": "Vos sélections ont été enregistrées !\n\nPour modifier les salons de notification d'arrivée ou de départ plus tard, utilisez simplement la commande `/channel set` à tout moment."
+        },
+        "stage_role_1": {
+          "title": "Rôle d'invitations",
+          "description": "Veuillez sélectionner le rôle que vous souhaitez attribuer pour un certain nombre d'invitations.\n\nC'est le rôle qui sera accordé automatiquement lorsque les membres atteindront le jalon d'invitation spécifié."
+        },
+        "stage_role_2": {
+          "title": "Confirmation du rôle",
+          "description": "Vos paramètres de rôle ont été enregistrés !\n\nPour modifier les rôles des jalons d'invitation plus tard, utilisez les commandes `/role add`, `/role remove`, ou `/role list` à tout moment."
+        },
+        "stage_fake_1": {
+          "title": "Système de faux",
+          "description": "Vous pouvez utiliser la commande `/fake` pour accéder au menu de configuration en temps réel.\n\nCela permet des ajustements et des personnalisations immédiats des paramètres du système de faux."
+        },
+        "stage_leaderboard_1": {
+          "title": "Système de classement",
+          "description": "Pour configurer le classement, utilisez la commande appropriée `/leaderboard [type]`"
+        },
+        "invalid_role": {
+          "title": "Rôle invalide",
+          "description": "Le bot ne peut pas modifier ce rôle."
+        },
+        "invalid_channel": {
+          "title": "Salon invalide",
+          "description": "Le bot ne peut pas envoyer de messages dans ce salon."
+        }
+      }
+    }
+  }
+}

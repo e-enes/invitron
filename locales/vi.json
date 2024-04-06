@@ -1,0 +1,724 @@
+{
+  "emoji": "🇺🇸",
+  "events": {
+    "guildMemberAdd": {
+      "messages": {
+        "bot": {
+          "title": "[+] Một bot đã tham gia máy chủ!",
+          "description": "<@{{ member }}> đã tham gia máy chủ, người dùng này là một bot.\n\nTài khoản được tạo: <t:{{ createdAt }}:R>"
+        },
+        "vanity": {
+          "title": "[+] Một thành viên đã tham gia máy chủ!",
+          "description": "<@{{ member }}> **đã tham gia thông qua mã vanity**.\n\nTài khoản được tạo: <t:{{ createdAt }}:R>"
+        },
+        "first": {
+          "title": "[+] Một thành viên đã tham gia máy chủ!",
+          "description": "<@{{ member }}> **đã tham gia lần thứ hai**, lời mời của họ là **không hợp lệ**.\n\nMã được sử dụng: `{{ code }}`\nTài khoản được tạo: <t:{{ createdAt }}:R>"
+        },
+        "first_vanity": {
+          "title": "[+] Một thành viên đã tham gia máy chủ!",
+          "description": "<@{{ member }}> **đã tham gia thông qua mã vanity lần thứ hai**\n\nTài khoản được tạo: <t:{{ createdAt }}:R>"
+        },
+        "invalid": {
+          "title": "[+] Một thành viên đã tham gia máy chủ!",
+          "description": "<@{{ member }}> **không tìm thấy người mời của bạn**.\n\nTài khoản được tạo: <t:{{ createdAt }}:R>"
+        },
+        "valid": {
+          "title": "[+] Một thành viên đã tham gia máy chủ!",
+          "description": "<@{{ member }}> **được mời bởi** <@{{ inviter }}> **người hiện có** `{{ invites }}` lời mời.\n\nMã được sử dụng: `{{ code }}`\nTài khoản được tạo: <t:{{ createdAt }}:R>"
+        },
+        "valid_source": {
+          "title": "[+] Một thành viên đã tham gia máy chủ!",
+          "description": "<@{{ member }}> **được mời bởi** <@{{ inviter }}> **người hiện có** `{{ invites }}` lời mời.\n\nNguồn: `{{ source }}`\nTài khoản được tạo: <t:{{ createdAt }}:R>"
+        }
+      }
+    },
+    "guildMemberRemove": {
+      "messages": {
+        "bot": {
+          "title": "[-] Một bot đã rời khỏi máy chủ!",
+          "description": "<@{{ member }}> đã rời khỏi máy chủ, người dùng này là một bot.\n\nTài khoản được tạo: <t:{{ createdAt }}:R>"
+        },
+        "vanity": {
+          "title": "[-] Một thành viên đã rời khỏi máy chủ!",
+          "description": "<@{{ member }}> đã rời, **đã tham gia thông qua mã vanity**.\n\nTài khoản được tạo: <t:{{ createdAt }}:R>"
+        },
+        "invalid": {
+          "title": "[-] Một thành viên đã rời khỏi máy chủ!",
+          "description": "<@{{ member }}> đã rời, **không tìm thấy người mời**.\n\nTài khoản được tạo: <t:{{ createdAt }}:R>"
+        },
+        "valid": {
+          "title": "[-] Một thành viên đã rời khỏi máy chủ!",
+          "description": "<@{{ member }}> đã rời, **được mời bởi** <@{{ inviter }}> **người hiện có** `{{ invites }}` lời mời.\n\nMã được sử dụng: `{{ code }}`\nTài khoản được tạo: <t:{{ createdAt }}:R>"
+        },
+        "valid_source": {
+          "title": "[-] Một thành viên đã rời khỏi máy chủ!",
+          "description": "<@{{ member }}> đã rời, **được mời bởi** <@{{ inviter }}> **người hiện có** `{{ invites }}` lời mời.\n\nNguồn: `{{ source }}`\nTài khoản được tạo: <t:{{ createdAt }}:R>"
+        }
+      }
+    }
+  },
+  "commands": {
+    "insufficient_permission": {
+      "title": "Lệnh Không Được Phép!",
+      "description": "Bạn không được phép thực hiện lệnh này!"
+    },
+    "unknown_command": {
+      "title": "Lỗi!",
+      "description": "Lệnh này không tồn tại hoặc không xác định."
+    },
+    "invites": {
+      "data": {
+        "description": "Quản lý lời mời",
+        "subcommands": {
+          "display": {
+            "description": "Hiển thị lời mời",
+            "options": {
+              "member": {
+                "description": "Nhắc đến một thành viên của máy chủ"
+              }
+            }
+          },
+          "add": {
+            "description": "Thêm lời mời cho một thành viên",
+            "options": {
+              "member": {
+                "description": "Nhắc đến một thành viên của máy chủ"
+              },
+              "number": {
+                "description": "Số lượng lời mời để thêm"
+              }
+            }
+          },
+          "remove": {
+            "description": "Xóa lời mời của một thành viên",
+            "options": {
+              "member": {
+                "description": "Nhắc đến một thành viên của máy chủ"
+              },
+              "number": {
+                "description": "Số lượng lời mời để xóa"
+              }
+            }
+          },
+          "reset": {
+            "description": "Đặt lại lời mời của một thành viên",
+            "options": {
+              "member": {
+                "description": "Nhắc đến một thành viên của máy chủ"
+              }
+            }
+          },
+          "create": {
+            "description": "Tạo liên kết mời không bao giờ hết hạn",
+            "options": {
+              "source": {
+                "description": "Thiết lập một nguồn"
+              }
+            }
+          },
+          "check": {
+            "description": "Xác định thành viên nào đã sử dụng mã này hoặc xác định thành viên được liên kết với nó",
+            "options": {
+              "code": {
+                "description": "Mã (không bao gồm discord.gg/)"
+              },
+              "member": {
+                "description": "Nhắc đến một thành viên của máy chủ"
+              }
+            }
+          }
+        }
+      },
+      "messages": {
+        "success_display": {
+          "title": "Lời Mời Được Xác Nhận",
+          "description": "<@{{ member }}> có **{{ valid }}** lời mời (**{{ total }}** Thường, **{{ invalid }}** Đã Rời, **{{ bonus }}** Thưởng, **{{ fake }}** Giả mạo)."
+        },
+        "error_display": {
+          "title": "Không Thể Lấy",
+          "description": "Không thể lấy lời mời từ <@{{ member }}>."
+        },
+        "invalid_bonus": {
+          "title": "Lỗi Thưởng",
+          "description": "Thưởng là **âm** hoặc vượt quá **32 bit**!"
+        },
+        "error_bonus": {
+          "title": "Lỗi Thêm",
+          "description": "Có lỗi xảy ra khi cố gắng thêm thưởng này."
+        },
+        "success_bonus_add": {
+          "title": "Thưởng Đã Thêm",
+          "description": "Người dùng <@{{ member }}> đã thành công thêm **{{ number }}** lời mời!"
+        },
+        "success_bonus_remove": {
+          "title": "Thưởng Đã Xóa",
+          "description": "Người dùng <@{{ member }}> đã thành công xóa **{{ number }}** lời mời!"
+        },
+        "success_reset": {
+          "title": "Lời Mời Đã Đặt Lại",
+          "description": "Lời mời của <@{{ member }}> đã được **đặt lại**."
+        },
+        "error_reset": {
+          "title": "Lỗi Đặt Lại",
+          "description": "Có lỗi xảy ra khi cố gắng đặt lại lời mời."
+        },
+        "existed_link": {
+          "title": "Liên Kết Đã Tồn Tại",
+          "description": "Bạn đã có một liên kết mời (**{{ link }}**)."
+        },
+        "unable_create_link": {
+          "title": "Không Thể Tạo",
+          "description": "Không thể tạo liên kết mời, có thể bot không có quyền hoặc máy chủ có hơn 1000 liên kết."
+        },
+        "updated_link": {
+          "title": "Đề Xuất Cập Nhật",
+          "description": "Bạn đã có một liên kết mời (**{{ link }}**).\n\nBạn có muốn cập nhật nó với nguồn mới (**{{ source }}**)?"
+        },
+        "success_link": {
+          "title": "Liên Kết Đã Tạo",
+          "description": "Liên kết mời của bạn đã được tạo (**{{ link }}**)!"
+        },
+        "error_link": {
+          "title": "Lỗi Lưu Trữ",
+          "description": "Có lỗi xảy ra khi lưu liên kết mời của bạn."
+        },
+        "invalid_check": {
+          "title": "Lỗi Kiểm Tra",
+          "description": "Bạn phải chỉ định ít nhất một mã hoặc thành viên."
+        },
+        "no_member_check": {
+          "title": "Thành Viên Vắng Mặt",
+          "description": "Không tìm thấy thành viên nào với thông tin này."
+        },
+        "success_member_check": {
+          "title": "Kiểm Tra Thành Công",
+          "description": "Tìm thấy thành viên với thông tin này:\n\nThành viên: <@{{ member }}>\nNgười mời: <@{{ inviter }}>\n\nMã: **{{ code }}**\nĐược tạo: <t:{{ createdAt }}:R>\n\nĐã rời: **{{ inactive }}**\nGiả mạo: **{{ fake }}**"
+        },
+        "success_code_check": {
+          "title": "Kiểm Tra Thành Công",
+          "description": "Thành viên tham gia với mã này:\n\n```{{ members }}```"
+        },
+        "error_check": {
+          "title": "Lỗi Kiểm Tra",
+          "description": "Có lỗi xảy ra khi cố gắng tìm thông tin."
+        }
+      }
+    },
+    "leaderboard": {
+      "data": {
+        "description": "Quản lý bảng xếp hạng",
+        "subcommands": {
+          "display": {
+            "description": "Hiển thị bảng xếp hạng"
+          },
+          "exclude": {
+            "description": "Loại trừ một thành viên hoặc vai trò khỏi hiển thị bảng xếp hạng",
+            "options": {
+              "mentionable": {
+                "description": "Nhắc đến một thành viên/vai trò của máy chủ"
+              }
+            }
+          },
+          "include": {
+            "description": "Bao gồm một thành viên hoặc vai trò trong hiển thị bảng xếp hạng",
+            "options": {
+              "mentionable": {
+                "description": "Nhắc đến một thành viên/vai trò của máy chủ"
+              }
+            }
+          },
+          "top": {
+            "description": "Xác định số lượng thành viên mà bảng xếp hạng nên hiển thị",
+            "options": {
+              "number": {
+                "description": "Số lượng thành viên"
+              }
+            }
+          },
+          "left": {
+            "description": "Xác định liệu thành viên đã rời khỏi máy chủ có được hiển thị hay không",
+            "options": {
+              "show": {
+                "description": "Hiển thị thành viên đã rời"
+              }
+            }
+          }
+        }
+      },
+      "messages": {
+        "no_inviter": {
+          "title": "Không Có Người Mời",
+          "description": "Không tìm thấy người mời nào trên máy chủ này!"
+        },
+        "leaderboard": {
+          "title": "Bảng Xếp Hạng",
+          "pre_description": "{{ index }}) <@{{ inviter }}> có **{{ valid }}** lời mời (**{{ total }}** Thường, **{{ invalid }}** Đã Rời, **{{ bonus }}** Thưởng, **{{ fake }}** Giả mạo).",
+          "description": "Bảng xếp hạng của **{{ guild }}**. \n\n{{ leaderboard }}\n\n *...và còn {{ count }} hàng nữa.*"
+        },
+        "excluded_role": {
+          "title": "Vai Trò Được Loại Trừ",
+          "description": "Vai trò này (<@&{{ target }}>) đã được loại trừ khỏi hiển thị bảng xếp hạng."
+        },
+        "excluded_member": {
+          "title": "Thành Viên Được Loại Trừ",
+          "description": "Thành viên này (<@{{ target }}>) đã được loại trừ khỏi hiển thị bảng xếp hạng."
+        },
+        "included_role": {
+          "title": "Vai Trò Được Bao Gồm",
+          "description": "Vai trò này (<@&{{ target }}>) đã được bao gồm trong hiển thị bảng xếp hạng."
+        },
+        "included_member": {
+          "title": "Thành Viên Được Bao Gồm",
+          "description": "Thành viên này (<@{{ target }}>) đã được bao gồm trong hiển thị bảng xếp hạng."
+        },
+        "error_included_role": {
+          "title": "Lỗi Bao Gồm",
+          "description": "Có lỗi xảy ra khi cố gắng bao gồm vai trò <@&{{ target }}>."
+        },
+        "error_included_member": {
+          "title": "Lỗi Bao Gồm",
+          "description": "Có lỗi xảy ra khi cố gắng bao gồm thành viên <@{{ target }}>."
+        },
+        "error_excluded_role": {
+          "title": "Lỗi Loại Trừ",
+          "description": "Có lỗi xảy ra khi cố gắng loại trừ vai trò <@&{{ target }}>."
+        },
+        "error_excluded_member": {
+          "title": "Lỗi Loại Trừ",
+          "description": "Có lỗi xảy ra khi cố gắng loại trừ thành viên <@{{ target }}>."
+        },
+        "invalid_included": {
+          "title": "Bao Gồm Không Hợp Lệ",
+          "description": "Vai trò/thành viên này đã được bao gồm."
+        },
+        "invalid_excluded": {
+          "title": "Loại Trừ Không Hợp Lệ",
+          "description": "Vai trò/thành viên này đã được loại trừ."
+        },
+        "invalid_top": {
+          "title": "Top Không Hợp Lệ",
+          "description": "Top phải lớn hơn 0 và nhỏ hơn 25."
+        },
+        "success_top": {
+          "title": "Top Thành Công",
+          "description": "Số lượng thành viên được hiển thị đã được thay đổi thành `{{ top }}`."
+        },
+        "error_top": {
+          "title": "Lỗi Top",
+          "description": "Có lỗi xảy ra khi cố gắng thay đổi top thành `{{ top }}`."
+        },
+        "success_left_true": {
+          "title": "Hiển Thị Thành Công",
+          "description": "Thành viên đã rời khỏi máy chủ sẽ được hiển thị trong bảng xếp hạng"
+        },
+        "success_left_false": {
+          "title": "Ẩn Thành Công",
+          "description": "Thành viên đã rời khỏi máy chủ sẽ không được hiển thị trong bảng xếp hạng"
+        },
+        "error_left": {
+          "title": "Lỗi Hiển Thị",
+          "description": "Có lỗi xảy ra khi cố gắng thay đổi hiển thị thành `{{ show }}`."
+        }
+      }
+    },
+    "roles": {
+      "data": {
+        "description": "Quản lý vai trò theo lời mời",
+        "subcommands": {
+          "add": {
+            "description": "Thêm vai trò theo lời mời",
+            "options": {
+              "role": {
+                "description": "Nhắc đến một vai trò của máy chủ"
+              },
+              "number": {
+                "description": "Số lượng lời mời để có vai trò"
+              }
+            }
+          },
+          "remove": {
+            "description": "Xóa vai trò theo lời mời",
+            "options": {
+              "role": {
+                "description": "Nhắc đến một vai trò của máy chủ"
+              },
+              "delete": {
+                "description": "Xóa vai trò này khỏi thành viên có nó"
+              }
+            }
+          },
+          "list": {
+            "description": "Hiển thị danh sách vai trò theo lời mời"
+          }
+        }
+      },
+      "messages": {
+        "invalid_options": {
+          "title": "Tùy Chọn Không Hợp Lệ",
+          "description": "Các tùy chọn (vai trò và/hoặc số lượng) không hợp lệ."
+        },
+        "error_add": {
+          "title": "Lỗi Thêm",
+          "description": "Có lỗi xảy ra khi cố gắng thêm vai trò (<@&{{ role }}>) với **{{ number }}** lời mời."
+        },
+        "success_add": {
+          "title": "Vai Trò Đã Thêm",
+          "description": "Vai trò (<@&{{ role }}>) đã được thêm thành công."
+        },
+        "existed_role": {
+          "title": "Vai Trò Đã Tồn Tại",
+          "description": "Vai trò (<@&{{ role }}>) đã tồn tại với số lượng lời mời giống nhau (`{{ number }}`)."
+        },
+        "existed_role_update": {
+          "title": "Cập Nhật Vai Trò?",
+          "description": "Vai trò (<@&{{ role }}>) đã tồn tại.\n\nBạn có muốn cập nhật nó với số lượng mới (**{{ number }}**) lời mời không?"
+        },
+        "not_existed_role": {
+          "title": "Vai Trò Không Tồn Tại",
+          "description": "Vai trò (`{{ role }}`) không tồn tại."
+        },
+        "not_editable_role": {
+          "title": "Vai Trò Bị Hạn Chế",
+          "description": "Vai trò (<@&{{ role }}>) không thể được bot chỉ định."
+        },
+        "error_remove": {
+          "title": "Lỗi Xóa",
+          "description": "Có lỗi xảy ra khi cố gắng xóa vai trò này (<@&{{ role }}>)."
+        },
+        "success_remove": {
+          "title": "Vai Trò Đã Xóa",
+          "description": "Vai trò (<@&{{ role }}>) đã được xóa thành công."
+        },
+        "empty_list": {
+          "title": "Không Có Vai Trò",
+          "description": "Bạn không có vai trò nào theo lời mời. Thêm một số bằng cách sử dụng `/roles add`"
+        },
+        "role_list": {
+          "title": "Danh Sách Vai Trò",
+          "pre_invalid_description": "{{ index }}) <@&{{ role }}> **không hoạt động** do thay đổi quyền",
+          "pre_valid_description": "{{ index }}) <@&{{ role }}> yêu cầu **{{ number }}** lời mời",
+          "description": "Bạn có tổng cộng **{{ number }}** vai trò theo lời mời!\n\n{{ roles }}"
+        }
+      }
+    },
+    "ping": {
+      "data": {
+        "description": "Hiển thị độ trễ của bot"
+      }
+    },
+    "help": {
+      "data": {
+        "description": "Hiển thị chi tiết lệnh"
+      },
+      "messages": {
+        "success": {
+          "title": "Lệnh Trợ Giúp"
+        }
+      }
+    },
+    "language": {
+      "data": {
+        "description": "Thiết lập ngôn ngữ cho bot",
+        "options": {
+          "language": {
+            "description": "Ngôn ngữ để thiết lập"
+          }
+        }
+      },
+      "messages": {
+        "current_language": {
+          "title": "Ngôn Ngữ Hiện Tại",
+          "description": "Ngôn ngữ hiện tại của máy chủ là `{{ lng }}`."
+        },
+        "error": {
+          "title": "Thay Đổi Thất Bại",
+          "description": "Có lỗi xảy ra khi thay đổi ngôn ngữ sang `{{ lng }}`."
+        },
+        "success": {
+          "title": "Ngôn Ngữ Đã Cập Nhật",
+          "description": "Ngôn ngữ của máy chủ đã được thiết lập thành `{{ lng }}`."
+        }
+      }
+    },
+    "purge": {
+      "data": {
+        "description": "Xóa thông tin lưu trữ",
+        "subcommands": {
+          "cache": {
+            "description": "Xóa bộ nhớ đệm trên máy chủ này"
+          }
+        }
+      },
+      "messages": {
+        "success": {
+          "title": "Bộ Nhớ Đệm Đã Đặt Lại",
+          "description": "Bộ nhớ đệm của máy chủ đã được đặt lại thành công."
+        },
+        "error": {
+          "title": "Đặt Lại Thất Bại",
+          "description": "Có lỗi xảy ra khi cố gắng xóa bộ nhớ đệm của máy chủ."
+        }
+      }
+    },
+    "channel": {
+      "data": {
+        "description": "Quản lý kênh vào/ra",
+        "subcommands": {
+          "set": {
+            "description": "Thiết lập kênh vào/ra",
+            "options": {
+              "type": {
+                "description": "Chọn loại kênh để định rõ"
+              },
+              "channel": {
+                "description": "Chọn kênh"
+              }
+            }
+          }
+        }
+      },
+      "messages": {
+        "success_join": {
+          "title": "Kênh Vào Đã Thiết Lập",
+          "description": "Kênh vào đã được thiết lập thành <#{{ channel }}>!"
+        },
+        "success_leave": {
+          "title": "Kênh Ra Đã Thiết Lập",
+          "description": "Kênh ra đã được thiết lập thành <#{{ channel }}>!"
+        },
+        "error_join": {
+          "title": "Lỗi Kênh Vào",
+          "description": "Có lỗi xảy ra khi cố gắng thiết lập kênh vào thành <#{{ channel }}>."
+        },
+        "error_leave": {
+          "title": "Lỗi Kênh Ra",
+          "description": "Có lỗi xảy ra khi cố gắng thiết lập kênh ra thành <#{{ channel }}>."
+        },
+        "invalid_channel": {
+          "title": "Kênh Không Hợp Lệ",
+          "description": "Bot không thể gửi tin nhắn trong <#{{ channel }}>."
+        }
+      }
+    },
+    "fake": {
+      "data": {
+        "description": "Quản lý hệ thống lời mời giả mạo"
+      },
+      "messages": {
+        "dropdown": {
+          "title": "Hệ Thống Giả Mạo",
+          "description": "Sử dụng menu thả xuống để cấu hình hệ thống lời mời giả mạo.\n\n**Cấu hình hiện tại:**\n\n{{ configuration }}\n\n*Nếu bạn cần trợ giúp, hãy sử dụng lệnh `/setup`.*"
+        }
+      }
+    },
+    "setup": {
+      "data": {
+        "description": "Thiết lập bot với hướng dẫn nâng cao"
+      },
+      "messages": {
+        "stage": {
+          "title": "Thiết Lập Bot",
+          "description": "Chào mừng bạn đến với thiết lập!\n\nBắt đầu bằng cách chọn những gì bạn muốn cấu hình."
+        }
+      }
+    }
+  },
+  "components": {
+    "insufficient_permission": {
+      "title": "Tương Tác Không Được Phép!",
+      "description": "Bạn không được phép thực hiện tương tác này!"
+    },
+    "invites": {
+      "button": {
+        "update": {
+          "label": "Xác Nhận Cập Nhật"
+        }
+      },
+      "messages": {
+        "not_existed_role": {
+          "title": "Mã Không Tồn Tại",
+          "description": "Mã (`{{ code }}`) không còn tồn tại."
+        },
+        "success": {
+          "title": "Mã Đã Cập Nhật",
+          "description": "Mã (`{{ code }}`) đã được cập nhật thành công!"
+        },
+        "error": {
+          "title": "Cập Nhật Thất Bại",
+          "description": "Có lỗi xảy ra khi cố gắng cập nhật mã (`{{ code }}`)!"
+        }
+      }
+    },
+    "roles": {
+      "button": {
+        "update": {
+          "label": "Xác Nhận Cập Nhật"
+        }
+      },
+      "messages": {
+        "not_existed_role": {
+          "title": "Vai Trò Không Tồn Tại",
+          "description": "Vai trò (<@&{{ role }}>) không còn tồn tại."
+        },
+        "success": {
+          "title": "Vai Trò Đã Cập Nhật",
+          "description": "Vai trò (<@&{{ role }}>) đã được cập nhật thành công!"
+        },
+        "error": {
+          "title": "Cập Nhật Thất Bại",
+          "description": "Có lỗi xảy ra khi cố gắng cập nhật vai trò (<@&{{ role }}>)!"
+        }
+      }
+    },
+    "fake": {
+      "selectMenu": {
+        "placeholder": "Chọn một lựa chọn...",
+        "role": {
+          "label": "Vai Trò Cụ Thể",
+          "description": "Thành viên phải có vai trò này để được coi là hợp lệ."
+        },
+        "profile_pic": {
+          "label": "Avatar Tùy Chỉnh",
+          "description": "Thành viên phải có avatar tùy chỉnh."
+        },
+        "older": {
+          "label": "Tài Khoản Cũ",
+          "description": "Thành viên phải có tài khoản cũ."
+        },
+        "own_invite": {
+          "label": "Không Tự Mời",
+          "description": "Thành viên không được tham gia với lời mời của chính họ."
+        },
+        "first_join": {
+          "label": "Đếm Một Lần",
+          "description": "Lời mời chỉ được tính một lần."
+        },
+        "back_inviter": {
+          "label": "Mời Trở Lại",
+          "description": "Lời mời được trả lại cho người mời ban đầu."
+        }
+      },
+      "button": {
+        "disable": {
+          "label": "Vô Hiệu Hóa"
+        }
+      },
+      "modal": {
+        "older": {
+          "label": "Thiết Lập Tuổi Trong Ngày"
+        }
+      },
+      "messages": {
+        "role": {
+          "title": "Chọn Vai Trò",
+          "description": "Chọn vai trò mà lời mời sẽ được coi là giả mạo."
+        },
+        "success": {
+          "title": "Giả Mạo Đã Cập Nhật",
+          "description": "Hệ thống giả mạo đã được cập nhật!"
+        },
+        "error": {
+          "title": "Lỗi Giả Mạo",
+          "description": "Có lỗi xảy ra khi cố gắng cập nhật hệ thống giả mạo."
+        },
+        "older_nan": {
+          "title": "Số Không Hợp Lệ",
+          "description": "Tuổi phải là một số hợp lệ."
+        }
+      }
+    },
+    "setup": {
+      "modal": {
+        "invitation_role": {
+          "title": "Thiết Lập Vai Trò Theo Lời Mời",
+          "label": "Số lượng lời mời cần thiết cho vai trò này"
+        }
+      },
+      "button": {
+        "back": {
+          "label": "Quay Lại"
+        },
+        "confirm": {
+          "label": "Đã Hiểu!"
+        },
+        "same": {
+          "label": "Cùng Một Kênh"
+        }
+      },
+      "selectMenu": {
+        "placeholder": "Chọn một lựa chọn...",
+        "language": {
+          "label": "Cài Đặt Ngôn Ngữ",
+          "description": "Thiết lập ngôn ngữ cho bot trên máy chủ của bạn."
+        },
+        "channel": {
+          "label": "Kênh Tham Gia/Rời Khỏi",
+          "description": "Thiết lập kênh cho thông báo tham gia và rời khỏi."
+        },
+        "role": {
+          "label": "Vai Trò Theo Lời Mời",
+          "description": "Phân công vai trò dựa trên mốc lời mời."
+        },
+        "fake": {
+          "label": "Hệ Thống Giả Mạo",
+          "description": "Cấu hình hệ thống giả mạo theo thời gian thực."
+        },
+        "leaderboard": {
+          "label": "Cấu Hình Bảng Xếp Hạng",
+          "description": "Tùy chỉnh cài đặt bảng xếp hạng, bao gồm hiển thị và loại trừ."
+        }
+      },
+      "messages": {
+        "error_back": {
+          "title": "Lỗi Quay Lại",
+          "description": "Tương tác này không còn tồn tại, vui lòng thực hiện lại lệnh."
+        },
+        "stage_language_1": {
+          "title": "Ngôn Ngữ",
+          "description": "Vui lòng chọn ngôn ngữ mà bot sẽ sử dụng trên máy chủ.\n\nĐiều này sẽ xác định ngôn ngữ cho tất cả thông điệp tự động và tương tác."
+        },
+        "stage_language_2": {
+          "title": "Xác Nhận Ngôn Ngữ",
+          "description": "Lựa chọn ngôn ngữ của bạn đã được lưu!\n\nĐể thay đổi ngôn ngữ của bot sau này, bạn có thể sử dụng lệnh `/language set` bất cứ lúc nào."
+        },
+        "stage_channel_1": {
+          "title": "Kênh Tham Gia",
+          "description": "Chọn kênh dành cho thông báo khi có thành viên mới tham gia.\n\nĐây là nơi thông điệp sẽ được đăng khi một thành viên mới tham gia máy chủ."
+        },
+        "stage_channel_2": {
+          "title": "Kênh Rời Khỏi",
+          "description": "Chọn kênh dành cho thông báo khi có thành viên rời khỏi.\n\nĐây là nơi thông điệp sẽ được đăng khi một thành viên rời khỏi máy chủ."
+        },
+        "stage_channel_3": {
+          "title": "Xác Nhận Kênh",
+          "description": "Lựa chọn của bạn đã được lưu!\n\nĐể chỉnh sửa kênh thông báo tham gia hoặc rời khỏi sau này, chỉ cần sử dụng lệnh `/channel set` bất cứ lúc nào."
+        },
+        "stage_role_1": {
+          "title": "Vai Trò Theo Lời Mời",
+          "description": "Chọn vai trò bạn muốn gán cho một số lượng lời mời nhất định.\n\nĐây là vai trò sẽ được tự động cấp khi thành viên đạt được cột mốc lời mời được chỉ định."
+        },
+        "stage_role_2": {
+          "title": "Xác Nhận Vai Trò",
+          "description": "Cài đặt vai trò của bạn đã được lưu!\n\nĐể chỉnh sửa vai trò cho cột mốc lời mời sau này, sử dụng các lệnh `/role add`, `/role remove`, hoặc `/role list` bất cứ lúc nào."
+        },
+        "stage_fake_1": {
+          "title": "Hệ Thống Giả Mạo",
+          "description": "Bạn có thể sử dụng lệnh `/fake` để truy cập menu cấu hình theo thời gian thực.\n\nĐiều này cho phép điều chỉnh ngay lập tức và tùy chỉnh cài đặt cho hệ thống giả mạo."
+        },
+        "stage_leaderboard_1": {
+          "title": "Hệ Thống Bảng Xếp Hạng",
+          "description": "Để cấu hình bảng xếp hạng, sử dụng lệnh tương ứng `/leaderboard [loại]`"
+        },
+        "invalid_role": {
+          "title": "Vai Trò Không Hợp Lệ",
+          "description": "Bot không thể chỉnh sửa vai trò này."
+        },
+        "invalid_channel": {
+          "title": "Kênh Không Hợp Lệ",
+          "description": "Bot không thể gửi tin nhắn trong kênh này."
+        }
+      }
+    }
+  }
+}
