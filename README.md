@@ -46,10 +46,10 @@ mv .env.example .env
 
 Then, fill in the required information accordingly.
 
-5. Start:
+**Step 4**: Start the bot:
 
 ```
-pnpm build && pnpm sta
+pnpm build && pnpm start
 ```
 
 Finally, execute the `/setup` command on discord.
