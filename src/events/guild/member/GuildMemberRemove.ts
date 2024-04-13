@@ -44,15 +44,11 @@ class GuildMemberRemove extends Listener {
       [member.guild.id, member.user.id]
     );
 
-    if (data.length === 0 || data[0].inactive) {
-      if (data.length === 0 || !data[0].inactive) {
-        await database.query("INSERT INTO invites (guild_id, member_id, inactive) VALUES (?, ?, ?)", [
-          member.guild.id,
-          member.user.id,
-          true,
-        ]);
-      }
+    if (data.length === 0) {
+      await database.query("INSERT INTO invites (guild_id, member_id, inactive) VALUES (?, ?, ?)", [member.guild.id, member.user.id, true]);
+    }
 
+    if (data.length === 0 || data[0].inactive) {
       await context.send?.({
         embeds: [
           new EmbedBuilder()
@@ -112,8 +108,10 @@ class GuildMemberRemove extends Listener {
     )?.[0];
     const invites = preInvites?.valid + preInvites?.bonus;
 
-    const inviter = member.guild.members.cache.get(row.inviter) || (await member.guild.members.fetch(row.inviter));
-    await utils.updateRole(member.guild.id, inviter, invites);
+    if (member.user.id !== row.inviter) {
+      const inviter = member.guild.members.cache.get(row.inviter) || (await member.guild.members.fetch(row.inviter));
+      await utils.updateRole(member.guild.id, inviter, invites);
+    }
 
     if (source) {
       await context.send?.({
