@@ -20,11 +20,11 @@ Steps to reproduce the behavior:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**Desktop (please complete the following information):**
+**Please complete the following information:**
 
 - Version of Node.js:
-- Version of discord.js:
 - Version of the bot used:
+- Database used (Mysql/Sqlite):
 
 **Additional context**
 Add any other context about the problem here.
