@@ -9,7 +9,7 @@
 
 ## Requirements
 
-- Node.js version 18.x.x or higher
+- Node.js version 18.18 or higher
 - A Discord bot token
 
 ## Features
