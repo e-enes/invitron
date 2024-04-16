@@ -20,6 +20,9 @@ importers:
       discord.js:
         specifier: ^14.14.1
         version: 14.14.1(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
       fs:
         specifier: 0.0.1-security
         version: 0.0.1-security
@@ -55,9 +58,6 @@ importers:
       "@typescript-eslint/parser":
         specifier: ^7.7.0
         version: 7.7.0(eslint@8.57.0)(typescript@5.4.5)
-      dotenv:
-        specifier: ^16.4.5
-        version: 16.4.5
       esbuild:
         specifier: ^0.20.2
         version: 0.20.2
