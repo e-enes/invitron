@@ -9,4 +9,5 @@ await build({
   minify: process.env.NODE_ENV !== "development",
   format: "esm",
   sourcemap: false,
+  tsconfig: "./tsconfig.json",
 });
