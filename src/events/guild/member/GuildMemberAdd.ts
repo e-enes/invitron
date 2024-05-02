@@ -40,7 +40,7 @@ class GuildMemberAdd extends Listener {
     }
 
     const previousInvites = this.client.invites.get(member.guild.id)!;
-    const currentGuildInvites = await member.guild.invites.fetch();
+    const currentGuildInvites = await member.guild.invites.fetch({ cache: false });
 
     let code: string | undefined;
     let usedInvite = previousInvites
