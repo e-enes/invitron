@@ -23,7 +23,7 @@ jobs:
 
       - name: Install pnpm
         run: |
-          npm install -g pnpm@latest
+          npm install -g pnpm@9.0.6
 
       - name: Install dependencies
         run: pnpm install

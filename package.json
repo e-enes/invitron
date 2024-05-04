@@ -46,7 +46,7 @@
     "email": "125091714+e-enes@users.noreply.github.com",
     "url": "https://github.com/e-enes/invitron/issues"
   },
-  "packageManager": "pnpm@9.0.1",
+  "packageManager": "pnpm@9.0.6",
   "dependencies": {
     "chalk": "^5.3.0",
     "discord-api-types": "^0.37.79",
