@@ -36,7 +36,7 @@ cd invitron
 pnpm install
 ```
 
-_Note: If `pnpm` is not already installed, you can install it globally using `npm i -g pnpm`._
+_Note: If `pnpm` is not already installed, you can install it globally using `npm i -g pnpm` or remove `pnpm-lock.yaml` and use your preferred package manager._
 
 **Step 3**: Set up your `.env` and `src/config.ts` files:
 
