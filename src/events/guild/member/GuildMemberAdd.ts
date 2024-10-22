@@ -47,9 +47,10 @@ class GuildMemberAdd extends Listener {
       .filter((_, key) => key !== member.guild.id)
       .find((previousInvite, key) => {
         code = key;
-        const uses = currentGuildInvites.get(key)?.uses;
-        if (uses && previousInvite.uses) {
-          return uses > previousInvite.uses;
+        const current = currentGuildInvites.get(key);
+        
+        if (current.uses && previousInvite.uses) {
+          return current.uses > previousInvite.uses;
         }
       });
 
