@@ -10,7 +10,7 @@
     "build": "node scripts/build.js",
     "dev": "nodemon",
     "format": "prettier . --check",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "lint:staged": "lint-staged",
     "prepare": "husky"
   },
