@@ -48,8 +48,8 @@ class GuildMemberAdd extends Listener {
       .find((previousInvite, key) => {
         code = key;
         const current = currentGuildInvites.get(key);
-        
-        if (current.uses && previousInvite.uses) {
+
+        if (current?.uses && previousInvite.uses) {
           return current.uses > previousInvite.uses;
         }
       });
